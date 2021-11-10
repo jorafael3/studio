@@ -1,0 +1,8 @@
+[04-Nov-2021 17:17:12 UTC] PHP Fatal error:  Uncaught Error: Class 'Controller' not found in C:\Apache24\htdocs\studio\controllers\clientes.php:4
+Stack trace:
+#0 {main}
+  thrown in C:\Apache24\htdocs\studio\controllers\clientes.php on line 4
+[04-Nov-2021 17:17:57 UTC] PHP Fatal error:  Uncaught Error: Class 'Controller' not found in C:\Apache24\htdocs\studio\controllers\clientes.php:4
+Stack trace:
+#0 {main}
+  thrown in C:\Apache24\htdocs\studio\controllers\clientes.php on line 4
