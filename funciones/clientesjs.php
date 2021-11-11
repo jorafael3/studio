@@ -53,12 +53,19 @@ $urlClientes = constant('URL') . "Clientes/ListarClientes/";
             if (tipo == 1) {
                 GuardarCliente(url, data);
 
-            } 
-             if (tipo == 2) {
+            }
+            if (tipo == 2) {
+                var chSemana = document.getElementById("customSwitch1");
+
+                if (chSemana.checked == true) {
+                    data.estado = "1"
+                } else {
+                    data.estado = "0"
+                }
 
                 data.id = id_cliente
-                console.log(id_cliente);
-                ActualizarCliente(url,data);
+                console.log(data);
+                ActualizarCliente(url, data);
             }
         }
 
@@ -126,8 +133,7 @@ $urlClientes = constant('URL') . "Clientes/ListarClientes/";
         } else {
             $('#customSwitch1').prop('checked', false);
         }
-        // var url2 = '<?php echo $urlClientesUpdate ?>'
-        // ValidarCliente(url, tipo);
+     
     }
 
     function ActualizarCliente(url, data) {
@@ -135,7 +141,17 @@ $urlClientes = constant('URL') . "Clientes/ListarClientes/";
         xmlhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 var data = this.responseText;
+                data = JSON.parse(data);
+
                 console.log(data);
+
+              //  if(data == "true"){
+                    $('#add-new-sidebar').modal('hide');
+                    MensajeOk("Los Datos Se Actualizaron Con Exito");
+                    var url2 = '<?php echo $urlClientes ?>'
+
+                    ValidarListaClientes(url2);
+              // }
             }
         }
         data = JSON.stringify(data);

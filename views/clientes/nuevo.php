@@ -25,11 +25,10 @@ require 'views/header.php';
 <div class="card">
     <div class="card-header">
         <button class="btn btn-primary btn-toggle-sidebar" id="BtnNuevoEvento" data-toggle="modal" data-target="#add-new-sidebar">Nuevo Cliente</button>
-
     </div>
     <div class="card-body">
         <div class="table-responsive">
-            <table id="Lista" class="table hover tabla-clientes  table-bordered">
+            <table id="Lista" style="width: 100%;" class="table hover tabla-clientes  table-bordered">
 
             </table>
         </div>
@@ -100,10 +99,9 @@ require 'views/header.php';
 
                             <button id="btnguardar" onclick="Btnguardar(1)" class="btn btn-primary">Guardar</button>
                             <button id="btnactualizar" onclick="Btnguardar(2)" class="btn btn-warning">Actualizar</button>
-
                         </div>
+                    </form>
                 </div>
-                </form>
             </div>
         </div>
     </div>
@@ -111,6 +109,13 @@ require 'views/header.php';
 
 
 <?php require 'views/footer.php'; ?>
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.25/b-1.7.1/b-colvis-1.7.1/b-html5-1.7.1/b-print-1.7.1/datatables.min.css" />
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.24/b-1.7.0/b-colvis-1.7.0/b-html5-1.7.0/b-print-1.7.0/datatables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
 
 <script>
     // Example starter JavaScript for disabling form submissions if there are invalid fields
@@ -131,6 +136,19 @@ require 'views/header.php';
             });
         }, false);
     })();
+
+    $(document).on('keydown', 'input[pattern]', function(e){
+  var input = $(this);
+  var oldVal = input.val();
+  var regex = new RegExp(input.attr('pattern'), 'g');
+
+  setTimeout(function(){
+    var newVal = input.val();
+    if(!regex.test(newVal)){
+      input.val(oldVal); 
+    }
+  }, 1);
+});
 </script>
 <script>
     $("#seccEstado").hide();
@@ -159,10 +177,10 @@ require 'views/header.php';
     function Btnguardar(tipo) {
         var url = '<?php echo $urlNuevoClientes ?>'
         var url2 = '<?php echo $urlClientesUpdate ?>'
-        if(tipo == 2){
+        if (tipo == 2) {
             url = url2
         }
-        ValidarCliente(url,tipo);
-        
+        ValidarCliente(url, tipo);
+
     }
 </script>

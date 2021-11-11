@@ -23,7 +23,7 @@ $clientes = $url."clientes/nuevo";
         </a>
     </li>
     <li>
-        <a href="chat-box.html">
+        <a href="<?php echo constant('URL') ?>Productos/Productos">
             <div class="parent-icon icon-color-8"> <i class="lni lni-package"></i>
             </div>
             <div class="menu-title">Productos</div>

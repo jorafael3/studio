@@ -10,7 +10,7 @@
 <!--End Back To Top Button-->
 <!--footer -->
 <div class="footer">
-    <p class="mb-0">Jorge Alvarado @2021 | Developed By : Jorge Alvarado</a>
+    <p class="mb-0">AjStudio @2021 | Developed By : JR</a>
     </p>
 </div>
 <!-- end footer -->
@@ -61,13 +61,6 @@
 <script src="<?php echo constant('URL') ?>public/assets/js/app.js"></script>
 
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.25/b-1.7.1/b-colvis-1.7.1/b-html5-1.7.1/b-print-1.7.1/datatables.min.css" />
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.24/b-1.7.0/b-colvis-1.7.0/b-html5-1.7.0/b-print-1.7.0/datatables.min.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
 
 </body>
 
