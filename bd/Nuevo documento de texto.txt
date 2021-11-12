@@ -1,0 +1,112 @@
+CREATE TABLE `clientes` (
+  `id_cliente` int NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(100) NOT NULL,
+  `ruc` varchar(15) NOT NULL,
+  `correo` varchar(100) DEFAULT NULL,
+  `telefono` varchar(100) DEFAULT NULL,
+  `whatsapp` varchar(20) DEFAULT NULL,
+  `direccion` varchar(500) DEFAULT NULL,
+  `estado` int NOT NULL,
+  `fecha_creacion` datetime DEFAULT CURRENT_TIMESTAMP,
+  `fecha_modificacion` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `Creador` varchar(50) NOT NULL,
+  PRIMARY KEY (`id_cliente`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+
+CREATE TABLE `productos` (
+  `id_prod` int NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(100) NOT NULL,
+  `descripcion` varchar(1000) NOT NULL,
+  `precio` double DEFAULT NULL,
+  `medida` int DEFAULT NULL,
+  `estado` int DEFAULT NULL,
+  `creacion` datetime DEFAULT CURRENT_TIMESTAMP,
+  `actualizacion` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id_prod`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+
+
+
+
+
+
+
+
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `studio`.`PRODUCTOS`(
+IN nombre VARCHAR(100),
+IN descripcion VARCHAR(1000),
+IN precio double,
+IN medida int,
+IN estado int,
+IN tipo int,
+IN id int
+)
+begin
+	 IF tipo = 1 then
+	 	INSERT INTO productos(
+	 		nombre,
+	 		descripcion,
+	 		precio,
+	 		medida,
+	 		estado 
+	 	)values(
+	 		nombre ,
+	 		descripcion,
+	 		precio,
+	 		medida,
+	 		estado 
+	 	);
+	 END if;
+	 IF tipo = 2 then
+	 	update studio.productos set
+	 	nombre = nombre,
+	 	descripcion  = descripcion,
+	 	precio = precio,
+	 	medida = medida ,
+	 	estado = estado
+	 	where id_prod = id;
+	 END if;
+	 
+END
+
+
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `studio`.`PRODUCTOS`(
+IN nombre VARCHAR(100),
+IN descripcion VARCHAR(1000),
+IN precio double,
+IN medida int,
+IN estado int,
+IN tipo int,
+IN id int
+)
+begin
+	 IF tipo = 1 then
+	 	INSERT INTO productos(
+	 		nombre,
+	 		descripcion,
+	 		precio,
+	 		medida,
+	 		estado 
+	 	)values(
+	 		nombre ,
+	 		descripcion,
+	 		precio,
+	 		medida,
+	 		estado 
+	 	);
+	 END if;
+	 IF tipo = 2 then
+	 	update studio.productos set
+	 	nombre = nombre,
+	 	descripcion  = descripcion,
+	 	precio = precio,
+	 	medida = medida ,
+	 	estado = estado
+	 	where id_prod = id;
+	 END if;
+	 
+END
