@@ -4,6 +4,7 @@
 
 $urlNuevoProducto = constant('URL') . "Productos/NuevoProducto/";
 $urlListarProducto = constant('URL') . "Productos/ListarProducto/";
+$urlActualizarProd = constant('URL') . "Productos/ActualizarProducto/";
 
 
 
@@ -103,18 +104,18 @@ require 'views/header.php'; ?>
                 <div class="col-md-2 col-12">
                     <div class="form-group">
                         <button id="btnguardar" onclick="BtnGuardar()" class="btn btn-primary">Guardar</button>
+                        <button onclick="BtnActualizar()" id="btnactualizar" onclick="" class="btn btn-warning">Actualizar</button>
 
                     </div>
                 </div>
                 <div class="col-md-2 col-12">
                     <div class="form-group">
-                        <button id="btnactualizar" onclick="" class="btn btn-warning">Actualizar</button>
+                        <button onclick="BtnNUevo()" id="btnnuevo" onclick="" class="btn btn-success">Crear Nuevo</button>
 
                     </div>
                 </div>
                 <div class="col-md-3 col-12">
                     <div class="form-group">
-                        <button id="btnnuevo" onclick="" class="btn btn-success">Crear Nuevo</button>
 
                     </div>
                 </div>
@@ -170,15 +171,27 @@ require 'views/header.php'; ?>
     $("#btnactualizar").hide();
     $("#btnnuevo").hide();
 
-    function BtnGuardar() {
-        var url = '<?php echo $urlNuevoProducto ?>';
-        validarNuevoProducto(url);
-    }
+   
     var url = '<?php echo $urlListarProducto ?>';
 
     ListarProductos(url);
 
-
+    function BtnNUevo() {
+        $("#btnactualizar").hide();
+        $("#btnnuevo").hide();
+        $("#btnguardar").show();
+        resetValues();
+    }
+    function BtnGuardar() {
+        var url = '<?php echo $urlNuevoProducto ?>';
+        validarNuevoProducto(url,1);
+    }
+    function BtnActualizar() {
+        var url = '<?php echo $urlActualizarProd ?>';
+        validarNuevoProducto(url,2);
+    }
+  
+  
     /* $("#Punitario").on("input", function() {
          var punitario = $("#Punitario").val();
          var cantidad = $("#txtcantidad").val();

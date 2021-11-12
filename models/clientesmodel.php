@@ -24,7 +24,7 @@ class ClientesModel extends Model
         $estado = $parametros["estado"];
         $creador = $parametros["creador"];
         $tipo = 1;
-        $id_cliente = "";
+        $id_cliente = "1";
 
         $bandera = false;
         try {

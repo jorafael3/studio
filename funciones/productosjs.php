@@ -1,5 +1,6 @@
 <?php
 $urlListarProducto = constant('URL') . "Productos/ListarProducto/";
+$urlActualizarProd = constant('URL') . "Productos/ActualizarProducto/";
 
 ?>
 
@@ -21,8 +22,8 @@ $urlListarProducto = constant('URL') . "Productos/ListarProducto/";
             timer: 1500
         })
     }
-
-    function validarNuevoProducto(url) {
+    var IdProd;
+    function validarNuevoProducto(url, tipo) {
 
         var nombre = $("#txtnombre").val();
         var desc = $("#txtdesc").val();
@@ -44,6 +45,7 @@ $urlListarProducto = constant('URL') . "Productos/ListarProducto/";
 
         } else {
             var data = {
+                id:"1",
                 nombre: nombre,
                 descripcion: desc,
                 precio: precio,
@@ -51,14 +53,21 @@ $urlListarProducto = constant('URL') . "Productos/ListarProducto/";
                 estado: estado
             };
 
-            console.log(data);
-            GuardarProducto(url, data);
+            if (tipo == 1) {
+                GuardarProducto(url, data,tipo);
+
+            } else {
+                console.log(data);
+                data.id = IdProd;
+                GuardarProducto(url, data,tipo);
+                //  GuardarProducto(url,data);
+            }
         }
 
 
     }
 
-    function GuardarProducto(url, data) {
+    function GuardarProducto(url, data,tipo) {
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
@@ -77,6 +86,21 @@ $urlListarProducto = constant('URL') . "Productos/ListarProducto/";
         xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xmlhttp.send(data);
 
+    }
+
+    function UpdateDataProd(data) {
+        $("#txtnombre").val(data["nombre"]);
+        $("#txtdesc").val(data["descripcion"]);
+        $("#Punitario").val(data["precio"]);
+        if (data["medida"] == "1") {
+            $("#customSwitch1").prop("checked", true);
+        } else {
+            $("#customSwitch2").prop("checked", true);
+        }
+        IdProd = data["id_prod"];
+        $("#btnactualizar").show();
+        $("#btnnuevo").show();
+        $("#btnguardar").hide();   
     }
 
     function ListarProductos(url) {
@@ -108,12 +132,25 @@ $urlListarProducto = constant('URL') . "Productos/ListarProducto/";
             deferRender: true,
             buttons: [
                 'excel',
-                'print'
+                'print',
+                'pdf'
             ],
             "columnDefs": [{
                 "width": "5%",
-                "targets": 1
+                "targets": 0
             }, {
+                "width": "5%",
+                "targets": 5
+            },{
+                "width": "5%",
+                "targets": 6
+            },{
+                "width": "5%",
+                "targets": 4
+            },{
+                "width": "40%",
+                "targets": 1
+            },{
                 "orderable": false,
                 "targets": 6
             }],
@@ -154,7 +191,7 @@ $urlListarProducto = constant('URL') . "Productos/ListarProducto/";
             ],
             "createdRow": function(row, data, index) {
                 if (data["estado"] == 1) {
-                    $('td', row).eq(4).addClass('font-weight-bolder text-success');
+                    $('td', row).eq(4).addClass('font-weight-bolder text-success badge badge-light-success  badge-pill');
                     $('td', row).eq(4).html("Activo");
                 }
                 if (data["estado"] == 0) {
@@ -166,19 +203,32 @@ $urlListarProducto = constant('URL') . "Productos/ListarProducto/";
                     $('td', row).eq(2).html("Unidad");
                 }
                 if (data["medida"] == 0) {
-                    $('td', row).eq(2).addClass('font-weight-bolder text-primary');
+                    $('td', row).eq(2).addClass('font-weight-bolder text-info');
                     $('td', row).eq(2).html("Metros");
                 }
+                $('td', row).eq(0).addClass('font-weight-bolder');
+                $('td', row).eq(1).addClass('font-weight-bolder');
+                $('td', row).eq(2).addClass('font-weight-bolder');
+                $('td', row).eq(3).addClass('font-weight-bolder');
+                $('td', row).eq(4).addClass('font-weight-bolder');
+
+
             }
 
         });
 
-        $('#Lista tbody').on('click', 'td.btn_add', function(e) {
+        $('#ListaProductos tbody').on('click', 'td.btn_add', function(e) {
             e.preventDefault();
             var data = table.row(this).data();
-            UpdateData(data);
+            UpdateDataProd(data);
 
         });
 
+    }
+
+    function resetValues() {
+        $("#txtnombre").val("");
+        $("#txtdesc").val("");
+        $("#Punitario").val("");
     }
 </script>

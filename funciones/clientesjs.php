@@ -52,7 +52,6 @@ $urlClientes = constant('URL') . "Clientes/ListarClientes/";
 
             if (tipo == 1) {
                 GuardarCliente(url, data);
-
             }
             if (tipo == 2) {
                 var chSemana = document.getElementById("customSwitch1");
@@ -133,7 +132,7 @@ $urlClientes = constant('URL') . "Clientes/ListarClientes/";
         } else {
             $('#customSwitch1').prop('checked', false);
         }
-     
+
     }
 
     function ActualizarCliente(url, data) {
@@ -145,13 +144,13 @@ $urlClientes = constant('URL') . "Clientes/ListarClientes/";
 
                 console.log(data);
 
-              //  if(data == "true"){
-                    $('#add-new-sidebar').modal('hide');
-                    MensajeOk("Los Datos Se Actualizaron Con Exito");
-                    var url2 = '<?php echo $urlClientes ?>'
+                //  if(data == "true"){
+                $('#add-new-sidebar').modal('hide');
+                MensajeOk("Los Datos Se Actualizaron Con Exito");
+                var url2 = '<?php echo $urlClientes ?>'
 
-                    ValidarListaClientes(url2);
-              // }
+                ValidarListaClientes(url2);
+                // }
             }
         }
         data = JSON.stringify(data);
@@ -217,7 +216,18 @@ $urlClientes = constant('URL') . "Clientes/ListarClientes/";
                 },
                 {
                     data: "whatsapp",
-                    title: "WHATSAPP "
+                    title: "WHATSAPP ",
+                    "render": function(data, type, row, meta) {
+                        if (type === 'display') {
+                            var d = data;
+                            console.log(d);
+                            if (d != null) {
+                                data = '<a class="text-info" href="http://web.whatsapp.com/send?phone=+593' + d + '" target="_blank">' + d + '</a>';
+                            }
+                        }
+                        return data;
+
+                    }
                 },
                 {
                     data: "estado",
@@ -249,6 +259,13 @@ $urlClientes = constant('URL') . "Clientes/ListarClientes/";
                     $('td', row).eq(6).addClass('font-weight-bolder text-danger');
                     $('td', row).eq(6).html("Inactivo");
                 }
+                $('td', row).eq(0).addClass('font-weight-bolder');
+                $('td', row).eq(1).addClass('font-weight-bolder');
+                $('td', row).eq(2).addClass('font-weight-bolder');
+                $('td', row).eq(3).addClass('font-weight-bolder');
+                $('td', row).eq(4).addClass('font-weight-bolder');
+                $('td', row).eq(5).addClass('font-weight-bolder text-info');
+
             }
 
         });

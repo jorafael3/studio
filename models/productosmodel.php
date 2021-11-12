@@ -13,25 +13,28 @@ class ProductosModel extends Model
         exit();
     }
 
-    function NuevoProducto($parametros)
+    function NuevoProducto($parametros,$tipo)
     {
         $nombre = $parametros["nombre"];
         $descripcion = $parametros["descripcion"];
         $precio = $parametros["precio"];
         $medida = $parametros["medida"];
         $estado = $parametros["estado"];
-        $tipo = 1;
+        $id = $parametros["id"];
+
+        $tipo = $tipo;
         $bandera = false;
         try {
 
         
-                $query = $this->db->connect()->prepare("CALL studio.PRODUCTOS (?,?,?,?,?,?)");
+                $query = $this->db->connect()->prepare("CALL studio.PRODUCTOS (?,?,?,?,?,?,?)");
                 $query->bindParam(1, $nombre, PDO::PARAM_STR);
                 $query->bindParam(2, $descripcion, PDO::PARAM_STR);
                 $query->bindParam(3, $precio, PDO::PARAM_STR);
                 $query->bindParam(4, $medida, PDO::PARAM_STR);
                 $query->bindParam(5, $estado, PDO::PARAM_STR);
                 $query->bindParam(6, $tipo, PDO::PARAM_STR);
+                $query->bindParam(7, $id, PDO::PARAM_STR);
 
                 if ($query->execute()) {
 
@@ -50,76 +53,6 @@ class ProductosModel extends Model
         }
     }
 
-    function validarCedulaExiste($cedula)
-    {
-        try {
-            $query = $this->db->connect()->prepare("select ruc from studio.clientes i where ruc = '" . $cedula . "'");
-            if ($query->execute()) {
-                $result = $query->fetchAll(PDO::FETCH_ASSOC);
-                if (count($result) == 0) {
-                    return "ok";
-                } else {
-                    return "err";
-                }
-            } else {
-                $err = $query->errorInfo();
-                return $err;
-            }
-
-            //return $parametros;
-        } catch (PDOException $e) {
-            print_r($query->errorInfo());
-        }
-    }
-
-
-    function ActualizarCliente($parametros)
-    {
-        $cedula = $parametros["ruc"];
-        $nombre = $parametros["nombre"];
-        $correo = $parametros["correo"];
-        $direccion = $parametros["direccion"];
-        $telefono = $parametros["telefono"];
-        $whatsapp = $parametros["whatsapp"];
-        $estado = $parametros["estado"];
-        $creador = $parametros["creador"];
-        $tipo = 2;
-        $id_cliente =  $parametros["id"];
-        $bandera = false;
-
-        try {
-          
-                $query = $this->db->connect()->prepare("CALL studio.CLIENTES (?,?,?,?,?,?,?,?,?,?)");
-                $query->bindParam(1, $nombre, PDO::PARAM_STR);
-                $query->bindParam(2, $cedula, PDO::PARAM_STR);
-                $query->bindParam(3, $correo, PDO::PARAM_STR);
-                $query->bindParam(4, $telefono, PDO::PARAM_STR);
-                $query->bindParam(5, $whatsapp, PDO::PARAM_STR);
-                $query->bindParam(6, $direccion, PDO::PARAM_STR);
-                $query->bindParam(7, $estado, PDO::PARAM_STR);
-                $query->bindParam(8, $creador, PDO::PARAM_STR);
-                $query->bindParam(9, $tipo, PDO::PARAM_STR);
-                $query->bindParam(10, $id_cliente, PDO::PARAM_STR);
-    
-    
-                if ($query->execute()) {
-    
-                    $bandera = true;
-                   // $ok = $this->validarCedulaExiste($cedula);
-                    echo json_encode($bandera);
-                    exit();
-                } else {
-                    $err = $query->errorInfo();
-                    echo json_encode($err);
-                    exit();
-                    // print_r($query->errorInfo());
-                }
-          
-           
-        } catch (PDOException $e) {
-            print_r($e);
-        }
-    }
 
     function ListarProducto()
     {

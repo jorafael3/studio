@@ -20,7 +20,12 @@ class Productos extends Controller{
     function NuevoProducto()
     {
         $b = json_decode(file_get_contents("php://input"), true);
-        $log = $this->model->NuevoProducto($b);
+        $log = $this->model->NuevoProducto($b,1);
+    }
+    function ActualizarProducto()
+    {
+        $b = json_decode(file_get_contents("php://input"), true);
+        $log = $this->model->NuevoProducto($b,2);
     }
 
     function ListarProducto()

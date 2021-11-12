@@ -29,4 +29,11 @@ $clientes = $url."clientes/nuevo";
             <div class="menu-title">Productos</div>
         </a>
     </li>
+    <li>
+        <a href="<?php echo constant('URL') ?>Proforma/Proforma">
+            <div class="parent-icon icon-color-9"> <i class="lni lni-add-files"></i>
+            </div>
+            <div class="menu-title">Proforma</div>
+        </a>
+    </li>
 </ul>
