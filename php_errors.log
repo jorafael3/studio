@@ -20029,3 +20029,141 @@ Stack trace:
 #0 C:\Apache24\htdocs\studio\index.php(9): App->__construct()
 #1 {main}
   thrown in C:\Apache24\htdocs\studio\libs\app.php on line 40
+[15-Nov-2021 13:41:07 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method Productos::assets() in C:\Apache24\htdocs\studio\libs\app.php:40
+Stack trace:
+#0 C:\Apache24\htdocs\studio\index.php(9): App->__construct()
+#1 {main}
+  thrown in C:\Apache24\htdocs\studio\libs\app.php on line 40
+[15-Nov-2021 13:46:53 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method Proforma::assets() in C:\Apache24\htdocs\studio\libs\app.php:40
+Stack trace:
+#0 C:\Apache24\htdocs\studio\index.php(9): App->__construct()
+#1 {main}
+  thrown in C:\Apache24\htdocs\studio\libs\app.php on line 40
+[15-Nov-2021 13:46:55 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method Proforma::assets() in C:\Apache24\htdocs\studio\libs\app.php:40
+Stack trace:
+#0 C:\Apache24\htdocs\studio\index.php(9): App->__construct()
+#1 {main}
+  thrown in C:\Apache24\htdocs\studio\libs\app.php on line 40
+[15-Nov-2021 13:46:56 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method Productos::assets() in C:\Apache24\htdocs\studio\libs\app.php:40
+Stack trace:
+#0 C:\Apache24\htdocs\studio\index.php(9): App->__construct()
+#1 {main}
+  thrown in C:\Apache24\htdocs\studio\libs\app.php on line 40
+[15-Nov-2021 13:46:58 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method Clientes::assets() in C:\Apache24\htdocs\studio\libs\app.php:40
+Stack trace:
+#0 C:\Apache24\htdocs\studio\index.php(9): App->__construct()
+#1 {main}
+  thrown in C:\Apache24\htdocs\studio\libs\app.php on line 40
+[15-Nov-2021 13:46:59 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method Proforma::assets() in C:\Apache24\htdocs\studio\libs\app.php:40
+Stack trace:
+#0 C:\Apache24\htdocs\studio\index.php(9): App->__construct()
+#1 {main}
+  thrown in C:\Apache24\htdocs\studio\libs\app.php on line 40
+[15-Nov-2021 13:48:23 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method Proforma::assets() in C:\Apache24\htdocs\studio\libs\app.php:40
+Stack trace:
+#0 C:\Apache24\htdocs\studio\index.php(9): App->__construct()
+#1 {main}
+  thrown in C:\Apache24\htdocs\studio\libs\app.php on line 40
+[15-Nov-2021 13:52:28 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method Proforma::assets() in C:\Apache24\htdocs\studio\libs\app.php:40
+Stack trace:
+#0 C:\Apache24\htdocs\studio\index.php(9): App->__construct()
+#1 {main}
+  thrown in C:\Apache24\htdocs\studio\libs\app.php on line 40
+[15-Nov-2021 13:52:28 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method Proforma::assets() in C:\Apache24\htdocs\studio\libs\app.php:40
+Stack trace:
+#0 C:\Apache24\htdocs\studio\index.php(9): App->__construct()
+#1 {main}
+  thrown in C:\Apache24\htdocs\studio\libs\app.php on line 40
+[15-Nov-2021 13:54:06 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method Proforma::assets() in C:\Apache24\htdocs\studio\libs\app.php:40
+Stack trace:
+#0 C:\Apache24\htdocs\studio\index.php(9): App->__construct()
+#1 {main}
+  thrown in C:\Apache24\htdocs\studio\libs\app.php on line 40
+[15-Nov-2021 13:54:06 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method Proforma::assets() in C:\Apache24\htdocs\studio\libs\app.php:40
+Stack trace:
+#0 C:\Apache24\htdocs\studio\index.php(9): App->__construct()
+#1 {main}
+  thrown in C:\Apache24\htdocs\studio\libs\app.php on line 40
+[15-Nov-2021 13:54:12 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method Proforma::assets() in C:\Apache24\htdocs\studio\libs\app.php:40
+Stack trace:
+#0 C:\Apache24\htdocs\studio\index.php(9): App->__construct()
+#1 {main}
+  thrown in C:\Apache24\htdocs\studio\libs\app.php on line 40
+[15-Nov-2021 13:54:25 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method Proforma::assets() in C:\Apache24\htdocs\studio\libs\app.php:40
+Stack trace:
+#0 C:\Apache24\htdocs\studio\index.php(9): App->__construct()
+#1 {main}
+  thrown in C:\Apache24\htdocs\studio\libs\app.php on line 40
+[15-Nov-2021 13:54:25 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method Proforma::assets() in C:\Apache24\htdocs\studio\libs\app.php:40
+Stack trace:
+#0 C:\Apache24\htdocs\studio\index.php(9): App->__construct()
+#1 {main}
+  thrown in C:\Apache24\htdocs\studio\libs\app.php on line 40
+[15-Nov-2021 13:54:32 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method Proforma::assets() in C:\Apache24\htdocs\studio\libs\app.php:40
+Stack trace:
+#0 C:\Apache24\htdocs\studio\index.php(9): App->__construct()
+#1 {main}
+  thrown in C:\Apache24\htdocs\studio\libs\app.php on line 40
+[15-Nov-2021 13:59:41 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method Proforma::assets() in C:\Apache24\htdocs\studio\libs\app.php:40
+Stack trace:
+#0 C:\Apache24\htdocs\studio\index.php(9): App->__construct()
+#1 {main}
+  thrown in C:\Apache24\htdocs\studio\libs\app.php on line 40
+[15-Nov-2021 13:59:41 UTC] PHP Warning:  require(views/errores/errores.php): failed to open stream: No such file or directory in C:\Apache24\htdocs\studio\libs\view.php on line 8
+[15-Nov-2021 13:59:41 UTC] PHP Fatal error:  require(): Failed opening required 'views/errores/errores.php' (include_path='.;C:\php\pear') in C:\Apache24\htdocs\studio\libs\view.php on line 8
+[15-Nov-2021 13:59:43 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method Proforma::assets() in C:\Apache24\htdocs\studio\libs\app.php:40
+Stack trace:
+#0 C:\Apache24\htdocs\studio\index.php(9): App->__construct()
+#1 {main}
+  thrown in C:\Apache24\htdocs\studio\libs\app.php on line 40
+[15-Nov-2021 13:59:43 UTC] PHP Warning:  require(views/errores/errores.php): failed to open stream: No such file or directory in C:\Apache24\htdocs\studio\libs\view.php on line 8
+[15-Nov-2021 13:59:43 UTC] PHP Fatal error:  require(): Failed opening required 'views/errores/errores.php' (include_path='.;C:\php\pear') in C:\Apache24\htdocs\studio\libs\view.php on line 8
+[15-Nov-2021 14:00:04 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method Proforma::assets() in C:\Apache24\htdocs\studio\libs\app.php:40
+Stack trace:
+#0 C:\Apache24\htdocs\studio\index.php(9): App->__construct()
+#1 {main}
+  thrown in C:\Apache24\htdocs\studio\libs\app.php on line 40
+[15-Nov-2021 14:01:20 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method Proforma::assets() in C:\Apache24\htdocs\studio\libs\app.php:40
+Stack trace:
+#0 C:\Apache24\htdocs\studio\index.php(9): App->__construct()
+#1 {main}
+  thrown in C:\Apache24\htdocs\studio\libs\app.php on line 40
+[15-Nov-2021 14:28:42 UTC] PHP Notice:  Undefined property: View::$Salas in C:\Apache24\htdocs\studio\views\proforma\index.php on line 66
+[15-Nov-2021 14:28:42 UTC] PHP Warning:  Invalid argument supplied for foreach() in C:\Apache24\htdocs\studio\views\proforma\index.php on line 66
+[15-Nov-2021 14:31:12 UTC] PHP Notice:  Undefined property: View::$Salas in C:\Apache24\htdocs\studio\views\proforma\index.php on line 66
+[15-Nov-2021 14:31:12 UTC] PHP Warning:  Invalid argument supplied for foreach() in C:\Apache24\htdocs\studio\views\proforma\index.php on line 66
+[15-Nov-2021 14:31:30 UTC] PHP Notice:  Undefined property: View::$Salas in C:\Apache24\htdocs\studio\views\proforma\index.php on line 66
+[15-Nov-2021 14:31:30 UTC] PHP Warning:  Invalid argument supplied for foreach() in C:\Apache24\htdocs\studio\views\proforma\index.php on line 66
+[15-Nov-2021 14:31:44 UTC] PHP Notice:  Undefined property: View::$Salas in C:\Apache24\htdocs\studio\views\proforma\index.php on line 66
+[15-Nov-2021 14:31:44 UTC] PHP Warning:  Invalid argument supplied for foreach() in C:\Apache24\htdocs\studio\views\proforma\index.php on line 66
+[15-Nov-2021 14:32:40 UTC] PHP Notice:  Undefined property: View::$Salas in C:\Apache24\htdocs\studio\views\proforma\index.php on line 67
+[15-Nov-2021 14:32:40 UTC] PHP Warning:  Invalid argument supplied for foreach() in C:\Apache24\htdocs\studio\views\proforma\index.php on line 67
+[15-Nov-2021 14:33:07 UTC] PHP Notice:  Undefined property: View::$Salas in C:\Apache24\htdocs\studio\views\proforma\index.php on line 67
+[15-Nov-2021 14:33:07 UTC] PHP Warning:  Invalid argument supplied for foreach() in C:\Apache24\htdocs\studio\views\proforma\index.php on line 67
+[15-Nov-2021 14:34:03 UTC] PHP Notice:  Undefined property: View::$Salas in C:\Apache24\htdocs\studio\views\proforma\index.php on line 69
+[15-Nov-2021 14:34:03 UTC] PHP Warning:  Invalid argument supplied for foreach() in C:\Apache24\htdocs\studio\views\proforma\index.php on line 69
+[15-Nov-2021 14:36:31 UTC] PHP Notice:  Undefined property: View::$Salas in C:\Apache24\htdocs\studio\views\proforma\index.php on line 69
+[15-Nov-2021 14:36:31 UTC] PHP Warning:  Invalid argument supplied for foreach() in C:\Apache24\htdocs\studio\views\proforma\index.php on line 69
+[15-Nov-2021 14:43:01 UTC] PHP Notice:  Undefined property: View::$Salas in C:\Apache24\htdocs\studio\views\proforma\index.php on line 69
+[15-Nov-2021 14:43:01 UTC] PHP Warning:  Invalid argument supplied for foreach() in C:\Apache24\htdocs\studio\views\proforma\index.php on line 69
+[15-Nov-2021 15:00:07 UTC] PHP Notice:  Undefined index: id_sala in C:\Apache24\htdocs\studio\views\proforma\index.php on line 71
+[15-Nov-2021 15:00:07 UTC] PHP Notice:  Undefined index: id_sala in C:\Apache24\htdocs\studio\views\proforma\index.php on line 71
+[15-Nov-2021 15:00:07 UTC] PHP Notice:  Undefined index: id_sala in C:\Apache24\htdocs\studio\views\proforma\index.php on line 71
+[15-Nov-2021 15:00:26 UTC] PHP Notice:  Undefined index: id_sala in C:\Apache24\htdocs\studio\views\proforma\index.php on line 71
+[15-Nov-2021 15:00:26 UTC] PHP Notice:  Undefined index: id_sala in C:\Apache24\htdocs\studio\views\proforma\index.php on line 71
+[15-Nov-2021 15:00:26 UTC] PHP Notice:  Undefined index: id_sala in C:\Apache24\htdocs\studio\views\proforma\index.php on line 71
+[15-Nov-2021 15:00:50 UTC] PHP Notice:  Undefined index: id in C:\Apache24\htdocs\studio\views\proforma\index.php on line 71
+[15-Nov-2021 15:00:50 UTC] PHP Notice:  Undefined index: id in C:\Apache24\htdocs\studio\views\proforma\index.php on line 71
+[15-Nov-2021 15:00:50 UTC] PHP Notice:  Undefined index: id in C:\Apache24\htdocs\studio\views\proforma\index.php on line 71
+[15-Nov-2021 15:20:01 UTC] PHP Warning:  require(views/errores/errores.php): failed to open stream: No such file or directory in C:\Apache24\htdocs\studio\libs\view.php on line 8
+[15-Nov-2021 15:20:01 UTC] PHP Fatal error:  require(): Failed opening required 'views/errores/errores.php' (include_path='.;C:\php\pear') in C:\Apache24\htdocs\studio\libs\view.php on line 8
+[15-Nov-2021 15:21:50 UTC] PHP Warning:  require(views/errores/errores.php): failed to open stream: No such file or directory in C:\Apache24\htdocs\studio\libs\view.php on line 8
+[15-Nov-2021 15:21:50 UTC] PHP Fatal error:  require(): Failed opening required 'views/errores/errores.php' (include_path='.;C:\php\pear') in C:\Apache24\htdocs\studio\libs\view.php on line 8
+[15-Nov-2021 15:22:27 UTC] PHP Warning:  require(views/errores/errores.php): failed to open stream: No such file or directory in C:\Apache24\htdocs\studio\libs\view.php on line 8
+[15-Nov-2021 15:22:27 UTC] PHP Fatal error:  require(): Failed opening required 'views/errores/errores.php' (include_path='.;C:\php\pear') in C:\Apache24\htdocs\studio\libs\view.php on line 8
+[15-Nov-2021 15:22:43 UTC] PHP Warning:  require(views/errores/errores.php): failed to open stream: No such file or directory in C:\Apache24\htdocs\studio\libs\view.php on line 8
+[15-Nov-2021 15:22:43 UTC] PHP Fatal error:  require(): Failed opening required 'views/errores/errores.php' (include_path='.;C:\php\pear') in C:\Apache24\htdocs\studio\libs\view.php on line 8
+[15-Nov-2021 15:24:48 UTC] PHP Warning:  require(views/errores/errores.php): failed to open stream: No such file or directory in C:\Apache24\htdocs\studio\libs\view.php on line 8
+[15-Nov-2021 15:24:48 UTC] PHP Fatal error:  require(): Failed opening required 'views/errores/errores.php' (include_path='.;C:\php\pear') in C:\Apache24\htdocs\studio\libs\view.php on line 8
+[15-Nov-2021 15:25:06 UTC] PHP Warning:  require(views/errores/errores.php): failed to open stream: No such file or directory in C:\Apache24\htdocs\studio\libs\view.php on line 8
+[15-Nov-2021 15:25:06 UTC] PHP Fatal error:  require(): Failed opening required 'views/errores/errores.php' (include_path='.;C:\php\pear') in C:\Apache24\htdocs\studio\libs\view.php on line 8

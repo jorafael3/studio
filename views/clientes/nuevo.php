@@ -34,6 +34,8 @@ require 'views/header.php';
         </div>
     </div>
 </div>
+
+
 <div class="modal fade" id="add-new-sidebar">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content p-0">
