@@ -24,7 +24,7 @@ require 'views/header.php';
 <!--end breadcrumb-->
 <div class="card">
     <div class="card-header">
-        <button class="btn btn-primary btn-toggle-sidebar" id="BtnNuevoEvento" data-toggle="modal" data-target="#add-new-sidebar">Nuevo Cliente</button>
+        <button class="btn btn-danger btn-toggle-sidebar" id="BtnNuevoEvento" data-toggle="modal" data-target="#add-new-sidebar">Nuevo Cliente</button>
     </div>
     <div class="card-body">
         <div class="table-responsive">

@@ -1169,11 +1169,14 @@ sup {
 
 .sidebar-wrapper .metismenu .mm-active>a {
 
-	color: #673ab7;
+	color: #B71C1C;
+	/*color: #673ab7;*/
+
 
 	text-decoration: none;
 
-	background: rgb(103 58 183 / 10%);
+	/*background: rgb(103 58 183 / 10%);*/
+	background: #FFEBEE;
 
 }
 
@@ -2829,8 +2832,10 @@ input::placeholder {
 
 	font-size: 1.6em;
 
-	background: #673ab7
+	/*background: #673ab7*/
+	background: #dc3545
 
+	
 }
 
 .invoice table .unit {
@@ -2841,7 +2846,8 @@ input::placeholder {
 
 .invoice table .total {
 
-	background: #673ab7;
+	/*background: #673ab7;*/
+	background: #dc3545;
 
 	color: #fff
 
@@ -4391,7 +4397,7 @@ ul.icons li span {
 
 	right: 12px;
 
-	background-color: #673ab7;
+	background-color: #dc3545;
 
 	z-index: 10000;
 
@@ -4401,7 +4407,7 @@ ul.icons li span {
 
 	color: white;
 
-	background-color: #000;
+	background-color: rgba(255, 10, 10, 0.788);
 
 	transition: all .5s;
 

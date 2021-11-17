@@ -34,7 +34,7 @@ require 'views/header.php'; ?>
             </div>
             <div class="invoice overflow-auto">
                 <div style="min-width: 600px">
-                    <header>
+                    <div>
                         <div class="row">
                             <div class="col">
                                 <a href="javascript:;">
@@ -42,8 +42,8 @@ require 'views/header.php'; ?>
                                 </a>
                             </div>
                             <div class="col company-details">
-                                <h2 class="name">
-                                    <a target="_blank" href="javascript:;">
+                                <h2 class="name font-weight-bolder">
+                                    <a class="text-red" target="_blank" href="javascript:;">
                                         Arboshiki
                                     </a>
                                 </h2>
@@ -52,7 +52,8 @@ require 'views/header.php'; ?>
                                 <div>company@example.com</div>
                             </div>
                         </div>
-                    </header>
+                    </div>
+                    <hr class="bg-danger" style="height: 1px;">
                     <main>
                         <div class="row contacts">
                             <div class="col invoice-to">
@@ -79,86 +80,80 @@ require 'views/header.php'; ?>
                                         </div>
                                     </div>
                                 </div>
-                                <div  class="ruc font-weight-bolder"><h6></h6></div>
-                                <div class="email font-weight-bolder">
+                                <div class="ruc font-weight-bolder" style="font-size: 20px;">
+                                    <h6></h6>
+                                </div>
+                                <div class="email font-weight-bolder" style="font-size: 20px;">
                                 </div>
                             </div>
                             <div class="col invoice-details">
-                                <h1 class="invoice-id">PROFORMA# 00000001</h1>
-                                <div class="date font-weight-bolder">Date of Invoice: 01/10/2018</div>
-                                <div class="date font-weight-bolder">Due Date: 30/10/2018</div>
+                                <h1 class="invoice-id text-red font-weight-bolder ">PROFORMA# 00000001</h1>
+                                <div class="date font-weight-bolder" style="font-size: 20px;">
+                                    Fecha: <span id="txtfecha">sadasd</span>
+                                </div>
                             </div>
                         </div>
-                        <table>
+                        <hr class="bg-danger" style="height: 1px;">
+
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <button onclick="BtnAgregarProducto()" class="btn btn-dark" data-toggle="modal" data-target="#add-new-sidebar">Agregar</button>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <select onchange="DatosClientes(this.value)" class="form-control js-example-basic-single2" style="width: 100%;" id="eventoSalas" required>
+                                        <option class="" value=""></option>
+
+                                        <?php
+                                        foreach ($this->client as $row) {
+                                        ?>
+                                            <option class="font-weight-bolder to" value=<?php echo ($row["id_cliente"]); ?>><?php echo ($row["nombre"]); ?></option>
+                                        <?php
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                            </div>
+
+                        </div>
+                        <table id="second_table">
                             <thead>
                                 <tr>
-                                    <th>#</th>
-                                    <th class="text-left">DESCRIPTION</th>
-                                    <th class="text-right">HOUR PRICE</th>
-                                    <th class="text-right">HOURS</th>
-                                    <th class="text-right">TOTAL</th>
+                                    <th style="width: 300px;">NOMBRE</th>
+                                    <th class="text-left" style="width: 500px;">DESCRIPTION</th>
+                                    <th class="text-left">MEDIDA</th>
+                                    <th class="text-left">COSTO</th>
+                                    <th class="text-left" style="width: 50px;">CANTIDAD</th>
+                                    <th class="text-left" style="width: 120px;">TOTAL</th>
+                                    <th class="text-left">#</th>
+
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td class="no">04</td>
-                                    <td class="text-left">
-                                        <h3>
-                                            <a target="_blank" href="javascript:;">
-                                                Youtube channel
-                                            </a>
-                                        </h3>
-                                        <a target="_blank" href="javascript:;">
-                                            Useful videos
-                                        </a> to improve your Javascript skills. Subscribe and stay tuned :)
-                                    </td>
-                                    <td class="unit">$0.00</td>
-                                    <td class="qty">100</td>
-                                    <td class="total">$0.00</td>
-                                </tr>
-                                <tr>
-                                    <td class="no">01</td>
-                                    <td class="text-left">
-                                        <h3>Website Design</h3>Creating a recognizable design solution based on the company's existing visual identity
-                                    </td>
-                                    <td class="unit">$40.00</td>
-                                    <td class="qty">30</td>
-                                    <td class="total">$1,200.00</td>
-                                </tr>
-                                <tr>
-                                    <td class="no">02</td>
-                                    <td class="text-left">
-                                        <h3>Website Development</h3>Developing a Content Management System-based Website
-                                    </td>
-                                    <td class="unit">$40.00</td>
-                                    <td class="qty">80</td>
-                                    <td class="total">$3,200.00</td>
-                                </tr>
-                                <tr>
-                                    <td class="no">03</td>
-                                    <td class="text-left">
-                                        <h3>Search Engines Optimization</h3>Optimize the site for search engines (SEO)
-                                    </td>
-                                    <td class="unit">$40.00</td>
-                                    <td class="qty">20</td>
-                                    <td class="total">$800.00</td>
-                                </tr>
+
+
+
                             </tbody>
                             <tfoot>
-                                <tr>
+                                <tr style="font-size: 18px;">
                                     <td colspan="2"></td>
-                                    <td colspan="2">SUBTOTAL</td>
-                                    <td>$5,200.00</td>
+                                    <td colspan="2"></td>
+                                    <td colspan="2" class="text-primary font-weight-bolder">SUBTOTAL</td>
+                                    <td id="PrSubtotal" class="font-weight-bolder">$0.00</td>
                                 </tr>
-                                <tr>
+                                <tr style="font-size: 18px;">
                                     <td colspan="2"></td>
-                                    <td colspan="2">TAX 25%</td>
-                                    <td>$1,300.00</td>
+                                    <td colspan="2"></td>
+                                    <td colspan="2">MARGEN DE GANANCIA %</td>
+                                    <td>
+                                        <input id="PrGanancia" type="number" value="0" min="0" class="form-control">
+                                    </td>
                                 </tr>
-                                <tr>
+                                <tr style="font-size: 24px;">
                                     <td colspan="2"></td>
-                                    <td colspan="2">GRAND TOTAL</td>
-                                    <td>$6,500.00</td>
+                                    <td colspan="2"></td>
+                                    <td id="PrTotal" colspan="2" class="text-red font-weight-bolder">TOTAL</td>
+                                    <td class="text-red font-weight-bolder">$0.00</td>
                                 </tr>
                             </tfoot>
                         </table>
@@ -186,14 +181,107 @@ require 'views/header.php'; ?>
     </div>
 </div>
 
+<div class="modal fade" id="add-new-sidebar">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content p-0">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">×</button>
+            <div class="modal-header mb-1">
+                <h5 class="modal-title">Lista de Productos</h5>
+            </div>
+            <div class="modal-body flex-grow-1 pb-sm-0 pb-3">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="ListaProductos" style="width: 100%;" class="table hover table-bordered">
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <?php require 'views/footer.php'; ?>
 
 <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.css" rel="stylesheet" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.full.js"></script>
 
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.2/locale/es.js"></script>
+
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.25/b-1.7.1/b-colvis-1.7.1/b-html5-1.7.1/b-print-1.7.1/datatables.min.css" />
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.24/b-1.7.0/b-colvis-1.7.0/b-html5-1.7.0/b-print-1.7.0/datatables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
 
 <script>
     $('.js-example-basic-single').select2({
         placeholder: "Seleccione"
     });
+    $('.js-example-basic-single2').select2({
+        placeholder: "Seleccione Proforma predefinida"
+    });
+    var fecha = moment().format("YYYY-MM-DD");
+    $("#txtfecha").text(fecha);
+
+
+    function BtnAgregarProducto() {
+        DatosProductos();
+    }
+
+    $("#second_table").on("input", "input", function() {
+        var input = $(this);
+        var columns = input.closest("tr").children();
+
+        var price = columns.eq(3).text();
+        var calculated = input.val() * parseFloat(price).toFixed(2);
+        calculated = parseFloat(calculated).toFixed(2);
+        columns.eq(5).text(calculated);
+        console.log(calculated);
+
+        sumar_columnas();
+
+    });
+
+    function sumar_columnas() {
+        var sum = 0;
+        var iva = 0;
+
+        //itera cada input de clase .subtotal y la suma
+        $('.subtotal').each(function() {
+            sum += parseFloat($(this).text());
+            $('#PrSubtotal').text(sum.toFixed(2));
+        });
+
+        var margen = $('#PrGanancia').val();
+        console.log(margen);
+
+    }
+
+    $("body").on("click", ".btn_remove", function() {
+        var input = $(this);
+        var columns = input.closest("tr").children();
+        var tot = columns.eq(5).text();
+
+        restar(tot);
+        //console.log(tot);
+        $(this).closest("tr").remove();
+    });
+
+    function restar(tot) {
+      //  console.log(tot);
+
+        var sub = $('#PrSubtotal').text();
+        console.log(sub);
+
+        var iva = $('#iva').text();
+        iva = iva - (tot * 0.12);
+        sub = sub - tot;
+        $('#iva').text(iva.toFixed(2));
+        $('#PrSubtotal').text(sub.toFixed(2));
+        // $('#totaltotal').text(sum.toFixed(2));
+    }
 </script>

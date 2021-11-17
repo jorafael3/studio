@@ -71,8 +71,8 @@ require 'views/header.php'; ?>
                 </div>
                 <div class="col-sm-2 col-12">
                     <div class="form-group">
-                        <div class=" custom-control-success custom-switch custom-control-inline">
-                            <input onclick="" type="radio" class="custom-control-input" id="customSwitch2" name="ChekVentaT" />
+                        <div class="custom-control-red custom-switch custom-control-inline">
+                            <input  onclick="" type="radio" class="custom-control-input " id="customSwitch2" name="ChekVentaT" />
                             <label class="custom-control-label font-weight-bolder" for="customSwitch2">Metros
                                 <span class="switch-icon-left"><i data-feather="check"></i></span>
                             </label>
@@ -103,7 +103,7 @@ require 'views/header.php'; ?>
             <div class="row d-flex align-items-end">
                 <div class="col-md-2 col-12">
                     <div class="form-group">
-                        <button id="btnguardar" onclick="BtnGuardar()" class="btn btn-primary">Guardar</button>
+                        <button id="btnguardar" onclick="BtnGuardar()" class="btn btn-danger">Guardar</button>
                         <button onclick="BtnActualizar()" id="btnactualizar" onclick="" class="btn btn-warning">Actualizar</button>
 
                     </div>
