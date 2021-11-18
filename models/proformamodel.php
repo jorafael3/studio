@@ -13,79 +13,6 @@ class ProformaModel extends Model
         exit();
     }
 
-    function CrearNuevoCliente($parametros)
-    {
-        $cedula = $parametros["ruc"];
-        $nombre = $parametros["nombre"];
-        $correo = $parametros["correo"];
-        $direccion = $parametros["direccion"];
-        $telefono = $parametros["telefono"];
-        $whatsapp = $parametros["whatsapp"];
-        $estado = $parametros["estado"];
-        $creador = $parametros["creador"];
-        $tipo = 1;
-        $id_cliente = "1";
-
-        $bandera = false;
-        try {
-
-            $ok = $this->validarCedulaExiste($cedula);
-            if ($ok == "ok") {
-                $query = $this->db->connect()->prepare("CALL studio.CLIENTES (?,?,?,?,?,?,?,?,?,?)");
-                $query->bindParam(1, $nombre, PDO::PARAM_STR);
-                $query->bindParam(2, $cedula, PDO::PARAM_STR);
-                $query->bindParam(3, $correo, PDO::PARAM_STR);
-                $query->bindParam(4, $telefono, PDO::PARAM_STR);
-                $query->bindParam(5, $whatsapp, PDO::PARAM_STR);
-                $query->bindParam(6, $direccion, PDO::PARAM_STR);
-                $query->bindParam(7, $estado, PDO::PARAM_STR);
-                $query->bindParam(8, $creador, PDO::PARAM_STR);
-                $query->bindParam(9, $tipo, PDO::PARAM_STR);
-                $query->bindParam(10, $id_cliente, PDO::PARAM_STR);
-
-
-                if ($query->execute()) {
-
-                    $bandera = true;
-                    echo json_encode($bandera);
-                    exit();
-                } else {
-                    $err = $query->errorInfo();
-                    echo json_encode($err);
-                    exit();
-                }
-            } else {
-                $ex = 0;
-                echo json_encode($ex);
-                exit();
-            }
-            //return $parametros;
-        } catch (PDOException $e) {
-            print_r($e);
-        }
-    }
-
-    function validarCedulaExiste($cedula)
-    {
-        try {
-            $query = $this->db->connect()->prepare("select ruc from studio.clientes i where ruc = '" . $cedula . "'");
-            if ($query->execute()) {
-                $result = $query->fetchAll(PDO::FETCH_ASSOC);
-                if (count($result) == 0) {
-                    return "ok";
-                } else {
-                    return "err";
-                }
-            } else {
-                $err = $query->errorInfo();
-                return $err;
-            }
-
-            //return $parametros;
-        } catch (PDOException $e) {
-            print_r($query->errorInfo());
-        }
-    }
 
 
     function ActualizarCliente($parametros)
@@ -146,7 +73,6 @@ class ProformaModel extends Model
             } else {
                 $err = $query->errorInfo();
                 return $err;
-
             }
         } catch (PDOException $e) {
             print_r($query->errorInfo());
@@ -154,7 +80,7 @@ class ProformaModel extends Model
     }
     function consultarClientesDetalle($parametros)
     {
-        $id =$parametros["id"];
+        $id = $parametros["id"];
         try {
             $items = [];
             $query = $this->db->connect()->prepare("SELECT * FROM studio.Clientes WHERE id_cliente = :id");
@@ -168,10 +94,241 @@ class ProformaModel extends Model
                 $err = $query->errorInfo();
                 echo json_encode($err);
                 exit();
-
             }
         } catch (PDOException $e) {
             print_r($query->errorInfo());
+        }
+    }
+    function consultarNunOrden()
+    {
+        try {
+            $items = [];
+            $query = $this->db->connect()->prepare("select max(id_cab) as n from studio.proforma_cab");
+            if ($query->execute()) {
+                $result = $query->fetchAll(PDO::FETCH_ASSOC);
+                $result = $result[0]["n"];
+                if ($result == null) {
+                    $result = 1;
+                } else {
+                    $result = $result + 1;
+                }
+                $nunOrden = 0;
+                echo json_encode($result);
+                exit();
+            } else {
+                $err = $query->errorInfo();
+                echo json_encode($err);
+                exit();
+            }
+        } catch (PDOException $e) {
+            print_r($query->errorInfo());
+        }
+    }
+    function GuardarProformaCab($parametros)
+    {
+        $nombre = $parametros["nombre"];
+        $subtotal = $parametros["subtotal"];
+        $margen = $parametros["margen"];
+        $ganancia = $parametros["ganancia"];
+        $total = $parametros["total"];
+        $id = "1";
+
+        $tipo = 1;
+        $bandera = false;
+        try {
+            $query = $this->db->connect()->prepare("CALL studio.PROFORMA_CAB (?,?,?,?,?,?,?)");
+            $query->bindParam(1, $nombre, PDO::PARAM_STR);
+            $query->bindParam(2, $subtotal, PDO::PARAM_STR);
+            $query->bindParam(3, $margen, PDO::PARAM_STR);
+            $query->bindParam(4, $ganancia, PDO::PARAM_STR);
+            $query->bindParam(5, $total, PDO::PARAM_STR);
+            $query->bindParam(6, $tipo, PDO::PARAM_STR);
+            $query->bindParam(7, $id, PDO::PARAM_STR);
+
+            if ($query->execute()) {
+                $bandera = true;
+                echo json_encode($bandera);
+                exit();
+            } else {
+                $err = $query->errorInfo();
+                echo json_encode($err);
+                exit();
+            }
+            //return $parametros;
+        } catch (PDOException $e) {
+            print_r($e);
+        }
+    }
+    function GuardarProformaDet($parametros)
+    {
+        $id_cab = $parametros["id_cab"];
+        $cant = $parametros["cant"];
+        $total = $parametros["total"];
+        $id_prod = $parametros["id_prod"];
+        $tipo = 1;
+        $bandera = false;
+        try {
+            $query = $this->db->connect()->prepare("CALL studio.PROFORMA_DET (?,?,?,?,?)");
+            $query->bindParam(1, $id_cab, PDO::PARAM_STR);
+            $query->bindParam(2, $cant, PDO::PARAM_STR);
+            $query->bindParam(3, $total, PDO::PARAM_STR);
+            $query->bindParam(4, $id_prod, PDO::PARAM_STR);
+            $query->bindParam(5, $tipo, PDO::PARAM_STR);
+            if ($query->execute()) {
+                $bandera = true;
+                echo json_encode($bandera);
+                exit();
+            } else {
+                $err = $query->errorInfo();
+                echo json_encode($err);
+                exit();
+            }
+            //return $parametros;
+        } catch (PDOException $e) {
+            print_r($e);
+        }
+    }
+
+
+    function CargarPlantillas()
+    {
+        try {
+            $items = [];
+            $query = $this->db->connect()->prepare("SELECT * FROM studio.proforma_cab");
+            if ($query->execute()) {
+                $result = $query->fetchAll(PDO::FETCH_ASSOC);
+                return $result;
+                $bandera = true;
+            } else {
+                $err = $query->errorInfo();
+                return $err;
+            }
+        } catch (PDOException $e) {
+            print_r($query->errorInfo());
+        }
+    }
+
+    function CargarPlantillasDetallesCab($parametros)
+    {
+        $id_cab = $parametros["id"];
+
+        try {
+            $items = [];
+            $query = $this->db->connect()->prepare("SELECT * FROM studio.proforma_cab WHERE id_cab = :id");
+            $query->bindParam(":id", $id_cab, PDO::PARAM_STR);
+
+            if ($query->execute()) {
+                $result = $query->fetchAll(PDO::FETCH_ASSOC);
+                echo json_encode($result);
+                exit();
+            } else {
+                $err = $query->errorInfo();
+                echo json_encode($err);
+                exit();
+            }
+        } catch (PDOException $e) {
+            print_r($query->errorInfo());
+        }
+    }
+
+
+    function CargarPlantillasDetallesDet($parametros)
+    {
+        $id_cab = $parametros["id"];
+
+        try {
+            $items = [];
+            $query = $this->db->connect()->prepare("select 
+            pd.id_prod, pd.id_det,
+            p.nombre,
+            p.descripcion,
+            p.medida,p.precio,pd.cantidad,pd.total 
+            from studio.proforma_det pd 
+            left join studio.productos p 
+            on p.id_prod = pd.id_prod
+            where id_cab = :id");
+            $query->bindParam(":id", $id_cab, PDO::PARAM_STR);
+
+            if ($query->execute()) {
+                $result = $query->fetchAll(PDO::FETCH_ASSOC);
+                echo json_encode($result);
+                exit();
+            } else {
+                $err = $query->errorInfo();
+                echo json_encode($err);
+                exit();
+            }
+        } catch (PDOException $e) {
+            print_r($query->errorInfo());
+        }
+    }
+
+
+
+
+    function UpdateProformaCab($parametros)
+    {
+        $nombre = $parametros["nombre"];
+        $subtotal = $parametros["subtotal"];
+        $margen = $parametros["margen"];
+        $ganancia = $parametros["ganancia"];
+        $total = $parametros["total"];
+        $id = $parametros["id_cab"];
+
+        $tipo = 2;
+        $bandera = false;
+        try {
+            $query = $this->db->connect()->prepare("CALL studio.PROFORMA_CAB (?,?,?,?,?,?,?)");
+            $query->bindParam(1, $nombre, PDO::PARAM_STR);
+            $query->bindParam(2, $subtotal, PDO::PARAM_STR);
+            $query->bindParam(3, $margen, PDO::PARAM_STR);
+            $query->bindParam(4, $ganancia, PDO::PARAM_STR);
+            $query->bindParam(5, $total, PDO::PARAM_STR);
+            $query->bindParam(6, $tipo, PDO::PARAM_STR);
+            $query->bindParam(7, $id, PDO::PARAM_STR);
+
+            if ($query->execute()) {
+                $bandera = true;
+                echo json_encode($bandera);
+                exit();
+            } else {
+                $err = $query->errorInfo();
+                echo json_encode($err);
+                exit();
+            }
+            //return $parametros;
+        } catch (PDOException $e) {
+            print_r($e);
+        }
+    }
+
+    function UpdateProformaDet($parametros)
+    {
+        $id_cab = $parametros["id_cab"];
+        $cant = $parametros["cant"];
+        $total = $parametros["total"];
+        $id_prod = $parametros["id_prod"];
+        $tipo = 2;
+        $bandera = false;
+        try {
+            $query = $this->db->connect()->prepare("CALL studio.PROFORMA_DET (?,?,?,?,?)");
+            $query->bindParam(1, $id_cab, PDO::PARAM_STR);
+            $query->bindParam(2, $cant, PDO::PARAM_STR);
+            $query->bindParam(3, $total, PDO::PARAM_STR);
+            $query->bindParam(4, $id_prod, PDO::PARAM_STR);
+            $query->bindParam(5, $tipo, PDO::PARAM_STR);
+            if ($query->execute()) {
+                $bandera = true;
+                echo json_encode($bandera);
+                exit();
+            } else {
+                $err = $query->errorInfo();
+                echo json_encode($err);
+                exit();
+            }
+            //return $parametros;
+        } catch (PDOException $e) {
+            print_r($e);
         }
     }
 }

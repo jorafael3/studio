@@ -20167,3 +20167,246 @@ Stack trace:
 [15-Nov-2021 15:24:48 UTC] PHP Fatal error:  require(): Failed opening required 'views/errores/errores.php' (include_path='.;C:\php\pear') in C:\Apache24\htdocs\studio\libs\view.php on line 8
 [15-Nov-2021 15:25:06 UTC] PHP Warning:  require(views/errores/errores.php): failed to open stream: No such file or directory in C:\Apache24\htdocs\studio\libs\view.php on line 8
 [15-Nov-2021 15:25:06 UTC] PHP Fatal error:  require(): Failed opening required 'views/errores/errores.php' (include_path='.;C:\php\pear') in C:\Apache24\htdocs\studio\libs\view.php on line 8
+[18-Nov-2021 20:11:44 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method ProformaModel::consultarClientes() in C:\Apache24\htdocs\studio\controllers\proforma.php:21
+Stack trace:
+#0 C:\Apache24\htdocs\studio\libs\app.php(42): Proforma->proforma()
+#1 C:\Apache24\htdocs\studio\index.php(9): App->__construct()
+#2 {main}
+  thrown in C:\Apache24\htdocs\studio\controllers\proforma.php on line 21
+[18-Nov-2021 20:12:11 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method ProformaModel::consultarClientes() in C:\Apache24\htdocs\studio\controllers\proforma.php:21
+Stack trace:
+#0 C:\Apache24\htdocs\studio\libs\app.php(42): Proforma->proforma()
+#1 C:\Apache24\htdocs\studio\index.php(9): App->__construct()
+#2 {main}
+  thrown in C:\Apache24\htdocs\studio\controllers\proforma.php on line 21
+[18-Nov-2021 20:27:44 UTC] PHP Notice:  Undefined index: n in C:\Apache24\htdocs\studio\models\proformamodel.php on line 109
+[18-Nov-2021 20:51:15 UTC] PHP Warning:  PDOStatement::execute(): SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens in C:\Apache24\htdocs\studio\models\proformamodel.php on line 173
+[18-Nov-2021 20:51:15 UTC] PHP Warning:  PDOStatement::execute(): SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens in C:\Apache24\htdocs\studio\models\proformamodel.php on line 173
+[18-Nov-2021 20:51:16 UTC] PHP Warning:  PDOStatement::execute(): SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens in C:\Apache24\htdocs\studio\models\proformamodel.php on line 173
+[18-Nov-2021 21:05:08 UTC] PHP Warning:  Illegal string offset 'id_cab' in C:\Apache24\htdocs\studio\views\proforma\index.php on line 42
+[18-Nov-2021 21:05:08 UTC] PHP Warning:  Illegal string offset 'nombre' in C:\Apache24\htdocs\studio\views\proforma\index.php on line 42
+[18-Nov-2021 21:05:08 UTC] PHP Notice:  Trying to access array offset on value of type int in C:\Apache24\htdocs\studio\views\proforma\index.php on line 42
+[18-Nov-2021 21:05:08 UTC] PHP Notice:  Trying to access array offset on value of type int in C:\Apache24\htdocs\studio\views\proforma\index.php on line 42
+[18-Nov-2021 21:05:08 UTC] PHP Warning:  Illegal string offset 'id_cab' in C:\Apache24\htdocs\studio\views\proforma\index.php on line 42
+[18-Nov-2021 21:05:08 UTC] PHP Warning:  Illegal string offset 'nombre' in C:\Apache24\htdocs\studio\views\proforma\index.php on line 42
+[18-Nov-2021 21:12:37 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function ProformaModel::CargarPlantillas(), 0 passed in C:\Apache24\htdocs\studio\controllers\proforma.php on line 53 and exactly 1 expected in C:\Apache24\htdocs\studio\models\proformamodel.php:189
+Stack trace:
+#0 C:\Apache24\htdocs\studio\controllers\proforma.php(53): ProformaModel->CargarPlantillas()
+#1 C:\Apache24\htdocs\studio\libs\app.php(42): Proforma->CargarPlantillas()
+#2 C:\Apache24\htdocs\studio\index.php(9): App->__construct()
+#3 {main}
+  thrown in C:\Apache24\htdocs\studio\models\proformamodel.php on line 189
+[18-Nov-2021 21:13:09 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function ProformaModel::CargarPlantillas(), 0 passed in C:\Apache24\htdocs\studio\controllers\proforma.php on line 53 and exactly 1 expected in C:\Apache24\htdocs\studio\models\proformamodel.php:189
+Stack trace:
+#0 C:\Apache24\htdocs\studio\controllers\proforma.php(53): ProformaModel->CargarPlantillas()
+#1 C:\Apache24\htdocs\studio\libs\app.php(42): Proforma->CargarPlantillas()
+#2 C:\Apache24\htdocs\studio\index.php(9): App->__construct()
+#3 {main}
+  thrown in C:\Apache24\htdocs\studio\models\proformamodel.php on line 189
+[18-Nov-2021 21:13:12 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function ProformaModel::CargarPlantillas(), 0 passed in C:\Apache24\htdocs\studio\controllers\proforma.php on line 21 and exactly 1 expected in C:\Apache24\htdocs\studio\models\proformamodel.php:189
+Stack trace:
+#0 C:\Apache24\htdocs\studio\controllers\proforma.php(21): ProformaModel->CargarPlantillas()
+#1 C:\Apache24\htdocs\studio\libs\app.php(42): Proforma->proforma()
+#2 C:\Apache24\htdocs\studio\index.php(9): App->__construct()
+#3 {main}
+  thrown in C:\Apache24\htdocs\studio\models\proformamodel.php on line 189
+[18-Nov-2021 21:13:15 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function ProformaModel::CargarPlantillas(), 0 passed in C:\Apache24\htdocs\studio\controllers\proforma.php on line 21 and exactly 1 expected in C:\Apache24\htdocs\studio\models\proformamodel.php:189
+Stack trace:
+#0 C:\Apache24\htdocs\studio\controllers\proforma.php(21): ProformaModel->CargarPlantillas()
+#1 C:\Apache24\htdocs\studio\libs\app.php(42): Proforma->proforma()
+#2 C:\Apache24\htdocs\studio\index.php(9): App->__construct()
+#3 {main}
+  thrown in C:\Apache24\htdocs\studio\models\proformamodel.php on line 189
+[18-Nov-2021 21:13:36 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function ProformaModel::CargarPlantillas(), 0 passed in C:\Apache24\htdocs\studio\controllers\proforma.php on line 21 and exactly 1 expected in C:\Apache24\htdocs\studio\models\proformamodel.php:189
+Stack trace:
+#0 C:\Apache24\htdocs\studio\controllers\proforma.php(21): ProformaModel->CargarPlantillas()
+#1 C:\Apache24\htdocs\studio\libs\app.php(42): Proforma->proforma()
+#2 C:\Apache24\htdocs\studio\index.php(9): App->__construct()
+#3 {main}
+  thrown in C:\Apache24\htdocs\studio\models\proformamodel.php on line 189
+[18-Nov-2021 21:13:37 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function ProformaModel::CargarPlantillas(), 0 passed in C:\Apache24\htdocs\studio\controllers\proforma.php on line 21 and exactly 1 expected in C:\Apache24\htdocs\studio\models\proformamodel.php:189
+Stack trace:
+#0 C:\Apache24\htdocs\studio\controllers\proforma.php(21): ProformaModel->CargarPlantillas()
+#1 C:\Apache24\htdocs\studio\libs\app.php(42): Proforma->proforma()
+#2 C:\Apache24\htdocs\studio\index.php(9): App->__construct()
+#3 {main}
+  thrown in C:\Apache24\htdocs\studio\models\proformamodel.php on line 189
+[18-Nov-2021 21:13:41 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function ProformaModel::CargarPlantillas(), 0 passed in C:\Apache24\htdocs\studio\controllers\proforma.php on line 21 and exactly 1 expected in C:\Apache24\htdocs\studio\models\proformamodel.php:189
+Stack trace:
+#0 C:\Apache24\htdocs\studio\controllers\proforma.php(21): ProformaModel->CargarPlantillas()
+#1 C:\Apache24\htdocs\studio\libs\app.php(42): Proforma->proforma()
+#2 C:\Apache24\htdocs\studio\index.php(9): App->__construct()
+#3 {main}
+  thrown in C:\Apache24\htdocs\studio\models\proformamodel.php on line 189
+[18-Nov-2021 21:14:14 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function ProformaModel::CargarPlantillas(), 0 passed in C:\Apache24\htdocs\studio\controllers\proforma.php on line 21 and exactly 1 expected in C:\Apache24\htdocs\studio\models\proformamodel.php:189
+Stack trace:
+#0 C:\Apache24\htdocs\studio\controllers\proforma.php(21): ProformaModel->CargarPlantillas()
+#1 C:\Apache24\htdocs\studio\libs\app.php(42): Proforma->proforma()
+#2 C:\Apache24\htdocs\studio\index.php(9): App->__construct()
+#3 {main}
+  thrown in C:\Apache24\htdocs\studio\models\proformamodel.php on line 189
+[18-Nov-2021 21:14:15 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function ProformaModel::CargarPlantillas(), 0 passed in C:\Apache24\htdocs\studio\controllers\proforma.php on line 21 and exactly 1 expected in C:\Apache24\htdocs\studio\models\proformamodel.php:189
+Stack trace:
+#0 C:\Apache24\htdocs\studio\controllers\proforma.php(21): ProformaModel->CargarPlantillas()
+#1 C:\Apache24\htdocs\studio\libs\app.php(42): Proforma->proforma()
+#2 C:\Apache24\htdocs\studio\index.php(9): App->__construct()
+#3 {main}
+  thrown in C:\Apache24\htdocs\studio\models\proformamodel.php on line 189
+[18-Nov-2021 21:14:16 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function ProformaModel::CargarPlantillas(), 0 passed in C:\Apache24\htdocs\studio\controllers\proforma.php on line 21 and exactly 1 expected in C:\Apache24\htdocs\studio\models\proformamodel.php:189
+Stack trace:
+#0 C:\Apache24\htdocs\studio\controllers\proforma.php(21): ProformaModel->CargarPlantillas()
+#1 C:\Apache24\htdocs\studio\libs\app.php(42): Proforma->proforma()
+#2 C:\Apache24\htdocs\studio\index.php(9): App->__construct()
+#3 {main}
+  thrown in C:\Apache24\htdocs\studio\models\proformamodel.php on line 189
+[18-Nov-2021 21:14:52 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function ProformaModel::CargarPlantillas(), 0 passed in C:\Apache24\htdocs\studio\controllers\proforma.php on line 21 and exactly 1 expected in C:\Apache24\htdocs\studio\models\proformamodel.php:189
+Stack trace:
+#0 C:\Apache24\htdocs\studio\controllers\proforma.php(21): ProformaModel->CargarPlantillas()
+#1 C:\Apache24\htdocs\studio\libs\app.php(42): Proforma->proforma()
+#2 C:\Apache24\htdocs\studio\index.php(9): App->__construct()
+#3 {main}
+  thrown in C:\Apache24\htdocs\studio\models\proformamodel.php on line 189
+[18-Nov-2021 21:14:55 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function ProformaModel::CargarPlantillas(), 0 passed in C:\Apache24\htdocs\studio\controllers\proforma.php on line 21 and exactly 1 expected in C:\Apache24\htdocs\studio\models\proformamodel.php:189
+Stack trace:
+#0 C:\Apache24\htdocs\studio\controllers\proforma.php(21): ProformaModel->CargarPlantillas()
+#1 C:\Apache24\htdocs\studio\libs\app.php(42): Proforma->proforma()
+#2 C:\Apache24\htdocs\studio\index.php(9): App->__construct()
+#3 {main}
+  thrown in C:\Apache24\htdocs\studio\models\proformamodel.php on line 189
+[18-Nov-2021 21:15:27 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function ProformaModel::CargarPlantillas(), 0 passed in C:\Apache24\htdocs\studio\controllers\proforma.php on line 21 and exactly 1 expected in C:\Apache24\htdocs\studio\models\proformamodel.php:189
+Stack trace:
+#0 C:\Apache24\htdocs\studio\controllers\proforma.php(21): ProformaModel->CargarPlantillas()
+#1 C:\Apache24\htdocs\studio\libs\app.php(42): Proforma->proforma()
+#2 C:\Apache24\htdocs\studio\index.php(9): App->__construct()
+#3 {main}
+  thrown in C:\Apache24\htdocs\studio\models\proformamodel.php on line 189
+[18-Nov-2021 21:15:28 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function ProformaModel::CargarPlantillas(), 0 passed in C:\Apache24\htdocs\studio\controllers\proforma.php on line 21 and exactly 1 expected in C:\Apache24\htdocs\studio\models\proformamodel.php:189
+Stack trace:
+#0 C:\Apache24\htdocs\studio\controllers\proforma.php(21): ProformaModel->CargarPlantillas()
+#1 C:\Apache24\htdocs\studio\libs\app.php(42): Proforma->proforma()
+#2 C:\Apache24\htdocs\studio\index.php(9): App->__construct()
+#3 {main}
+  thrown in C:\Apache24\htdocs\studio\models\proformamodel.php on line 189
+[18-Nov-2021 21:15:45 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function ProformaModel::CargarPlantillas(), 0 passed in C:\Apache24\htdocs\studio\controllers\proforma.php on line 21 and exactly 1 expected in C:\Apache24\htdocs\studio\models\proformamodel.php:189
+Stack trace:
+#0 C:\Apache24\htdocs\studio\controllers\proforma.php(21): ProformaModel->CargarPlantillas()
+#1 C:\Apache24\htdocs\studio\libs\app.php(42): Proforma->proforma()
+#2 C:\Apache24\htdocs\studio\index.php(9): App->__construct()
+#3 {main}
+  thrown in C:\Apache24\htdocs\studio\models\proformamodel.php on line 189
+[18-Nov-2021 21:15:46 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function ProformaModel::CargarPlantillas(), 0 passed in C:\Apache24\htdocs\studio\controllers\proforma.php on line 21 and exactly 1 expected in C:\Apache24\htdocs\studio\models\proformamodel.php:189
+Stack trace:
+#0 C:\Apache24\htdocs\studio\controllers\proforma.php(21): ProformaModel->CargarPlantillas()
+#1 C:\Apache24\htdocs\studio\libs\app.php(42): Proforma->proforma()
+#2 C:\Apache24\htdocs\studio\index.php(9): App->__construct()
+#3 {main}
+  thrown in C:\Apache24\htdocs\studio\models\proformamodel.php on line 189
+[18-Nov-2021 21:15:48 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function ProformaModel::CargarPlantillas(), 0 passed in C:\Apache24\htdocs\studio\controllers\proforma.php on line 21 and exactly 1 expected in C:\Apache24\htdocs\studio\models\proformamodel.php:189
+Stack trace:
+#0 C:\Apache24\htdocs\studio\controllers\proforma.php(21): ProformaModel->CargarPlantillas()
+#1 C:\Apache24\htdocs\studio\libs\app.php(42): Proforma->proforma()
+#2 C:\Apache24\htdocs\studio\index.php(9): App->__construct()
+#3 {main}
+  thrown in C:\Apache24\htdocs\studio\models\proformamodel.php on line 189
+[18-Nov-2021 21:16:06 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function ProformaModel::CargarPlantillas(), 0 passed in C:\Apache24\htdocs\studio\controllers\proforma.php on line 21 and exactly 1 expected in C:\Apache24\htdocs\studio\models\proformamodel.php:189
+Stack trace:
+#0 C:\Apache24\htdocs\studio\controllers\proforma.php(21): ProformaModel->CargarPlantillas()
+#1 C:\Apache24\htdocs\studio\libs\app.php(42): Proforma->proforma()
+#2 C:\Apache24\htdocs\studio\index.php(9): App->__construct()
+#3 {main}
+  thrown in C:\Apache24\htdocs\studio\models\proformamodel.php on line 189
+[18-Nov-2021 21:16:07 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function ProformaModel::CargarPlantillas(), 0 passed in C:\Apache24\htdocs\studio\controllers\proforma.php on line 21 and exactly 1 expected in C:\Apache24\htdocs\studio\models\proformamodel.php:189
+Stack trace:
+#0 C:\Apache24\htdocs\studio\controllers\proforma.php(21): ProformaModel->CargarPlantillas()
+#1 C:\Apache24\htdocs\studio\libs\app.php(42): Proforma->proforma()
+#2 C:\Apache24\htdocs\studio\index.php(9): App->__construct()
+#3 {main}
+  thrown in C:\Apache24\htdocs\studio\models\proformamodel.php on line 189
+[18-Nov-2021 21:16:35 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function ProformaModel::CargarPlantillas(), 0 passed in C:\Apache24\htdocs\studio\controllers\proforma.php on line 21 and exactly 1 expected in C:\Apache24\htdocs\studio\models\proformamodel.php:189
+Stack trace:
+#0 C:\Apache24\htdocs\studio\controllers\proforma.php(21): ProformaModel->CargarPlantillas()
+#1 C:\Apache24\htdocs\studio\libs\app.php(42): Proforma->proforma()
+#2 C:\Apache24\htdocs\studio\index.php(9): App->__construct()
+#3 {main}
+  thrown in C:\Apache24\htdocs\studio\models\proformamodel.php on line 189
+[18-Nov-2021 21:16:35 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function ProformaModel::CargarPlantillas(), 0 passed in C:\Apache24\htdocs\studio\controllers\proforma.php on line 21 and exactly 1 expected in C:\Apache24\htdocs\studio\models\proformamodel.php:189
+Stack trace:
+#0 C:\Apache24\htdocs\studio\controllers\proforma.php(21): ProformaModel->CargarPlantillas()
+#1 C:\Apache24\htdocs\studio\libs\app.php(42): Proforma->proforma()
+#2 C:\Apache24\htdocs\studio\index.php(9): App->__construct()
+#3 {main}
+  thrown in C:\Apache24\htdocs\studio\models\proformamodel.php on line 189
+[18-Nov-2021 21:16:44 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function ProformaModel::CargarPlantillas(), 0 passed in C:\Apache24\htdocs\studio\controllers\proforma.php on line 21 and exactly 1 expected in C:\Apache24\htdocs\studio\models\proformamodel.php:189
+Stack trace:
+#0 C:\Apache24\htdocs\studio\controllers\proforma.php(21): ProformaModel->CargarPlantillas()
+#1 C:\Apache24\htdocs\studio\libs\app.php(42): Proforma->proforma()
+#2 C:\Apache24\htdocs\studio\index.php(9): App->__construct()
+#3 {main}
+  thrown in C:\Apache24\htdocs\studio\models\proformamodel.php on line 189
+[18-Nov-2021 21:16:55 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function ProformaModel::CargarPlantillas(), 0 passed in C:\Apache24\htdocs\studio\controllers\proforma.php on line 21 and exactly 1 expected in C:\Apache24\htdocs\studio\models\proformamodel.php:189
+Stack trace:
+#0 C:\Apache24\htdocs\studio\controllers\proforma.php(21): ProformaModel->CargarPlantillas()
+#1 C:\Apache24\htdocs\studio\libs\app.php(42): Proforma->proforma()
+#2 C:\Apache24\htdocs\studio\index.php(9): App->__construct()
+#3 {main}
+  thrown in C:\Apache24\htdocs\studio\models\proformamodel.php on line 189
+[18-Nov-2021 21:16:56 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function ProformaModel::CargarPlantillas(), 0 passed in C:\Apache24\htdocs\studio\controllers\proforma.php on line 21 and exactly 1 expected in C:\Apache24\htdocs\studio\models\proformamodel.php:189
+Stack trace:
+#0 C:\Apache24\htdocs\studio\controllers\proforma.php(21): ProformaModel->CargarPlantillas()
+#1 C:\Apache24\htdocs\studio\libs\app.php(42): Proforma->proforma()
+#2 C:\Apache24\htdocs\studio\index.php(9): App->__construct()
+#3 {main}
+  thrown in C:\Apache24\htdocs\studio\models\proformamodel.php on line 189
+[18-Nov-2021 21:16:56 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function ProformaModel::CargarPlantillas(), 0 passed in C:\Apache24\htdocs\studio\controllers\proforma.php on line 21 and exactly 1 expected in C:\Apache24\htdocs\studio\models\proformamodel.php:189
+Stack trace:
+#0 C:\Apache24\htdocs\studio\controllers\proforma.php(21): ProformaModel->CargarPlantillas()
+#1 C:\Apache24\htdocs\studio\libs\app.php(42): Proforma->proforma()
+#2 C:\Apache24\htdocs\studio\index.php(9): App->__construct()
+#3 {main}
+  thrown in C:\Apache24\htdocs\studio\models\proformamodel.php on line 189
+[18-Nov-2021 21:16:57 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function ProformaModel::CargarPlantillas(), 0 passed in C:\Apache24\htdocs\studio\controllers\proforma.php on line 21 and exactly 1 expected in C:\Apache24\htdocs\studio\models\proformamodel.php:189
+Stack trace:
+#0 C:\Apache24\htdocs\studio\controllers\proforma.php(21): ProformaModel->CargarPlantillas()
+#1 C:\Apache24\htdocs\studio\libs\app.php(42): Proforma->proforma()
+#2 C:\Apache24\htdocs\studio\index.php(9): App->__construct()
+#3 {main}
+  thrown in C:\Apache24\htdocs\studio\models\proformamodel.php on line 189
+[18-Nov-2021 21:16:57 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function ProformaModel::CargarPlantillas(), 0 passed in C:\Apache24\htdocs\studio\controllers\proforma.php on line 21 and exactly 1 expected in C:\Apache24\htdocs\studio\models\proformamodel.php:189
+Stack trace:
+#0 C:\Apache24\htdocs\studio\controllers\proforma.php(21): ProformaModel->CargarPlantillas()
+#1 C:\Apache24\htdocs\studio\libs\app.php(42): Proforma->proforma()
+#2 C:\Apache24\htdocs\studio\index.php(9): App->__construct()
+#3 {main}
+  thrown in C:\Apache24\htdocs\studio\models\proformamodel.php on line 189
+[18-Nov-2021 21:16:57 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function ProformaModel::CargarPlantillas(), 0 passed in C:\Apache24\htdocs\studio\controllers\proforma.php on line 21 and exactly 1 expected in C:\Apache24\htdocs\studio\models\proformamodel.php:189
+Stack trace:
+#0 C:\Apache24\htdocs\studio\controllers\proforma.php(21): ProformaModel->CargarPlantillas()
+#1 C:\Apache24\htdocs\studio\libs\app.php(42): Proforma->proforma()
+#2 C:\Apache24\htdocs\studio\index.php(9): App->__construct()
+#3 {main}
+  thrown in C:\Apache24\htdocs\studio\models\proformamodel.php on line 189
+[18-Nov-2021 21:17:01 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function ProformaModel::CargarPlantillas(), 0 passed in C:\Apache24\htdocs\studio\controllers\proforma.php on line 21 and exactly 1 expected in C:\Apache24\htdocs\studio\models\proformamodel.php:189
+Stack trace:
+#0 C:\Apache24\htdocs\studio\controllers\proforma.php(21): ProformaModel->CargarPlantillas()
+#1 C:\Apache24\htdocs\studio\libs\app.php(42): Proforma->proforma()
+#2 C:\Apache24\htdocs\studio\index.php(9): App->__construct()
+#3 {main}
+  thrown in C:\Apache24\htdocs\studio\models\proformamodel.php on line 189
+[18-Nov-2021 21:17:23 UTC] PHP Notice:  Undefined variable: parametros in C:\Apache24\htdocs\studio\models\proformamodel.php on line 191
+[18-Nov-2021 21:17:23 UTC] PHP Notice:  Trying to access array offset on value of type null in C:\Apache24\htdocs\studio\models\proformamodel.php on line 191
+[18-Nov-2021 21:19:13 UTC] PHP Warning:  Illegal string offset 'id_cab' in C:\Apache24\htdocs\studio\views\proforma\index.php on line 42
+[18-Nov-2021 21:19:13 UTC] PHP Warning:  Illegal string offset 'nombre' in C:\Apache24\htdocs\studio\views\proforma\index.php on line 42
+[18-Nov-2021 21:19:13 UTC] PHP Notice:  Trying to access array offset on value of type int in C:\Apache24\htdocs\studio\views\proforma\index.php on line 42
+[18-Nov-2021 21:19:13 UTC] PHP Notice:  Trying to access array offset on value of type int in C:\Apache24\htdocs\studio\views\proforma\index.php on line 42
+[18-Nov-2021 21:19:13 UTC] PHP Warning:  Illegal string offset 'id_cab' in C:\Apache24\htdocs\studio\views\proforma\index.php on line 42
+[18-Nov-2021 21:19:13 UTC] PHP Warning:  Illegal string offset 'nombre' in C:\Apache24\htdocs\studio\views\proforma\index.php on line 42
+[18-Nov-2021 22:19:26 UTC] PHP Notice:  Undefined index: id_cab in C:\Apache24\htdocs\studio\models\proformamodel.php on line 276
+[18-Nov-2021 22:23:42 UTC] PHP Warning:  PDOStatement::execute(): SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens in C:\Apache24\htdocs\studio\models\proformamodel.php on line 148
+[18-Nov-2021 22:46:24 UTC] PHP Notice:  Undefined index: nombre in C:\Apache24\htdocs\studio\models\proformamodel.php on line 271
+[18-Nov-2021 22:46:24 UTC] PHP Notice:  Undefined index: subtotal in C:\Apache24\htdocs\studio\models\proformamodel.php on line 272
+[18-Nov-2021 22:46:24 UTC] PHP Notice:  Undefined index: margen in C:\Apache24\htdocs\studio\models\proformamodel.php on line 273
+[18-Nov-2021 22:46:24 UTC] PHP Notice:  Undefined index: ganancia in C:\Apache24\htdocs\studio\models\proformamodel.php on line 274
+[18-Nov-2021 22:46:24 UTC] PHP Notice:  Undefined index: nombre in C:\Apache24\htdocs\studio\models\proformamodel.php on line 271
+[18-Nov-2021 22:46:24 UTC] PHP Notice:  Undefined index: subtotal in C:\Apache24\htdocs\studio\models\proformamodel.php on line 272
+[18-Nov-2021 22:46:24 UTC] PHP Notice:  Undefined index: margen in C:\Apache24\htdocs\studio\models\proformamodel.php on line 273
+[18-Nov-2021 22:46:24 UTC] PHP Notice:  Undefined index: ganancia in C:\Apache24\htdocs\studio\models\proformamodel.php on line 274

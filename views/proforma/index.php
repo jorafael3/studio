@@ -25,11 +25,50 @@ require 'views/header.php'; ?>
     </div>
 </div>
 
-<div class="card">
+<div class="row contacts">
+    <div class="col invoice-to">
+
+        <div class="row d-flex align-items-end">
+            <div class="col-md-6 col-12">
+                <h4 class="text-gray font-weight-bolder">Cargar Plantilla</h4>
+
+                <div class="form-group">
+                    <select class="form-control js-example-basic-single" style="width: 100%;" id="CbPlantillas" required>
+                        <option class="" value=""></option>
+
+                        <?php
+                        foreach ($this->plant as $row) {
+                        ?>
+                            <option class="font-weight-bolder to" value=<?php echo ($row["id_cab"]); ?>><?php echo ($row["nombre"]); ?></option>
+                        <?php
+                        }
+                        ?>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-2 col-12">
+                <div class="form-group">
+                    <button onclick="DatosPlantilla()" class="btn btn-primary">Cargar</button>
+                </div>
+            </div>
+        </div>
+        <div class="row d-flex align-items-end">
+            <div class="col-md-12 col-12">
+                <h4 class="text-gray font-weight-bolder">Nueva Plantilla</h4>
+                <div class="form-group">
+                    <button onclick="BtnNuevaPlantilla()" class="btn btn-success">Nueva</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<div class="card" id="CardProforma" style="display: none;">
     <div class="card-body">
         <div id="invoice">
             <div class="toolbar hidden-print">
-
                 <hr />
             </div>
             <div class="invoice overflow-auto">
@@ -57,37 +96,20 @@ require 'views/header.php'; ?>
                     <main>
                         <div class="row contacts">
                             <div class="col invoice-to">
-                                <div class="text-gray-light">PROFORMA PARA:</div>
                                 <div class="row d-flex align-items-end">
-                                    <div class="col-md-7 col-12">
+                                    <div class="col-md-10 col-12">
+                                        <h4 class="text-gray font-weight-bolder">Nombre de la plantilla</h4>
                                         <div class="form-group">
-                                            <select onchange="DatosClientes(this.value)" class="form-control js-example-basic-single" style="width: 100%;" id="eventoSalas" required>
-                                                <option class="" value=""></option>
+                                            <input class="form-control" type="text" name="" id="txtNombreplantilla" placeholder="Nombre">
+                                        </div>
+                                    </div>
+                                </div>
 
-                                                <?php
-                                                foreach ($this->client as $row) {
-                                                ?>
-                                                    <option class="font-weight-bolder to" value=<?php echo ($row["id_cliente"]); ?>><?php echo ($row["nombre"]); ?></option>
-                                                <?php
-                                                }
-                                                ?>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2 col-12">
-                                        <div class="form-group">
-                                            <button class="btn btn-info">Crear</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="ruc font-weight-bolder" style="font-size: 20px;">
-                                    <h6></h6>
-                                </div>
-                                <div class="email font-weight-bolder" style="font-size: 20px;">
-                                </div>
                             </div>
                             <div class="col invoice-details">
-                                <h1 class="invoice-id text-red font-weight-bolder ">PROFORMA# 00000001</h1>
+                                <h1 class="invoice-id text-red font-weight-bolder ">PROFORMA</h1>
+                                <h1 id="txtNumorden" class="invoice-id text-red font-weight-bolder "># 00000001</h1>
+
                                 <div class="date font-weight-bolder" style="font-size: 20px;">
                                     Fecha: <span id="txtfecha">sadasd</span>
                                 </div>
@@ -96,26 +118,13 @@ require 'views/header.php'; ?>
                         <hr class="bg-danger" style="height: 1px;">
 
                         <div class="row">
-                            <div class="col-sm-2">
-                                <button onclick="BtnAgregarProducto()" class="btn btn-dark" data-toggle="modal" data-target="#add-new-sidebar">Agregar</button>
+                            <div class="col-sm-6">
+                                <button onclick="BtnAgregarProducto()" class="btn btn-dark" data-toggle="modal" data-target="#add-new-sidebar">Agregar Producto a la tabla</button>
                             </div>
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <select onchange="DatosClientes(this.value)" class="form-control js-example-basic-single2" style="width: 100%;" id="eventoSalas" required>
-                                        <option class="" value=""></option>
-
-                                        <?php
-                                        foreach ($this->client as $row) {
-                                        ?>
-                                            <option class="font-weight-bolder to" value=<?php echo ($row["id_cliente"]); ?>><?php echo ($row["nombre"]); ?></option>
-                                        <?php
-                                        }
-                                        ?>
-                                    </select>
-                                </div>
-                            </div>
+                            <br>
 
                         </div>
+                        <br>
                         <table id="second_table">
                             <thead>
                                 <tr>
@@ -126,6 +135,8 @@ require 'views/header.php'; ?>
                                     <th class="text-left" style="width: 50px;">CANTIDAD</th>
                                     <th class="text-left" style="width: 120px;">TOTAL</th>
                                     <th class="text-left">#</th>
+                                    <th class="text-left" style="display: none;">id</th>
+
 
                                 </tr>
                             </thead>
@@ -141,7 +152,7 @@ require 'views/header.php'; ?>
                                     <td colspan="2" class="text-primary font-weight-bolder">SUBTOTAL</td>
                                     <td id="PrSubtotal" class="font-weight-bolder">$0.00</td>
                                 </tr>
-                                <tr style="font-size: 18px;">
+                                <tr style="font-size: 16px;">
                                     <td colspan="2"></td>
                                     <td colspan="2"></td>
                                     <td colspan="2">MARGEN DE GANANCIA %</td>
@@ -149,26 +160,37 @@ require 'views/header.php'; ?>
                                         <input id="PrGanancia" type="number" value="0" min="0" class="form-control">
                                     </td>
                                 </tr>
+                                <tr style="font-size: 20px;">
+                                    <td colspan="2"></td>
+                                    <td colspan="2"></td>
+                                    <td colspan="2">GANANCIA TOTAL</td>
+                                    <td id="prgananciaTotal" class="text-info font-weight-bolder">$0.00 </td>
+                                </tr>
                                 <tr style="font-size: 24px;">
                                     <td colspan="2"></td>
                                     <td colspan="2"></td>
-                                    <td id="PrTotal" colspan="2" class="text-red font-weight-bolder">TOTAL</td>
-                                    <td class="text-red font-weight-bolder">$0.00</td>
+                                    <td colspan="2" class="text-red font-weight-bolder">TOTAL</td>
+                                    <td id="PrTotal" class="text-red font-weight-bolder">$0.00</td>
                                 </tr>
                             </tfoot>
                         </table>
-                        <div class="thanks">Thank you!</div>
                         <div class="toolbar hidden-print">
                             <div class="text-right">
-                                <button type="button" class="btn btn-dark"><i class="fa fa-print"></i> Print</button>
+                                <button id="btnguardar" onclick="BtnGuardarProforma()" type="button" class="btn btn-dark"><i class="fa fa-print"></i> Guardar</button>
+                                <button id="btnactualizar" onclick="BtnActualizarProforma()" type="button" class="btn btn-warning"><i class="fa fa-print"></i> Actualizar</button>
                                 <button type="button" class="btn btn-danger"><i class="fa fa-file-pdf-o"></i> Export as PDF</button>
                             </div>
                         </div>
-
+                        <br>
                         <div class="notices">
                             <div>NOTICE:</div>
-                            <div class="notice">A finance charge of 1.5% will be made on unpaid balances after 30 days.</div>
+                            <div class="notice">
+
+                                <h4 class="font-weight-bolder">Crear Proforma para Cliente</h4>
+                                <button class="btn btn-success" data-toggle="modal" data-target="#Prof_cliente">Crear</button>
+                            </div>
                         </div>
+
                     </main>
                     <footer>Invoice was created on a computer and is valid without the signature and seal.</footer>
                 </div>
@@ -195,6 +217,55 @@ require 'views/header.php'; ?>
 
                         </table>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="Prof_cliente">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content p-0">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">×</button>
+            <div class="modal-header mb-1">
+                <h5 class="modal-title">Cliente</h5>
+            </div>
+            <div class="modal-body flex-grow-1 pb-sm-0 pb-3">
+                <div class="card-body">
+                    <div class="row contacts">
+                        <div class="col invoice-to">
+                            <div class="row d-flex align-items-end">
+                                <div class="col-md-7 col-12">
+                                    <div class="form-group">
+                                        <select onchange="DatosClientes(this.value)" class="form-control js-example-basic-single" style="width: 100%;" id="eventoSalas" required>
+                                            <option class="" value=""></option>
+
+                                            <?php
+                                            foreach ($this->client as $row) {
+                                            ?>
+                                                <option class="font-weight-bolder to" value=<?php echo ($row["id_cliente"]); ?>><?php echo ($row["nombre"]); ?></option>
+                                            <?php
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-2 col-12">
+                                    <div class="form-group">
+                                        <button class="btn btn-info">Crear</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ruc font-weight-bolder" style="font-size: 20px;">
+                                <h6></h6>
+                            </div>
+                            <div class="email font-weight-bolder" style="font-size: 20px;">
+                            </div>
+                        </div>
+
+                    </div>
+
+
                 </div>
             </div>
         </div>
@@ -240,7 +311,7 @@ require 'views/header.php'; ?>
         var calculated = input.val() * parseFloat(price).toFixed(2);
         calculated = parseFloat(calculated).toFixed(2);
         columns.eq(5).text(calculated);
-        console.log(calculated);
+
 
         sumar_columnas();
 
@@ -253,11 +324,23 @@ require 'views/header.php'; ?>
         //itera cada input de clase .subtotal y la suma
         $('.subtotal').each(function() {
             sum += parseFloat($(this).text());
-            $('#PrSubtotal').text(sum.toFixed(2));
+            $('#PrSubtotal').text(formatter.format(sum.toFixed(2)));
         });
 
         var margen = $('#PrGanancia').val();
-        console.log(margen);
+        if (margen != 0) {
+            margen = margen / 100;
+            var total = sum * margen;
+            $('#prgananciaTotal').text(formatter.format(total));
+            total = parseFloat(total + sum).toFixed(2);
+
+            $('#PrTotal').text(formatter.format(total));
+
+        } else {
+            $('#PrTotal').text(formatter.format(sum));
+            $('#prgananciaTotal').text("$0.00");
+
+        }
 
     }
 
@@ -265,23 +348,95 @@ require 'views/header.php'; ?>
         var input = $(this);
         var columns = input.closest("tr").children();
         var tot = columns.eq(5).text();
-
+        console.log(tot);
         restar(tot);
-        //console.log(tot);
+        //
         $(this).closest("tr").remove();
     });
 
     function restar(tot) {
-      //  console.log(tot);
+        //  
+        var a = $('#second_table tbody tr').length;
+
 
         var sub = $('#PrSubtotal').text();
+        var sub = sub.split("$")[1]
         console.log(sub);
+        var subtemp = sub - tot;
+        console.log(subtemp);
+        $('#PrSubtotal').text(formatter.format(subtemp));
+        var margen = $('#PrGanancia').val();
 
-        var iva = $('#iva').text();
-        iva = iva - (tot * 0.12);
-        sub = sub - tot;
-        $('#iva').text(iva.toFixed(2));
-        $('#PrSubtotal').text(sub.toFixed(2));
+        if (margen != 0) {
+            margen = margen / 100;
+            var total = subtemp * margen;
+            $('#prgananciaTotal').text(formatter.format(total));
+            total = parseFloat(total + subtemp).toFixed(2);
+            $('#PrTotal').text(formatter.format(total));
+
+        } else {
+            $('#PrTotal').text(formatter.format(subtemp));
+            $('#prgananciaTotal').text("$0.00");
+
+        }
+
+        //$('#PrSubtotal').text(sub.toFixed(2));
         // $('#totaltotal').text(sum.toFixed(2));
+
+    }
+
+    const formatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        minimumFractionDigits: 2
+    })
+
+
+    function BtnNuevaPlantilla() {
+        $("#CardProforma").hide(200);
+        $("#CardProforma").show(500);
+        NumOrden();
+        resetValues();
+        $("#btnactualizar").hide();
+        $("#btnguardar").show();
+
+
+    }
+
+    function BtnGuardarProforma() {
+
+        ValidarNuevaProforma();
+    }
+
+    function resetValues() {
+
+        $('#txtNombreplantilla').val("");
+        $('#PrSubtotal').text("$0.00");
+        $('#PrGanancia').val(0);
+        $('#prgananciaTotal').text("$0.00");
+        $('#PrTotal').text("$0.00");
+        $("#second_table tbody").empty();
+
+    }
+
+
+    /*** **************** */
+    /*** **************** */
+    //*** ACTUALIZAR PROFROMA */
+
+    function DatosPlantilla() {
+        $("#second_table tbody").empty();
+
+        var id = $('#CbPlantillas').val();
+        console.log(id);
+        CargarPlantillaProf(id);
+        $("#CardProforma").hide(200);
+        $("#CardProforma").show(500);
+        $("#btnguardar").hide();
+        $("#btnactualizar").show();
+    }
+
+    function BtnActualizarProforma() {
+        ValidarUpdate();
     }
 </script>
