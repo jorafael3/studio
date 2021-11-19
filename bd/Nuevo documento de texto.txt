@@ -28,11 +28,76 @@ CREATE TABLE `productos` (
 
 
 
+CREATE TABLE `proforma_cab` (
+  `id_cab` int NOT NULL AUTO_INCREMENT,
+  `fecha` datetime DEFAULT CURRENT_TIMESTAMP,
+  `nombre` varchar(1000) NOT NULL,
+  `subtotal` double NOT NULL,
+  `margen` double NOT NULL,
+  `ganancia` double NOT NULL,
+  `total` double NOT NULL,
+  `fecha_creacion` datetime DEFAULT CURRENT_TIMESTAMP,
+  `fecha_update` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id_cab`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+CREATE TABLE `proforma_det` (
+  `id_det` int NOT NULL AUTO_INCREMENT,
+  `id_cab` int DEFAULT NULL,
+  `id_prod` int DEFAULT NULL,
+  `cantidad` int NOT NULL,
+  `total` double NOT NULL,
+  PRIMARY KEY (`id_det`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
 
 
-
-
-
+CREATE DEFINER=`root`@`localhost` PROCEDURE `studio`.`CLIENTES`(
+IN nombre VARCHAR(100),
+IN ruc VARCHAR(15),
+IN correo VARCHAR(100),
+IN telefono VARCHAR(50),
+IN whatsapp VARCHAR(20),
+IN direccion VARCHAR(500),
+IN estado int,
+IN Creador VARCHAR(10),
+IN tipo int,
+IN id int
+)
+BEGIN
+	 IF tipo = 1 THEN
+		INSERT INTO clientes(
+        nombre,
+        ruc,
+        correo,
+        telefono,
+        whatsapp,
+        direccion,
+        estado,
+        Creador
+        )
+        values(
+         nombre,
+        ruc,
+        correo,
+        telefono,
+        whatsapp,
+        direccion,
+        estado,
+        Creador
+        );
+	 END IF;
+ 
+	 IF tipo = 2 THEN
+     update studio.clientes set
+     nombre = nombre,
+        ruc = ruc,
+        correo = correo,
+        telefono =  telefono,
+        whatsapp = whatsapp,
+        direccion = direccion,
+        estado = estado where id_cliente = id ;
+	 END IF;
+END
 
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `studio`.`PRODUCTOS`(
@@ -74,39 +139,69 @@ END
 
 
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `studio`.`PRODUCTOS`(
-IN nombre VARCHAR(100),
-IN descripcion VARCHAR(1000),
-IN precio double,
-IN medida int,
-IN estado int,
+CREATE DEFINER=`root`@`localhost` PROCEDURE `studio`.`PROFORMA_CAB`(
+IN nombre VARCHAR(500),
+IN sub double,
+IN marg double,
+IN ganan double,
+IN total double,
 IN tipo int,
 IN id int
 )
 begin
-	 IF tipo = 1 then
-	 	INSERT INTO productos(
-	 		nombre,
-	 		descripcion,
-	 		precio,
-	 		medida,
-	 		estado 
+	IF tipo = 1 then
+	 	INSERT INTO studio.proforma_cab (
+	 		nombre ,
+	 		subtotal ,
+	 		margen ,
+	 		ganancia ,
+	 		total 
 	 	)values(
 	 		nombre ,
-	 		descripcion,
-	 		precio,
-	 		medida,
-	 		estado 
+	 		sub,
+	 		marg,
+	 		ganan,
+	 		total 
+	 	);
+	END if;
+	IF tipo = 2 then
+		update studio.proforma_cab
+		set nombre = nombre,
+		subtotal = sub,
+		margen = marg,
+		ganancia = ganan,
+		total = total
+		where id_cab  = id;
+	END if;
+END
+
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `studio`.`PROFORMA_DET`(
+IN id_cab int,
+IN cant int,
+IN total double,
+IN id_pr int,
+IN tipo int
+)
+begin
+	IF tipo = 1 then
+		INSERT INTO studio.proforma_det(
+	 		id_cab ,
+	 		cantidad ,
+	 		total ,
+	 		id_prod
+	 	)values(
+	 		id_cab ,
+	 		cant,
+	 		total,
+	 		id_pr
 	 	);
 	 END if;
-	 IF tipo = 2 then
-	 	update studio.productos set
-	 	nombre = nombre,
-	 	descripcion  = descripcion,
-	 	precio = precio,
-	 	medida = medida ,
-	 	estado = estado
-	 	where id_prod = id;
-	 END if;
-	 
+	
+	IF tipo = 2 then
+		update studio.proforma_det 
+		set cantidad = cant,
+		total = total 
+		where id_cab = id_cab and id_det = id_pr;
+	END if;
 END

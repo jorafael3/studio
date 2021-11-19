@@ -127,17 +127,16 @@ require 'views/header.php'; ?>
                         <br>
                         <table id="second_table">
                             <thead>
-                                <tr>
-                                    <th style="width: 300px;">NOMBRE</th>
-                                    <th class="text-left" style="width: 500px;">DESCRIPTION</th>
+                                <tr style="width: 100%;">
+                                    <th style="width: 20%;">NOMBRE</th>
+                                    <th class="text-left" style="width: 40%;">DESCRIPTION</th>
                                     <th class="text-left">MEDIDA</th>
                                     <th class="text-left">COSTO</th>
-                                    <th class="text-left" style="width: 50px;">CANTIDAD</th>
-                                    <th class="text-left" style="width: 120px;">TOTAL</th>
-                                    <th class="text-left">#</th>
-                                    <th class="text-left" style="display: none;">id</th>
-
-
+                                    <th class="text-left" style="width: 10%;">CANTIDAD</th>
+                                    <th class="text-left" style="width: 20%;">TOTAL</th>
+                                    <th class="text-left" style="width: 10%;">#</th>
+                                    <th class="text-left" style="display: none">id_prod</th>
+                                    <th class="text-left" style="display: none">id_det</th>
                                 </tr>
                             </thead>
                             <tbody>

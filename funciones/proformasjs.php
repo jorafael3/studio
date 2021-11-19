@@ -140,12 +140,14 @@ $urlUpdateDet = constant('URL') . "Proforma/UpdateProformaDet/";
             var column2 = $(this).closest('tr').children()[2].textContent;
             var column3 = $(this).closest('tr').children()[3].textContent;
             var column4 = data["id_prod"];
+            var column5 = null;
+
             console.log(column4);
 
 
             if ($("#second_table .copy_" + column1).length == 0) {
 
-                $("#second_table").append("<tr class='copy_" + column0 + "'><td class='no'>" + column0 + "</td> <td>" + column1 + "</td> <td class='unit'>" + column2 + "</td> <td class='unit text-left'>" + column3 + "</td> </td><td><input type='number' class='form-control' min='0' value='0'></td><td class='total subtotal'>0.00</td><td><button  class='btn btn-danger btn_remove'>-</button></td><td class='unit text-left' style='display:none'>" + column4 + "</td></tr>");
+                $("#second_table").append("<tr class='copy_" + column0 + "'><td class='no'>" + column0 + "</td> <td>" + column1 + "</td> <td class='unit'>" + column2 + "</td> <td class='unit text-left'>" + column3 + "</td> </td><td><input type='number' class='form-control' min='0' value='0'></td><td class='total subtotal'>0.00</td><td><button  class='btn btn-danger btn_remove'>-</button></td><td class='' style='display: none'>" + column4 + "</td><td class='' style='display: none'>" + column5 + "</td></tr>");
             }
         });
 
@@ -300,7 +302,8 @@ $urlUpdateDet = constant('URL') . "Proforma/UpdateProformaDet/";
                     var column3 = data[i]["precio"];
                     var column4 = data[i]["cantidad"];
                     var column5 = data[i]["total"];
-                    var column6 = data[i]["id_det"];
+                    var column6 = data[i]["id_prod"];
+                    var column7 = data[i]["id_det"];
 
                     if (column2 == 1) {
                         column2 = "Unidad";
@@ -308,7 +311,7 @@ $urlUpdateDet = constant('URL') . "Proforma/UpdateProformaDet/";
                         column2 = "Metros";
 
                     }
-                    $("#second_table").append("<tr class='copy_" + column0 + "'><td class='no'>" + column0 + "</td> <td>" + column1 + "</td> <td class='unit'>" + column2 + "</td> <td class='unit text-left'>" + column3 + "</td> </td><td><input type='number' class='form-control' min='0' value='" + column4 + "'></td><td class='total subtotal'>" + column5 + "</td><td><button  class='btn btn-danger btn_remove'>-</button></td><td class='unit text-left' style='display:none'>" + column6 + "</td></tr>");
+                    $("#second_table").append("<tr class='copy_" + column0 + "'><td class='no'>" + column0 + "</td> <td>" + column1 + "</td> <td class='unit'>" + column2 + "</td> <td class='unit text-left'>" + column3 + "</td> </td><td><input type='number' class='form-control' min='0' value='" + column4 + "'></td><td class='total subtotal'>" + column5 + "</td><td><button  class='btn btn-danger btn_remove'>-</button></td><td class='unit text-left' style='display: none'>" + column6 + "</td><td class='unit text-left' style='display: none'>" + column7 + "</td></tr>");
 
                 }
 
@@ -354,15 +357,22 @@ $urlUpdateDet = constant('URL') . "Proforma/UpdateProformaDet/";
 
                 var url2 = '<?php echo $urlUpdateDet ?>';
                 for (var i = 1; i < tbl + 1; i++) {
+
+                    var id_cab = NumeroOrdenGlobalUpdate;
+                    var id_det = document.getElementById("second_table").rows[i].cells[8].innerText;
+                    var id_prod = document.getElementById("second_table").rows[i].cells[7].innerText;
+                    var cant = document.getElementById("second_table").rows[i].cells[4].children[0].value;
+                    var total = document.getElementById("second_table").rows[i].cells[5].innerText;
+
                     DatosDetalle = {
-                        id_cab: NumeroOrdenGlobalUpdate,
-                        cant: document.getElementById("second_table").rows[i].cells[4].children[0].value,
-                        total: document.getElementById("second_table").rows[i].cells[5].innerText,
-                        id_prod: document.getElementById("second_table").rows[i].cells[7].innerText,
+                        id_cab: id_cab,
+                        cant: cant,
+                        total: total,
+                        id_prod: id_det,
                     }
                     console.log(DatosDetalle);
 
-                    GuardarProformaCab(url2, DatosDetalle)
+                    ActualizarProforma(url2, DatosDetalle)
 
                 }
 
