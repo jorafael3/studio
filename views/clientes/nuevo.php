@@ -6,6 +6,7 @@ $urlClientesUpdate = constant('URL') . "Clientes/ActualizarCliente/";
 
 require 'views/header.php';
 ?>
+    <?php require 'funciones/clientesjs.php'; ?>
 
 
 <!--breadcrumb-->

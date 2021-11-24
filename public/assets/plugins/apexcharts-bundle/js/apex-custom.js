@@ -737,66 +737,61 @@ $(function () {
 	};
 	var chart = new ApexCharts(document.querySelector("#chart12"), options);
 	chart.render();
+	/*
 	// chart 13
-	/*
-  
 	var options = {
-          series: [70],
-          chart: {
-			  foreColor: '#9ba7b2',
-          height: 350,
-          type: 'radialBar',
-        },
-        plotOptions: {
-          radialBar: {
-            hollow: {
-              size: '70%',
-            }
-          },
-        },
-        labels: ['Cricket'],
-        };
-
-        var chart = new ApexCharts(document.querySelector("#chart13"), options);
-        chart.render();
-		
-		*/
+		series: [70],
+		chart: {
+			foreColor: '#9ba7b2',
+			height: 350,
+			type: 'radialBar',
+		},
+		plotOptions: {
+			radialBar: {
+				hollow: {
+					size: '70%',
+				}
+			},
+		},
+		labels: ['Cricket'],
+	};
+	var chart = new ApexCharts(document.querySelector("#chart13"), options);
+	chart.render();
+	*/
+	/*
 	// chart 14
-	/*
 	var options = {
-          series: [44, 55, 67, 83],
-          chart: {
-			  foreColor: '#9ba7b2',
-          height: 350,
-          type: 'radialBar',
-        },
-        plotOptions: {
-          radialBar: {
-            dataLabels: {
-              name: {
-                fontSize: '22px',
-              },
-              value: {
-                fontSize: '16px',
-              },
-              total: {
-                show: true,
-                label: 'Total',
-                formatter: function (w) {
-                  // By default this function returns the average of all series. The below is just an example to show the use of custom formatter function
-                  return 249
-                }
-              }
-            }
-          }
-        },
-        labels: ['Apples', 'Oranges', 'Bananas', 'Berries'],
-        };
-
-        var chart = new ApexCharts(document.querySelector("#chart14"), options);
-        chart.render();
-		
-		*/
+		series: [44, 55, 67, 83],
+		chart: {
+			foreColor: '#9ba7b2',
+			height: 350,
+			type: 'radialBar',
+		},
+		plotOptions: {
+			radialBar: {
+				dataLabels: {
+					name: {
+						fontSize: '22px',
+					},
+					value: {
+						fontSize: '16px',
+					},
+					total: {
+						show: true,
+						label: 'Total',
+						formatter: function (w) {
+							// By default this function returns the average of all series. The below is just an example to show the use of custom formatter function
+							return 249
+						}
+					}
+				}
+			}
+		},
+		labels: ['Apples', 'Oranges', 'Bananas', 'Berries'],
+	};
+	var chart = new ApexCharts(document.querySelector("#chart14"), options);
+	chart.render();
+	*/
 	// chart 15
 	var options = {
 		series: [{

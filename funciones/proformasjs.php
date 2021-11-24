@@ -19,9 +19,30 @@ $urlUpdateDet = constant('URL') . "Proforma/UpdateProformaDet/";
 
 <script>
     var NumeroOrdenGlobal;
+    var PlantillaIdG;
+
+    function Mensajeok(mensaje) {
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: mensaje,
+            showConfirmButton: false,
+            timer: 1000
+        })
+    }
+
+    function Mensajeerr(mensaje) {
+        Swal.fire({
+            position: 'top-end',
+            icon: 'warning',
+            title: mensaje,
+            showConfirmButton: false,
+            timer: 1000
+        })
+    }
 
     function DatosClientes(id_cliente) {
-        console.log(id_cliente);
+
         var url = '<?php echo $urlDatosClientes ?>';
         var data = {
             id: id_cliente
@@ -31,7 +52,7 @@ $urlUpdateDet = constant('URL') . "Proforma/UpdateProformaDet/";
             if (this.readyState == 4 && this.status == 200) {
                 var data = this.responseText;
                 data = JSON.parse(data);
-                console.log(data);
+
 
                 var ruc = "Ruc / Cedula: " + data[0]["ruc"];
                 var email = "Email: " + data[0]["correo"];
@@ -55,7 +76,7 @@ $urlUpdateDet = constant('URL') . "Proforma/UpdateProformaDet/";
             if (this.readyState == 4 && this.status == 200) {
                 var data = this.responseText;
                 data = JSON.parse(data);
-                console.log(data);
+
                 tablaProductos(data);
             }
         }
@@ -134,7 +155,7 @@ $urlUpdateDet = constant('URL') . "Proforma/UpdateProformaDet/";
         $('#ListaProductos tbody').on('click', 'td.btn_add', function(e) {
             e.preventDefault();
             var data = table.row(this).data();
-            console.log(data);
+
             var column0 = $(this).closest('tr').children()[0].textContent;
             var column1 = $(this).closest('tr').children()[1].textContent;
             var column2 = $(this).closest('tr').children()[2].textContent;
@@ -142,12 +163,12 @@ $urlUpdateDet = constant('URL') . "Proforma/UpdateProformaDet/";
             var column4 = data["id_prod"];
             var column5 = null;
 
-            console.log(column4);
+
 
 
             if ($("#second_table .copy_" + column1).length == 0) {
 
-                $("#second_table").append("<tr class='copy_" + column0 + "'><td class='no'>" + column0 + "</td> <td>" + column1 + "</td> <td class='unit'>" + column2 + "</td> <td class='unit text-left'>" + column3 + "</td> </td><td><input type='number' class='form-control' min='0' value='0'></td><td class='total subtotal'>0.00</td><td><button  class='btn btn-danger btn_remove'>-</button></td><td class='' style='display: none'>" + column4 + "</td><td class='' style='display: none'>" + column5 + "</td></tr>");
+                $("#second_table").append("<tr class='copy_" + column0 + "'><td class='no'>" + column0 + "</td> <td>" + column1 + "</td> <td class='unit'>" + column2 + "</td> <td class='unit text-left'>" + column3 + "</td> </td><td><input type='number' class='form-control' min='1' value='1'></td><td class='total subtotal'>0.00</td><td><button  class='btn btn-danger btn_remove'>-</button></td><td class='' style='display: none'>" + column4 + "</td><td class='' style='display: none'>" + column5 + "</td></tr>");
             }
         });
 
@@ -160,8 +181,9 @@ $urlUpdateDet = constant('URL') . "Proforma/UpdateProformaDet/";
             if (this.readyState == 4 && this.status == 200) {
                 var data = this.responseText;
                 NumeroOrdenGlobal = data;
-                var a = String(data).padStart(10, '0')
                 console.log(NumeroOrdenGlobal);
+                var a = String(data).padStart(10, '0')
+
                 $("#txtNumorden").text("#" + a);
             }
         }
@@ -194,7 +216,7 @@ $urlUpdateDet = constant('URL') . "Proforma/UpdateProformaDet/";
                     ganancia: gananciaTotal.split("$")[1],
                     total: total.split("$")[1]
                 };
-                console.log(data);
+
                 var url = '<?php echo $urlguardarCab ?>';
                 GuardarProformaCab(url, data)
 
@@ -207,7 +229,7 @@ $urlUpdateDet = constant('URL') . "Proforma/UpdateProformaDet/";
                         total: document.getElementById("second_table").rows[i].cells[5].innerText,
                         id_prod: document.getElementById("second_table").rows[i].cells[7].innerText,
                     }
-                    console.log(DatosDetalle);
+
 
                     GuardarProformaCab(url2, DatosDetalle)
 
@@ -227,7 +249,18 @@ $urlUpdateDet = constant('URL') . "Proforma/UpdateProformaDet/";
         xmlhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 var data = this.responseText;
-                console.log("aqui ", data);
+
+
+                if (data == "true") {
+                    Mensajeok("Datos Guardados");
+                    CargarPlantillaProf(NumeroOrdenGlobal);
+                    $("#btnguardar").hide();
+                    $("#btnactualizar").show();
+                    $("#btnpdf").show();
+
+                } else {
+                    Mensajeerr("Error al guardar")
+                }
 
             }
         }
@@ -244,6 +277,7 @@ $urlUpdateDet = constant('URL') . "Proforma/UpdateProformaDet/";
     //** ACtulizar PROFORMA */
 
     function CargarPlantillaProf(id) {
+        PlantillaIdG = id
         var url = '<?php echo $urlCargarPlantillita ?>';
         var data = {
             id: id
@@ -253,7 +287,7 @@ $urlUpdateDet = constant('URL') . "Proforma/UpdateProformaDet/";
             if (this.readyState == 4 && this.status == 200) {
                 var data = this.responseText;
                 data = JSON.parse(data);
-                console.log(data);
+
 
                 var a = String(data[0]["id_cab"]).padStart(10, '0');
                 var nombrepl = data[0]["nombre"];
@@ -291,9 +325,10 @@ $urlUpdateDet = constant('URL') . "Proforma/UpdateProformaDet/";
             if (this.readyState == 4 && this.status == 200) {
                 var data = this.responseText;
                 data = JSON.parse(data);
-                console.log(data);
 
 
+
+                $("#second_table tbody").empty();
 
                 for (var i = 0; i < data.length; i++) {
                     var column0 = data[i]["nombre"];
@@ -311,7 +346,7 @@ $urlUpdateDet = constant('URL') . "Proforma/UpdateProformaDet/";
                         column2 = "Metros";
 
                     }
-                    $("#second_table").append("<tr class='copy_" + column0 + "'><td class='no'>" + column0 + "</td> <td>" + column1 + "</td> <td class='unit'>" + column2 + "</td> <td class='unit text-left'>" + column3 + "</td> </td><td><input type='number' class='form-control' min='0' value='" + column4 + "'></td><td class='total subtotal'>" + column5 + "</td><td><button  class='btn btn-danger btn_remove'>-</button></td><td class='unit text-left' style='display: none'>" + column6 + "</td><td class='unit text-left' style='display: none'>" + column7 + "</td></tr>");
+                    $("#second_table").append("<tr class='copy_" + column0 + "'><td class='no'>" + column0 + "</td> <td>" + column1 + "</td> <td class='unit'>" + column2 + "</td> <td class='unit text-left'>" + column3 + "</td> </td><td><input type='number' class='form-control' min='1' value='" + column4 + "'></td><td class='total subtotal'>" + column5 + "</td><td><button  class='btn btn-danger btn_remove'>-</button></td><td class='unit text-left' style='display: none'>" + column6 + "</td><td class='unit text-left' style='display: none'>" + column7 + "</td></tr>");
 
                 }
 
@@ -351,7 +386,7 @@ $urlUpdateDet = constant('URL') . "Proforma/UpdateProformaDet/";
                     ganancia: gananciaTotal.split("$")[1],
                     total: total.split("$")[1]
                 };
-                console.log("cab", data);
+
                 var url = '<?php echo $urlPUdateCab ?>';
                 ActualizarProforma(url, data)
 
@@ -369,29 +404,92 @@ $urlUpdateDet = constant('URL') . "Proforma/UpdateProformaDet/";
                         cant: cant,
                         total: total,
                         id_prod: id_det,
+                        id_det: id_det
                     }
-                    console.log(DatosDetalle);
 
-                    ActualizarProforma(url2, DatosDetalle)
+                    if (id_det == "null") {
+
+                        DatosDetalle.id_prod = id_prod;
+                        var url3 = '<?php echo $urlguardarDet ?>';
+                        GuardarProformaCab(url3, DatosDetalle)
+
+                    } else {
+
+                        ActualizarProforma(url2, DatosDetalle)
+
+                    }
+
 
                 }
 
             }
         }
 
-        function ActualizarProforma(url, data) {
-            var xmlhttp = new XMLHttpRequest();
-            xmlhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    var data = this.responseText;
-                    console.log("aqui ", data);
 
+    }
+
+    function ActualizarProforma(url, data) {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                var data = this.responseText;
+
+                if (data == "true") {
+                    Mensajeok("Datos Actualizados")
+                } else {
+                    Mensajeerr("Error al actualizar")
                 }
+                CargarPlantillaProf(PlantillaIdG);
             }
-            data = JSON.stringify(data);
-            xmlhttp.open("POST", url, true);
-            xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            xmlhttp.send(data);
         }
+        data = JSON.stringify(data);
+        xmlhttp.open("POST", url, true);
+        xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xmlhttp.send(data);
+    }
+
+    function SendDataToPdf() {
+
+        var data = {
+            id: NumeroOrdenGlobalUpdate
+        }
+
+        console.log(data);
+        Pdf(data)
+    }
+
+    function Pdf(data) {
+        var url = ('<?php echo constant('URL') . "Pdf/GenerarPdfCompra/" ?>');
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onload = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                var disposition = xmlhttp.getResponseHeader('content-disposition');
+                var matches = /"([^"]*)"/.exec(disposition);
+                var filename = (matches != null && matches[1] ? matches[1] : 'file.pdf');
+                console.log(this.response);
+                // The actual download
+                //** PARA ABRIR PDF  */
+                var file = window.URL.createObjectURL(xmlhttp.response);
+                var a = document.createElement("a");
+                a.href = file;
+                window.open(file);
+
+                //* PARA DESCARGAR PDF */
+                var blob = new Blob([xmlhttp.response], {
+                    type: 'application/pdf'
+                });
+                var link = document.createElement('a');
+                link.href = window.URL.createObjectURL(blob);
+                link.download = filename;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }
+        }
+        data = JSON.stringify(data);
+        xmlhttp.open("POST", url, true);
+        xmlhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+        xmlhttp.responseType = 'blob';
+        xmlhttp.send(data);
     }
 </script>

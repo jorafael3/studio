@@ -10,9 +10,9 @@ $(function () {
 	$(document).ready(function () {
 		$(window).on("scroll", function () {
 			if ($(this).scrollTop() > 300) {
-				$('.top-header').addClass('sticky-top-header');
+				$('.nav-container').addClass('sticky-top-header');
 			} else {
-				$('.top-header').removeClass('sticky-top-header');
+				$('.nav-container').removeClass('sticky-top-header');
 			}
 		});
 		$('.back-to-top').on("click", function () {
@@ -86,9 +86,9 @@ $(function () {
 	$(function () {
 		for (var i = window.location, o = $(".metismenu li a").filter(function () {
 			return this.href == i;
-		}).addClass("").parent().addClass("mm-active");;) {
+		}).addClass("").parent().addClass("");;) {
 			if (!o.is("li")) break;
-			o = o.parent("").addClass("mm-show").parent("").addClass("mm-active");
+			o = o.parent("").addClass("").parent("").addClass("");
 		}
 	}),
 	// metismenu
@@ -121,8 +121,11 @@ $(function () {
 	$("#lightmode").on("click", function () {
 		$("html").removeClass("dark-theme");
 	});
-	$("#DarkSidebar").on("click", function () {
-		$("html").toggleClass("dark-sidebar");
+	$("#DarkHeader").on("click", function () {
+		$("html").toggleClass("dark-header");
+	});
+	$("#DarkMenu").on("click", function () {
+		$("html").toggleClass("dark-menu");
 	});
 	$("#ColorLessIcons").on("click", function () {
 		$("html").toggleClass("ColorLessIcons");

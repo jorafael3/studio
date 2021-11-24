@@ -65,142 +65,197 @@ require 'views/header.php'; ?>
 
 </div>
 
-<div class="card" id="CardProforma" style="display: none;">
-    <div class="card-body">
-        <div id="invoice">
-            <div class="toolbar hidden-print">
-                <hr />
-            </div>
-            <div class="invoice overflow-auto">
-                <div style="min-width: 600px">
-                    <div>
-                        <div class="row">
-                            <div class="col">
-                                <a href="javascript:;">
-                                    <img src="<?php echo constant('URL') ?>public/assets/images/aj.jpeg" width="80" alt="" />
-                                </a>
-                            </div>
-                            <div class="col company-details">
-                                <h2 class="name font-weight-bolder">
-                                    <a class="text-red" target="_blank" href="javascript:;">
-                                        Arboshiki
+<div class="row" id="CardProforma" style="display: none;">
+
+    <div class="card col-xl-9">
+        <div class="card-body">
+            <div id="invoice">
+                <div class="toolbar hidden-print">
+                    <hr />
+                </div>
+                <div class="invoice overflow-auto">
+                    <div style="min-width: 600px">
+                        <div>
+                            <div class="row">
+                                <div class="col">
+                                    <a href="javascript:;">
+                                        <img src="<?php echo constant('URL') ?>public/assets/images/aj.jpeg" width="80" alt="" />
                                     </a>
-                                </h2>
-                                <div>455 Foggy Heights, AZ 85004, US</div>
-                                <div>(123) 456-789</div>
-                                <div>company@example.com</div>
-                            </div>
-                        </div>
-                    </div>
-                    <hr class="bg-danger" style="height: 1px;">
-                    <main>
-                        <div class="row contacts">
-                            <div class="col invoice-to">
-                                <div class="row d-flex align-items-end">
-                                    <div class="col-md-10 col-12">
-                                        <h4 class="text-gray font-weight-bolder">Nombre de la plantilla</h4>
-                                        <div class="form-group">
-                                            <input class="form-control" type="text" name="" id="txtNombreplantilla" placeholder="Nombre">
-                                        </div>
-                                    </div>
                                 </div>
-
-                            </div>
-                            <div class="col invoice-details">
-                                <h1 class="invoice-id text-red font-weight-bolder ">PROFORMA</h1>
-                                <h1 id="txtNumorden" class="invoice-id text-red font-weight-bolder "># 00000001</h1>
-
-                                <div class="date font-weight-bolder" style="font-size: 20px;">
-                                    Fecha: <span id="txtfecha">sadasd</span>
+                                <div class="col company-details">
+                                    <h2 class="name font-weight-bolder">
+                                        <a class="text-red" target="_blank" href="javascript:;">
+                                            Arboshiki
+                                        </a>
+                                    </h2>
+                                    <div>455 Foggy Heights, AZ 85004, US</div>
+                                    <div>(123) 456-789</div>
+                                    <div>company@example.com</div>
                                 </div>
                             </div>
                         </div>
                         <hr class="bg-danger" style="height: 1px;">
+                        <main>
+                            <div class="row contacts">
+                                <div class="col invoice-to">
+                                    <div class="row d-flex align-items-end">
+                                        <div class="col-md-10 col-12">
+                                            <h4 class="text-gray font-weight-bolder">Nombre de la plantilla</h4>
+                                            <div class="form-group">
+                                                <input class="form-control" type="text" name="" id="txtNombreplantilla" placeholder="Nombre">
+                                            </div>
+                                        </div>
+                                    </div>
 
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <button onclick="BtnAgregarProducto()" class="btn btn-dark" data-toggle="modal" data-target="#add-new-sidebar">Agregar Producto a la tabla</button>
+                                </div>
+                                <div class="col invoice-details">
+                                    <h1 class="invoice-id text-red font-weight-bolder ">PROFORMA</h1>
+                                    <h1 id="txtNumorden" class="invoice-id text-red font-weight-bolder "># 00000001</h1>
+
+                                    <div class="date font-weight-bolder" style="font-size: 20px;">
+                                        Fecha: <span id="txtfecha">sadasd</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr class="bg-danger" style="height: 1px;">
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <button onclick="BtnAgregarProducto()" class="btn btn-dark" data-toggle="modal" data-target="#add-new-sidebar">Agregar Producto a la tabla</button>
+                                </div>
+                                <br>
+
+                            </div>
+                            <br>
+                            <table id="second_table">
+                                <thead>
+                                    <tr style="width: 100%;">
+                                        <th style="width: 20%;">NOMBRE</th>
+                                        <th class="text-left" style="width: 40%;">DESCRIPTION</th>
+                                        <th class="text-left">MEDIDA</th>
+                                        <th class="text-left">COSTO</th>
+                                        <th class="text-left" style="width: 10%;">CANTIDAD</th>
+                                        <th class="text-left" style="width: 20%;">TOTAL</th>
+                                        <th class="text-left" style="width: 10%;">#</th>
+                                        <th class="text-left" style="display: none">id_prod</th>
+                                        <th class="text-left" style="display: none">id_det</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+
+
+                                </tbody>
+                                <tfoot>
+                                    <tr style="font-size: 18px;">
+                                        <td colspan="2"></td>
+                                        <td colspan="2"></td>
+                                        <td colspan="2" class="text-primary font-weight-bolder">SUBTOTAL</td>
+                                        <td id="PrSubtotal" class="font-weight-bolder">$0.00</td>
+                                    </tr>
+                                    <tr style="font-size: 16px;">
+                                        <td colspan="2"></td>
+                                        <td colspan="2"></td>
+                                        <td colspan="2">MARGEN DE GANANCIA %</td>
+                                        <td>
+                                            <input id="PrGanancia" type="number" value="0" min="0" class="form-control">
+                                        </td>
+                                    </tr>
+                                    <tr style="font-size: 20px;">
+                                        <td colspan="2"></td>
+                                        <td colspan="2"></td>
+                                        <td colspan="2">GANANCIA TOTAL</td>
+                                        <td id="prgananciaTotal" class="text-info font-weight-bolder">$0.00 </td>
+                                    </tr>
+                                    <tr style="font-size: 24px;">
+                                        <td colspan="2"></td>
+                                        <td colspan="2"></td>
+                                        <td colspan="2" class="text-red font-weight-bolder">TOTAL</td>
+                                        <td id="PrTotal" class="text-red font-weight-bolder">$0.00</td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                            <div class="toolbar hidden-print">
+                                <div class="text-right">
+                                    <button id="btnguardar" onclick="BtnGuardarProforma()" type="button" class="btn btn-dark"><i class="fa fa-print"></i> Guardar</button>
+                                    <button id="btnactualizar" onclick="BtnActualizarProforma()" type="button" class="btn btn-warning"><i class="fa fa-print"></i> Actualizar</button>
+                                    <button id="btnpdf" onclick="BtnPdf()" type="button" class="btn btn-danger"><i class="fa fa-file-pdf-o"></i> Export as PDF</button>
+                                </div>
                             </div>
                             <br>
 
-                        </div>
-                        <br>
-                        <table id="second_table">
-                            <thead>
-                                <tr style="width: 100%;">
-                                    <th style="width: 20%;">NOMBRE</th>
-                                    <th class="text-left" style="width: 40%;">DESCRIPTION</th>
-                                    <th class="text-left">MEDIDA</th>
-                                    <th class="text-left">COSTO</th>
-                                    <th class="text-left" style="width: 10%;">CANTIDAD</th>
-                                    <th class="text-left" style="width: 20%;">TOTAL</th>
-                                    <th class="text-left" style="width: 10%;">#</th>
-                                    <th class="text-left" style="display: none">id_prod</th>
-                                    <th class="text-left" style="display: none">id_det</th>
-                                </tr>
-                            </thead>
-                            <tbody>
 
+                        </main>
+                        <footer>Invoice was created on a computer and is valid without the signature and seal.</footer>
+                    </div>
+                    <!--DO NOT DELETE THIS div. IT is responsible for showing footer always at the bottom-->
+                    <div>
 
-
-                            </tbody>
-                            <tfoot>
-                                <tr style="font-size: 18px;">
-                                    <td colspan="2"></td>
-                                    <td colspan="2"></td>
-                                    <td colspan="2" class="text-primary font-weight-bolder">SUBTOTAL</td>
-                                    <td id="PrSubtotal" class="font-weight-bolder">$0.00</td>
-                                </tr>
-                                <tr style="font-size: 16px;">
-                                    <td colspan="2"></td>
-                                    <td colspan="2"></td>
-                                    <td colspan="2">MARGEN DE GANANCIA %</td>
-                                    <td>
-                                        <input id="PrGanancia" type="number" value="0" min="0" class="form-control">
-                                    </td>
-                                </tr>
-                                <tr style="font-size: 20px;">
-                                    <td colspan="2"></td>
-                                    <td colspan="2"></td>
-                                    <td colspan="2">GANANCIA TOTAL</td>
-                                    <td id="prgananciaTotal" class="text-info font-weight-bolder">$0.00 </td>
-                                </tr>
-                                <tr style="font-size: 24px;">
-                                    <td colspan="2"></td>
-                                    <td colspan="2"></td>
-                                    <td colspan="2" class="text-red font-weight-bolder">TOTAL</td>
-                                    <td id="PrTotal" class="text-red font-weight-bolder">$0.00</td>
-                                </tr>
-                            </tfoot>
-                        </table>
-                        <div class="toolbar hidden-print">
-                            <div class="text-right">
-                                <button id="btnguardar" onclick="BtnGuardarProforma()" type="button" class="btn btn-dark"><i class="fa fa-print"></i> Guardar</button>
-                                <button id="btnactualizar" onclick="BtnActualizarProforma()" type="button" class="btn btn-warning"><i class="fa fa-print"></i> Actualizar</button>
-                                <button type="button" class="btn btn-danger"><i class="fa fa-file-pdf-o"></i> Export as PDF</button>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="notices">
-                            <div>NOTICE:</div>
-                            <div class="notice">
-
-                                <h4 class="font-weight-bolder">Crear Proforma para Cliente</h4>
-                                <button class="btn btn-success" data-toggle="modal" data-target="#Prof_cliente">Crear</button>
-                            </div>
-                        </div>
-
-                    </main>
-                    <footer>Invoice was created on a computer and is valid without the signature and seal.</footer>
-                </div>
-                <!--DO NOT DELETE THIS div. IT is responsible for showing footer always at the bottom-->
-                <div>
-
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <div class="card col-xl-3 bordered">
+        <div class="card-body">
+            <hr>
+            <div class="row contacts">
+                <div class="col invoice">
+                    <div class="row d-flex align-items-end">
+                        <div class="col-md-12 col-12">
+                            <div class="notices">
+                                <div class="notice">
+                                    <h5 class="font-weight-bolder">Crear Proforma para Cliente</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-12">
+                            <h4>Cliente</h4>
+                            <div class="form-group">
+                                <select onchange="DatosClientes(this.value)" class="form-control js-example-basic-single" style="width: 100%;" id="eventoSalas" required>
+                                    <option class="" value=""></option>
+
+                                    <?php
+                                    foreach ($this->client as $row) {
+                                    ?>
+                                        <option class="font-weight-bolder to" value=<?php echo ($row["id_cliente"]); ?>><?php echo ($row["nombre"]); ?></option>
+                                    <?php
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                        </div>
+                   
+                    </div>
+
+                    <div class="ruc font-weight-bolder" style="font-size: 20px;">
+                        <h6></h6>
+                    </div>
+                    <div class="email font-weight-bolder" style="font-size: 20px;">
+                    </div>
+                    <hr class="bg-danger" style="height: 1px;">
+                    <div class="col-md-12 col-12">
+                        <h4>Descripcion</h4>
+                        <div class="form-group">
+
+                            <textarea class="form-control" name="" id="" cols="" rows="8"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 col-12">
+                            <div class="text-left">
+                                <button class="btn btn-success">Guardar</button>
+                                <button class="btn btn-danger">PDF</button>
+                            </div>
+                        </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
 </div>
+
 
 <div class="modal fade" id="add-new-sidebar">
     <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -231,39 +286,6 @@ require 'views/header.php'; ?>
             </div>
             <div class="modal-body flex-grow-1 pb-sm-0 pb-3">
                 <div class="card-body">
-                    <div class="row contacts">
-                        <div class="col invoice-to">
-                            <div class="row d-flex align-items-end">
-                                <div class="col-md-7 col-12">
-                                    <div class="form-group">
-                                        <select onchange="DatosClientes(this.value)" class="form-control js-example-basic-single" style="width: 100%;" id="eventoSalas" required>
-                                            <option class="" value=""></option>
-
-                                            <?php
-                                            foreach ($this->client as $row) {
-                                            ?>
-                                                <option class="font-weight-bolder to" value=<?php echo ($row["id_cliente"]); ?>><?php echo ($row["nombre"]); ?></option>
-                                            <?php
-                                            }
-                                            ?>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-2 col-12">
-                                    <div class="form-group">
-                                        <button class="btn btn-info">Crear</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="ruc font-weight-bolder" style="font-size: 20px;">
-                                <h6></h6>
-                            </div>
-                            <div class="email font-weight-bolder" style="font-size: 20px;">
-                            </div>
-                        </div>
-
-                    </div>
-
 
                 </div>
             </div>
@@ -286,6 +308,8 @@ require 'views/header.php'; ?>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.24/b-1.7.0/b-colvis-1.7.0/b-html5-1.7.0/b-print-1.7.0/datatables.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
+
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
     $('.js-example-basic-single').select2({
@@ -398,6 +422,7 @@ require 'views/header.php'; ?>
         resetValues();
         $("#btnactualizar").hide();
         $("#btnguardar").show();
+        $("#btnpdf").hide();
 
 
     }
@@ -433,9 +458,15 @@ require 'views/header.php'; ?>
         $("#CardProforma").show(500);
         $("#btnguardar").hide();
         $("#btnactualizar").show();
+        $("#btnpdf").show();
+
     }
 
     function BtnActualizarProforma() {
         ValidarUpdate();
+    }
+
+    function BtnPdf(){
+        SendDataToPdf();
     }
 </script>

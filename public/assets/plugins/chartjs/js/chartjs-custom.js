@@ -67,13 +67,13 @@ $(function () {
 			datasets: [{
 				label: 'Google',
 				data: [13, 20, 4, 18, 29, 25, 8],
-				barPercentage: .5,
-				backgroundColor: "#673ab7"
+				backgroundColor: "#673ab7",
+				barPercentage: .5
 			}, {
 				label: 'Facebook',
 				data: [31, 30, 6, 6, 21, 4, 11],
-				barPercentage: .5,
-				backgroundColor: "#bf9bff"
+				backgroundColor: "#bf9bff",
+				barPercentage: .5
 			}]
 		},
 		options: {
