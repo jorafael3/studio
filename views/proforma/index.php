@@ -301,7 +301,19 @@ require 'views/header.php'; ?>
 
 
 </div>
+<script>
+    function printWindow() {
+        //$("#CardOrdenCliente").printElement();
 
+
+        var restorepage = $('body').html();
+        var printcontent = $('#CardOrdenCliente').clone();
+        $('body').empty().html(printcontent);
+        window.print();
+        $('body').html(restorepage);
+
+    }
+</script>
 
 <div class="modal fade" id="add-new-sidebar">
     <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -527,7 +539,7 @@ require 'views/header.php'; ?>
         SendDataToPdf();
     }
 
-    function BtnPdfOrden(){
+    function BtnPdfOrden() {
         SendDataToPdfOrden();
     }
 
