@@ -197,7 +197,7 @@ require 'views/header.php'; ?>
         </div>
     </div>
 
-    <div class="card col-xl-12 bordered">
+    <div class="card col-xl-12 bordered" id="CardOrdenCliente">
         <div class="card-body">
             <hr>
             <div class="row contacts">
@@ -306,11 +306,19 @@ require 'views/header.php'; ?>
         //$("#CardOrdenCliente").printElement();
 
 
-        var restorepage = $('body').html();
+        /*var restorepage = $('body').html();
         var printcontent = $('#CardOrdenCliente').clone();
         $('body').empty().html(printcontent);
         window.print();
-        $('body').html(restorepage);
+        $('body').html(restorepage);*/
+
+        var div = document.getElementById('CardOrdenCliente');
+
+        // Create a window object.
+        var win = window.open('', '', 'height=700,width=700'); // Open the window. Its a popup window.
+        win.document.write(div.outerHTML); // Write contents in the new window.
+        win.document.close();
+        win.print(); // Finally, print the contents.
 
     }
 </script>
