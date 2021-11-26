@@ -51,6 +51,17 @@ CREATE TABLE `proforma_det` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
 
 
+CREATE TABLE `factura` (
+  `id_fact` int NOT NULL AUTO_INCREMENT,
+  `id_cab` int NOT NULL,
+  `id_cliente` int NOT NULL,
+  `nombre` varchar(200) DEFAULT NULL,
+  `descripcion` varchar(2000) DEFAULT NULL,
+  `fecha_creacion` datetime DEFAULT CURRENT_TIMESTAMP,
+  `fecha_update` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id_fact`)
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `studio`.`CLIENTES`(
 IN nombre VARCHAR(100),
 IN ruc VARCHAR(15),
@@ -203,5 +214,35 @@ begin
 		set cantidad = cant,
 		total = total 
 		where id_cab = id_cab and id_det = id_pr;
+	END if;
+END
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `studio`.`FACTURAS`(
+IN id_prof int,
+IN id_cli int,
+IN nom varchar(200),
+IN descrip varchar(2000),
+IN tipo int
+)
+begin
+	IF tipo = 1 then
+		INSERT INTO studio.factura(
+	 		id_cab,
+	 		id_cliente ,
+	 		nombre ,
+	 		descripcion 
+	 	)values(
+	 		id_prof ,
+	 		id_cli,
+	 		nom,
+	 		descrip
+	 	);
+	END if;
+	IF tipo = 2 then
+		update studio.factura 
+		set
+		nombre = nom,
+		descripcion = descrip
+		where id_fact = id_prof;
 	END if;
 END
