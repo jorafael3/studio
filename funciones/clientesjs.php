@@ -222,7 +222,7 @@ $urlClientes = constant('URL') . "Clientes/ListarClientes/";
                             var d = data;
                             console.log(d);
                             if (d != null) {
-                                data = '<a class="text-info" href="http://web.whatsapp.com/send?phone=+593' + d + '" target="_blank">' + d + '</a>';
+                                data = '<a  class="text-info" href="http://web.whatsapp.com/send?phone=+593' + d + '" target="_blank">' + d + '</a>';
                             }
                         }
                         return data;

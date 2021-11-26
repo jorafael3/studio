@@ -1,5 +1,7 @@
 <?php
 require('public/fpdf/fpdf.php');
+require_once('public/tcpdf_min/tcpdf.php');
+
 
 class PdfModel extends Model
 {
@@ -10,99 +12,8 @@ class PdfModel extends Model
     }
 
 
-    function GenerarPdf($data)
-    {
-        $ordentexo = "Venta # ";
 
-
-        $fecha = explode(" ", $data["fecha"]);
-        if (count($fecha) <= 1) {
-            $fecha[1] = "";
-        }
-
-        header('Content-type: application/pdf');
-        http_response_code(200);
-        $pdf = new FPDF('P', 'mm', 'A4');
-        $pdf->AddPage();
-
-        $pdf->SetFont('Arial', 'B', 15);
-        $pdf->Cell(71, 5, 'Datos del Cliente', 0, 0);
-        $pdf->Cell(59, 5, '', 0, 0);
-        $pdf->Cell(59, 5,  $ordentexo . $data["idorden"], 0, 1);
-
-        $pdf->SetFont('Arial', '', 10);
-        $pdf->Cell(130, 5, 'Cedula:' . $data["cedula"], 0, 0);
-        $pdf->Cell(25, 5, 'Fecha: ', 0, 0);
-        $pdf->Cell(34, 5, $fecha[0], 0, 1);
-
-        $pdf->Cell(130, 5, 'Nombre: ' . $data["nombre"], 0, 0);
-        $pdf->Cell(25, 5, 'Hora: ', 0, 0);
-        $pdf->Cell(34, 5, $fecha[1], 0, 1);
-
-        $pdf->Cell(50, 10, '', 0, 1);
-        $pdf->SetFont('Arial', 'B', 10);
-        /*Heading Of the table*/
-        $pdf->Cell(20, 6, 'Codigo', 1, 0, 'C');
-        $pdf->Cell(80, 6, 'Producto / Servicio', 1, 0, 'C');
-        $pdf->Cell(30, 6, 'Precio unitario', 1, 0, 'C');
-        $pdf->Cell(28, 6, 'cantidad', 1, 0, 'C');
-        $pdf->Cell(30, 6, 'Total', 1, 0, 'C');
-        $pdf->Cell(0, 6, '', 1, 1, 'C');/*end of line*/
-        /*Heading Of the table end*/
-
-        try {
-            $items = [];
-
-            $procedure = "SELECT 
-            det.id_prod as codigo,
-            pr.pr_nombre as prod,
-            det.precio_uni as uni,
-            det.cantidad as cant,
-            det.total as total
-            FROM inventario_db.inv_factura_detalle as det
-            inner join inventario_db.inv_productos pr
-            on pr.id_prod = det. id_prod
-            where id_factura = '" . $data["idorden"] . "'";
-
-            $query = $this->db->connect()->prepare($procedure);
-
-            if ($query->execute()) {
-                $result = $query->fetchAll(PDO::FETCH_ASSOC);
-                //  $c = 0;
-                foreach ($result as $row) {
-                    $pdf->Cell(20, 6, $row["codigo"], 1, 0);
-                    $pdf->Cell(80, 6, $row["prod"], 1, 0);
-                    $pdf->Cell(30, 6, $row["uni"], 1, 0, 'R');
-                    $pdf->Cell(28, 6, $row["cant"], 1, 0, 'R');
-                    $pdf->Cell(30, 6, $row["total"], 1, 0, 'R');
-                    $pdf->Cell(0, 6, '', 1, 1, 'R');
-                }
-            } else {
-                $err = $query->errorInfo();
-                //echo json_encode($err);
-                //exit();
-            }
-        } catch (PDOException $e) {
-            print_r($query->errorInfo());
-        }
-
-
-
-
-        $pdf->Cell(118, 6, '', 0, 0);
-        $pdf->Cell(25, 6, 'Subtotal', 0, 0);
-        $pdf->Cell(45, 6, $data["sub"], 1, 1, 'R');
-        $pdf->Cell(118, 6, '', 0, 0);
-        $pdf->Cell(25, 6, 'Iva', 0, 0);
-        $pdf->Cell(45, 6, $data["iva"], 1, 1, 'R');
-        $pdf->Cell(118, 6, '', 0, 0);
-        $pdf->Cell(25, 6, 'Total', 0, 0);
-        $pdf->Cell(45, 6, $data["total"], 1, 1, 'R');
-        echo json_encode($pdf->Output("I"));
-        exit();
-    }
-
-    function GenerarPdf2($data)
+    function GenerarPdfProforma($data)
     {
         $id = $data["id"];
         $ordentexto = "Proforma # ";
@@ -175,7 +86,7 @@ class PdfModel extends Model
         $pdf->Cell(20, 6, 'cantidad', 1, 0, 'C');
         $pdf->Cell(30, 6, 'Total', 1, 1, 'C');/*end of line*/
         /*Heading Of the table end*/
-        $pdf->SetFont('Arial', '', 10);
+        $pdf->SetFont('Arial', '', 12);
 
         try {
             $items = [];
@@ -193,16 +104,16 @@ class PdfModel extends Model
                 //  $c = 0;
                 foreach ($result as $row) {
                     $medida = $row["medida"];
-                    if($medida == "1"){
+                    if ($medida == "1") {
                         $medida = "unidad";
-                    }else{
+                    } else {
                         $medida = "metros";
                     }
 
                     $pdf->Cell(30, 6, $row["nombre"], 1, 0);
                     $pdf->Cell(60, 6, $row["descripcion"], 1, 0);
                     $pdf->Cell(20, 6, $medida, 1, 0);
-                    $pdf->Cell(28, 6, number_format($row["precio"],2,',','.'), 1, 0, 'R');
+                    $pdf->Cell(28, 6, number_format($row["precio"], 2, ',', '.'), 1, 0, 'R');
                     $pdf->Cell(20, 6, $row["cantidad"], 1, 0, 'R');
                     $pdf->Cell(30, 6, number_format($row["total"], 2, ',', '.'), 1, 1, 'R');
                 }
@@ -236,95 +147,132 @@ class PdfModel extends Model
     }
 
 
-    function GenerarPdfProforma($data)
+    function GenerarPdfOrden($data)
     {
         $ordentexo = "Proforma # ";
+        $id = $data["id"];
+        $NombreEmpresa = "Aj Estudio";
+        $telefonoEmpresa = "093153115";
+        $imagenl =' http://10.5.2.191:8080/studio/public/assets/images/aj.jpeg';
+        // create new PDF document
+        $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 
+        // set document information
+        $pdf->SetCreator(PDF_CREATOR);
+        $pdf->SetAuthor('Nicola Asuni');
+        $pdf->SetTitle('TCPDF Example 001');
+        $pdf->SetSubject('TCPDF Tutorial');
+        $pdf->SetKeywords('TCPDF, PDF, example, test, guide');
 
-        $fecha = explode(" ", $data["fecha"]);
-        if (count($fecha) <= 1) {
-            $fecha[1] = "";
+        // set default header data
+        $pdf->SetHeaderData($imagenl , PDF_HEADER_LOGO_WIDTH, $NombreEmpresa, $telefonoEmpresa, array(0, 64, 255), array(0, 64, 128));
+        $pdf->setFooterData(array(0, 64, 0), array(0, 64, 128));
+
+        // set header and footer fonts
+        $pdf->setHeaderFont(array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
+        $pdf->setFooterFont(array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+
+        // set default monospaced font
+        $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+
+        // set margins
+        $pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
+       // $pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
+        $pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
+
+        // set auto page breaks
+        $pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
+
+        // set image scale factor
+        $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+
+        // set some language-dependent strings (optional)
+        if (@file_exists(dirname(__FILE__) . '/lang/eng.php')) {
+            require_once(dirname(__FILE__) . '/lang/eng.php');
+            $pdf->setLanguageArray($l);
         }
 
-        header('Content-type: application/pdf');
-        http_response_code(200);
-        $pdf = new FPDF('P', 'mm', 'A4');
+        // ---------------------------------------------------------
+
+        // set default font subsetting mode
+        $pdf->setFontSubsetting(true);
+
+        // Set font
+        // dejavusans is a UTF-8 Unicode font, if you only need to
+        // print standard ASCII chars, you can use core fonts like
+        // helvetica or times to reduce file size.
+        $pdf->SetFont('helvetica', '', 10, '', true);
+
+        // Add a page
+        // This method has several options, check the source code documentation for more information.
         $pdf->AddPage();
 
-        $pdf->SetFont('Arial', 'B', 15);
-        $pdf->Cell(71, 5, 'Datos del Cliente', 0, 0);
-        $pdf->Cell(59, 5, '', 0, 0);
-        $pdf->Cell(59, 5,  $ordentexo . $data["idorden"], 0, 1);
+        // set text shadow effect
+        $pdf->setTextShadow(array('enabled' => true, 'depth_w' => 0.2, 'depth_h' => 0.2, 'color' => array(196, 196, 196), 'opacity' => 1, 'blend_mode' => 'Normal'));
 
-        $pdf->SetFont('Arial', '', 10);
-        $pdf->Cell(130, 5, 'Cedula:' . $data["cedula"], 0, 0);
-        $pdf->Cell(25, 5, 'Fecha: ', 0, 0);
-        $pdf->Cell(34, 5, $fecha[0], 0, 1);
+        // Set some content to print
+        $html = <<<EOD
+        <table class="first" cellpadding="4" cellspacing="6">
+            <tr>
+                <td width="100" align="center">
+                    <div style="width: 100%;">
+                        <img width="60px" height="60px" src="http://10.5.2.191:8080/studio/public/assets/images/aj.jpeg" alt="">
+                    </div>
+                </td>
+                <td width="500" align="left">
+                    <span>$NombreEmpresa</span><br>
+                    <span>$telefonoEmpresa</span><br>
+                </td>
+                
+            </tr>
+            <tr>
+                <td width="30" align="center">1.</td>
+                <td width="140" rowspan="6" class="second">XXXX<br />XXXX<br />XXXX<br />XXXX<br />XXXX<br />XXXX<br />XXXX<br />XXXX</td>
+                <td width="140">XXXX<br />XXXX</td>
+                <td width="80">XXXX<br />XXXX</td>
+                <td width="80">XXXX</td>
+                <td align="center" width="45">XXXX<br />XXXX</td>
+            </tr>
+            <tr>
+                <td width="30" align="center" rowspan="3">2.</td>
+                <td width="140" rowspan="3">XXXX<br />XXXX</td>
+                <td width="80">XXXX<br />XXXX</td>
+                <td width="80">XXXX<br />XXXX</td>
+                <td align="center" width="45">XXXX<br />XXXX</td>
+            </tr>
+            <tr>
+                <td width="80">XXXX<br />XXXX<br />XXXX<br />XXXX</td>
+                <td width="80">XXXX<br />XXXX</td>
+                <td align="center" width="45">XXXX<br />XXXX</td>
+            </tr>
+            <tr>
+                <td width="80" rowspan="2">XXXX<br />XXXX<br />XXXX<br />XXXX<br />XXXX<br />XXXX<br />XXXX<br />XXXX</td>
+                <td width="80">XXXX<br />XXXX</td>
+                <td align="center" width="45">XXXX<br />XXXX</td>
+            </tr>
+            <tr>
+                <td width="30" align="center">3.</td>
+                <td width="140">XXXX<br />XXXX</td>
+                <td width="80">XXXX<br />XXXX</td>
+                <td align="center" width="45">XXXX<br />XXXX</td>
+            </tr>
+            <tr bgcolor="#FFFF80">
+                <td width="30" align="center">4.</td>
+                <td width="140" bgcolor="#00CC00" color="#FFFF00">XXXX<br />XXXX</td>
+                <td width="80">XXXX<br />XXXX</td>
+                <td width="80">XXXX<br />XXXX</td>
+                <td align="center" width="45">XXXX<br />XXXX</td>
+            </tr>
+        </table>
+        EOD;
 
-        $pdf->Cell(130, 5, 'Nombre: ' . $data["nombre"], 0, 0);
-        $pdf->Cell(25, 5, 'Hora: ', 0, 0);
-        $pdf->Cell(34, 5, $fecha[1], 0, 1);
+        // Print text using writeHTMLCell()
+        $pdf->writeHTMLCell(0, 0, '', '', $html, 0, 1, 0, true, '', true);
 
-        $pdf->Cell(50, 10, '', 0, 1);
-        $pdf->SetFont('Arial', 'B', 10);
-        /*Heading Of the table*/
-        $pdf->Cell(20, 6, 'Codigo', 1, 0, 'C');
-        $pdf->Cell(80, 6, 'Producto / Servicio', 1, 0, 'C');
-        $pdf->Cell(30, 6, 'Precio unitario', 1, 0, 'C');
-        $pdf->Cell(28, 6, 'cantidad', 1, 0, 'C');
-        $pdf->Cell(30, 6, 'Total', 1, 0, 'C');
-        $pdf->Cell(0, 6, '', 1, 1, 'C');/*end of line*/
-        /*Heading Of the table end*/
+        // ---------------------------------------------------------
 
-        try {
-            $items = [];
-
-            $procedure = "SELECT 
-            det.id_prod as codigo,
-            pr.pr_nombre as prod,
-            det.precio_uni as uni,
-            det.cantidad as cant,
-            det.total as total
-            FROM inventario_db.inv_proforma_det as det
-            inner join inventario_db.inv_productos pr
-            on pr.id_prod = det. id_prod
-            where id_proforma = '" . $data["idorden"] . "'";
-
-            $query = $this->db->connect()->prepare($procedure);
-
-            if ($query->execute()) {
-                $result = $query->fetchAll(PDO::FETCH_ASSOC);
-                //  $c = 0;
-                foreach ($result as $row) {
-                    $pdf->Cell(20, 6, $row["codigo"], 1, 0);
-                    $pdf->Cell(80, 6, $row["prod"], 1, 0);
-                    $pdf->Cell(30, 6, $row["uni"], 1, 0, 'R');
-                    $pdf->Cell(28, 6, $row["cant"], 1, 0, 'R');
-                    $pdf->Cell(30, 6, $row["total"], 1, 0, 'R');
-                    $pdf->Cell(0, 6, '', 1, 1, 'R');
-                }
-            } else {
-                $err = $query->errorInfo();
-                //echo json_encode($err);
-                //exit();
-            }
-        } catch (PDOException $e) {
-            print_r($query->errorInfo());
-        }
-
-
-
-
-        $pdf->Cell(118, 6, '', 0, 0);
-        $pdf->Cell(25, 6, 'Subtotal', 0, 0);
-        $pdf->Cell(45, 6, $data["sub"], 1, 1, 'R');
-        $pdf->Cell(118, 6, '', 0, 0);
-        $pdf->Cell(25, 6, 'Iva', 0, 0);
-        $pdf->Cell(45, 6, $data["iva"], 1, 1, 'R');
-        $pdf->Cell(118, 6, '', 0, 0);
-        $pdf->Cell(25, 6, 'Total', 0, 0);
-        $pdf->Cell(45, 6, $data["total"], 1, 1, 'R');
-        echo json_encode($pdf->Output("I"));
-        exit();
+        // Close and output PDF document
+        // This method has several options, check the source code documentation for more information.
+        $pdf->Output('example_001.pdf', 'I');
     }
 }

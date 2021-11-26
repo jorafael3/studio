@@ -7,6 +7,8 @@ $urlguardarCab = constant('URL') . "Proforma/GuardarProformaCab/";
 $urlguardarDet = constant('URL') . "Proforma/GuardarProformaDet/";
 
 $urlNumOrden = constant('URL') . "Proforma/GetNumeroOrden/";
+$urlNumOrdenCliente = constant('URL') . "Proforma/GetNumeroOrdenCliente/";
+
 
 $urlCargarPlantillita = constant('URL') . "Proforma/CargarPlantillasDetallesCab/";
 $urlCargarPlantillitaDet = constant('URL') . "Proforma/CargarPlantillasDetallesDet/";
@@ -14,12 +16,30 @@ $urlCargarPlantillitaDet = constant('URL') . "Proforma/CargarPlantillasDetallesD
 $urlPUdateCab = constant('URL') . "Proforma/UpdateProformaCab/";
 $urlUpdateDet = constant('URL') . "Proforma/UpdateProformaDet/";
 
+
+$urlGuardarfactura = constant('URL') . "Proforma/Guardarfactura/";
+$urlActualizarFactura = constant('URL') . "Proforma/ActualizarFactura/";
+
+$urlOrdenesAsociadasAProf = constant('URL') . "Proforma/OrdenesAsociadasAProf/";
+$urlCargarPlantillaORden = constant('URL') . "Proforma/CargarPlantillaORden/";
+
+
+$urlPDfprofforma = constant('URL') . "Pdf/GenerarPdfCompra/";
+$urlPDfOrden = constant('URL') . "Pdf/GenerarPdfOrden/";
+
+
+
+
+
+
 ?>
 
 
 <script>
     var NumeroOrdenGlobal;
     var PlantillaIdG;
+    var Id_ClienteG = "";
+    var NumeroOrdenGlobalCliente;
 
     function Mensajeok(mensaje) {
         Swal.fire({
@@ -41,33 +61,6 @@ $urlUpdateDet = constant('URL') . "Proforma/UpdateProformaDet/";
         })
     }
 
-    function DatosClientes(id_cliente) {
-
-        var url = '<?php echo $urlDatosClientes ?>';
-        var data = {
-            id: id_cliente
-        };
-        var xmlhttp = new XMLHttpRequest();
-        xmlhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                var data = this.responseText;
-                data = JSON.parse(data);
-
-
-                var ruc = "Ruc / Cedula: " + data[0]["ruc"];
-                var email = "Email: " + data[0]["correo"];
-
-                $(".ruc").text(ruc);
-                $(".email").text(email);
-
-
-            }
-        }
-        data = JSON.stringify(data);
-        xmlhttp.open("POST", url, true);
-        xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xmlhttp.send(data);
-    }
 
     function DatosProductos() {
         var url = '<?php echo $urlListarProducto ?>';
@@ -181,7 +174,7 @@ $urlUpdateDet = constant('URL') . "Proforma/UpdateProformaDet/";
             if (this.readyState == 4 && this.status == 200) {
                 var data = this.responseText;
                 NumeroOrdenGlobal = data;
-                console.log(NumeroOrdenGlobal);
+
                 var a = String(data).padStart(10, '0')
 
                 $("#txtNumorden").text("#" + a);
@@ -242,8 +235,6 @@ $urlUpdateDet = constant('URL') . "Proforma/UpdateProformaDet/";
         }
     }
 
-
-
     function GuardarProformaCab(url, data) {
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function() {
@@ -271,10 +262,309 @@ $urlUpdateDet = constant('URL') . "Proforma/UpdateProformaDet/";
 
     }
 
+    //************************************************************ */
+    //************************************************************ */
+    //**  PROFORMA CLIENTE */
+
+    function NumOrdenCliente() {
+        var url = '<?php echo $urlNumOrdenCliente ?>';
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                var data = this.responseText;
+                NumeroOrdenGlobalCliente = data;
+
+                var a = String(data).padStart(10, '0')
+
+                $("#txtNumordenClie").text("#" + a);
+            }
+        }
+        xmlhttp.open("POST", url, true);
+        xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xmlhttp.send();
+    }
+
+    function DatosClientes(id_cliente) {
+        if (id_cliente.length != 0) {
+            DatosClientesDet(id_cliente);
+            DatosClientesProfAsociadas(id_cliente);
+        }
+
+    }
+
+    function DatosClientesDet(id_cliente) {
+        NumOrdenCliente();
+
+        var url = '<?php echo $urlDatosClientes ?>';
+        var data = {
+            id: id_cliente
+        };
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                var data = this.responseText;
+                data = JSON.parse(data);
+
+                Id_ClienteG = id_cliente;
+
+                var ruc = data[0]["ruc"];
+                var email = data[0]["correo"];
+                var telf = data[0]["whatsapp"];
+
+                $("#btnNcli").show();
+                $("#btnUpCli").hide();
+                $("#txtDescCli").val("");
+
+                $(".ruc").text(ruc);
+                $(".email").text(email);
+                $("#telf").remove();
+                var a = '<a id="telf" class="text-info" href="http://web.whatsapp.com/send?phone=+593' + telf + '" target="_blank">' + telf + '</a>'
+                $("#wha").append(a);
+
+
+
+            }
+        }
+        data = JSON.stringify(data);
+        xmlhttp.open("POST", url, true);
+        xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xmlhttp.send(data);
+    }
+
+    function DatosClientesProfAsociadas(id_cliente) {
+
+        var data = {
+            id_cliente: id_cliente,
+            id_fact: NumeroOrdenGlobal
+        }
+        var url = '<?php echo $urlOrdenesAsociadasAProf ?>';
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                var data = this.responseText;
+                data = JSON.parse(data);
+                console.log(data);
+                Id_ClienteG = id_cliente;
+                TablaAsociados(data);
+
+            }
+        }
+        data = JSON.stringify(data);
+        xmlhttp.open("POST", url, true);
+        xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xmlhttp.send(data);
+    }
+
+    function TablaAsociados(data) {
+        $('#TablaAsociados tbody').empty();
+        $('#TablaAsociados').empty();
+
+        var table = $('#TablaAsociados').DataTable({
+            destroy: true,
+            data: data,
+            dom: 'Bfrtip',
+            responsive: true,
+            "pageLength": 5,
+            deferRender: true,
+            buttons: [
+                'excel',
+                'print'
+            ],
+            "columnDefs": [{
+                //"width": "15%",
+                //"targets": 0
+            }],
+            columns: [{
+                    data: "fecha_creacion",
+                    title: "Fecha de Creacion"
+                },
+                {
+                    data: "id_fact",
+                    title: "N. Orden "
+                },
+                {
+                    data: "nombre",
+                    title: "NOMBRE "
+                }, {
+                    data: "descripcion",
+                    title: "Descripcion "
+                },
+
+                {
+                    data: null,
+                    title: "",
+                    className: "dt-center  btn_add",
+                    defaultContent: '<button class="btn btn-warning btn_add"> Editar</button>',
+                    orderable: false
+                }
+
+            ],
+            "createdRow": function(row, data, index) {
+
+                if (data["id_fact"]) {
+                    var a = String(data["id_fact"]).padStart(10, '0')
+                    $('td', row).eq(1).html(a);
+
+                }
+
+                $('td', row).eq(0).addClass('font-weight-bolder');
+                $('td', row).eq(1).addClass('font-weight-bolder');
+                $('td', row).eq(2).addClass('font-weight-bolder');
+                $('td', row).eq(3).addClass('font-weight-bolder');
+            }
+
+        });
+
+        $('#TablaAsociados tbody').on('click', 'td.btn_add', function(e) {
+            e.preventDefault();
+            var data = table.row(this).data();
+            UpdateDataClientes(data);
+
+        });
+    }
+    var DataOrdenAct;
+    var IdOrdenGup;
+
+    function UpdateDataClientes(data) {
+        console.log(data);
+        $("#btnNcli").hide();
+        $("#btnUpCli").show();
+        $("#btnOrdenPdf").show();
+
+        $("#txtDescCli").val(data["descripcion"]);
+        $("#txtNomCliOr").val(data["nombre"]);
+
+        DataOrdenAct = data;
+        IdOrdenGup = data["id_fact"];
+        NumeroOrdenGlobalCliente = IdOrdenGup;
+
+    }
+
+    function validarActualizarClienteOr() {
+        //  console.log(DataOrdenAct);
+        var descripcion = $("#txtDescCli").val();
+        var Nombre = $("#txtNomCliOr").val();
+
+        var data = {
+            id_fact: NumeroOrdenGlobalCliente,
+            descripcion: descripcion,
+            nombre: Nombre
+        }
+        console.log(data);
+        var url = '<?php echo $urlActualizarFactura ?>';
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                var data = this.responseText;
+                console.log(data);
+
+                if (data == "true") {
+                    Mensajeok("Datos Guardados");
+                    CargarPlantillaORden(NumeroOrdenGlobalCliente);
+                    //  $("#btnguardar").hide();
+                    //  $("#btnactualizar").show();
+                    //  $("#btnpdf").show();
+                } else {
+                    Mensajeerr("Error al guardar")
+                }
+            }
+        }
+        data = JSON.stringify(data);
+        xmlhttp.open("POST", url, true);
+        xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xmlhttp.send(data);
+    }
+
+    function CargarPlantillaORden(IdOrden) {
+        var data = {
+            id_fact: IdOrden
+        };
+        var url = '<?php echo $urlCargarPlantillaORden ?>';
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                var data = this.responseText;
+                data = JSON.parse(data);
+                console.log(data);
+                $("#txtDescCli").val(data[0]["descripcion"]);
+                $("#txtNomCliOr").val(data[0]["nombre"]);
+                $("#btnNcli").hide();
+                $("#btnUpCli").show();
+            }
+        }
+        data = JSON.stringify(data);
+        xmlhttp.open("POST", url, true);
+        xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xmlhttp.send(data);
+    }
+
+
+
+
+    function validarProfCliente() {
+
+        var url = '<?php echo $urlGuardarfactura ?>';
+        var descripcion = $("#txtDescCli").val();
+        var NombreOr = $("#txtNomCliOr").val();
+
+        if (Id_ClienteG == "") {
+            Mensajeerr("Seleccione un Cliente");
+        } else if (descripcion == "") {
+            Mensajeerr("Escriba una descripcion");
+
+        } else if (NombreOr == "") {
+            Mensajeerr("Escriba un Nombre para la orden");
+
+        } else {
+
+            var data = {
+                ordencli: Id_ClienteG,
+                ordenProf: NumeroOrdenGlobal,
+                NombreOrden: NombreOr,
+                Descripcion: descripcion
+            }
+
+            GuardarFactura(url, data);
+        }
+
+    }
+
+    function GuardarFactura(url, data) {
+        console.log(data);
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                var data = this.responseText;
+                console.log(data);
+
+                if (data == "true") {
+                    console.log(NumeroOrdenGlobalCliente);
+                    Mensajeok("Datos Guardados");
+                    CargarPlantillaORden(NumeroOrdenGlobalCliente);
+                    //  $("#btnguardar").hide();
+                    $("#btnUpCli").show();
+                    $("#btnOrdenPdf").show();
+
+                    //  $("#btnpdf").show();
+
+                } else {
+                    Mensajeerr("Error al guardar")
+                }
+
+            }
+        }
+        data = JSON.stringify(data);
+        xmlhttp.open("POST", url, true);
+        xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xmlhttp.send(data);
+    }
+
+
+
 
     /************************************* */
     /** ***************************** */
-    //** ACtulizar PROFORMA */
+    //** ACTUAlizar PROFORMA */
 
     function CargarPlantillaProf(id) {
         PlantillaIdG = id
@@ -290,6 +580,8 @@ $urlUpdateDet = constant('URL') . "Proforma/UpdateProformaDet/";
 
 
                 var a = String(data[0]["id_cab"]).padStart(10, '0');
+
+
                 var nombrepl = data[0]["nombre"];
                 var sub = data[0]["subtotal"];
                 var margen = data[0]["margen"];
@@ -300,6 +592,7 @@ $urlUpdateDet = constant('URL') . "Proforma/UpdateProformaDet/";
                 $('#txtNombreplantilla').val(nombrepl);
                 $("#txtNumorden").text("#" + a);
                 NumeroOrdenGlobalUpdate = data[0]["id_cab"];
+                NumeroOrdenGlobal = NumeroOrdenGlobalUpdate;
 
                 $('#PrSubtotal').text(formatter.format(sub));
                 $('#PrGanancia').val(margen);
@@ -448,25 +741,37 @@ $urlUpdateDet = constant('URL') . "Proforma/UpdateProformaDet/";
         xmlhttp.send(data);
     }
 
+
+    //************************* PDF ****************//
+
     function SendDataToPdf() {
 
         var data = {
             id: NumeroOrdenGlobalUpdate
         }
+        var url = ('<?php echo $urlPDfprofforma ?>');
 
-        console.log(data);
-        Pdf(data)
+        Pdf(data,url)
     }
 
-    function Pdf(data) {
-        var url = ('<?php echo constant('URL') . "Pdf/GenerarPdfCompra/" ?>');
+    function SendDataToPdfOrden() {
+        var data = {
+            id: NumeroOrdenGlobalCliente
+        }
+        var url = ('<?php echo $urlPDfOrden ?>');
+
+        console.log(data);
+        Pdf(data,url)
+    }
+
+    function Pdf(data,url) {
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onload = function() {
             if (this.readyState == 4 && this.status == 200) {
                 var disposition = xmlhttp.getResponseHeader('content-disposition');
                 var matches = /"([^"]*)"/.exec(disposition);
                 var filename = (matches != null && matches[1] ? matches[1] : 'file.pdf');
-                console.log(this.response);
+
                 // The actual download
                 //** PARA ABRIR PDF  */
                 var file = window.URL.createObjectURL(xmlhttp.response);

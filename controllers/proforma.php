@@ -47,6 +47,10 @@ class Proforma extends Controller
     {
         $log = $this->model->consultarNunOrden();
     }
+    function GetNumeroOrdenCliente()
+    {
+        $log = $this->model->consultarNunOrdenCliente();
+    }
 
     function CargarPlantillasDetallesCab()
     {
@@ -78,5 +82,31 @@ class Proforma extends Controller
     {
         $b = json_decode(file_get_contents("php://input"), true);
         $log = $this->model->UpdateProformaDet($b);
+    }
+
+
+    /****** ************** */
+    //**CLIENTES FACT */ */
+
+
+    function Guardarfactura()
+    {
+        $b = json_decode(file_get_contents("php://input"), true);
+        $log = $this->model->Guardarfactura($b);
+    }
+    function ActualizarFactura()
+    {
+        $b = json_decode(file_get_contents("php://input"), true);
+        $log = $this->model->ActualizarFactura($b);
+    }
+    function OrdenesAsociadasAProf()
+    {
+        $b = json_decode(file_get_contents("php://input"), true);
+        $log = $this->model->OrdenesAsociadasAProf($b);
+    }
+    function CargarPlantillaORden()
+    {
+        $b = json_decode(file_get_contents("php://input"), true);
+        $log = $this->model->CargarPlantillaORden($b);
     }
 }

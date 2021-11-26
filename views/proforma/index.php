@@ -67,7 +67,7 @@ require 'views/header.php'; ?>
 
 <div class="row" id="CardProforma" style="display: none;">
 
-    <div class="card col-xl-9">
+    <div class="card col-xl-12">
         <div class="card-body">
             <div id="invoice">
                 <div class="toolbar hidden-print">
@@ -197,7 +197,7 @@ require 'views/header.php'; ?>
         </div>
     </div>
 
-    <div class="card col-xl-3 bordered">
+    <div class="card col-xl-12 bordered">
         <div class="card-body">
             <hr>
             <div class="row contacts">
@@ -210,7 +210,13 @@ require 'views/header.php'; ?>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-12 col-12">
+                        <div class="col-md-1">
+                            <h2 class="text-red font-weight-bolder"></h2>
+                            <div class="form-group">
+                                <button id="btnnuevaordencliente" onclick="BtnNuevaOrClie()" class="btn btn-light-success">Nuevo</button>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-12">
                             <h4>Cliente</h4>
                             <div class="form-group">
                                 <select onchange="DatosClientes(this.value)" class="form-control js-example-basic-single" style="width: 100%;" id="eventoSalas" required>
@@ -226,34 +232,74 @@ require 'views/header.php'; ?>
                                 </select>
                             </div>
                         </div>
-                   
+                        <div class="col-md-2">
+                            <h2 class="text-red font-weight-bolder"></h2>
+                            <div class="form-group">
+                                <button onclick="DatosClientes($('#eventoSalas').val())" class="btn btn-light-info"><i class="bx bx-refresh"></i></button>
+                            </div>
+                        </div>
+
+                        <div class="col-md-5">
+                            <h2 class="text-red font-weight-bolder">Orden</h2>
+                            <div class="form-group">
+                                <h2 id="txtNumordenClie" class="text-red font-weight-bolder">Orden#00000001</h2>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-12 col-12">
+                        <h6 class="font-weight-bolder ">Ruc/Cedula:
+                            <span class="ruc"></span>
+                        </h6>
+                    </div>
+                    <div class="col-md-12 col-12">
+                        <h6 class=" font-weight-bolder">Correo:
+                            <span class="email"></span>
+                        </h6>
+                    </div>
+                    <div class="col-md-12 col-12">
+                        <h6 id="wha" class="font-weight-bolder">Telefono:
+
+                        </h6>
                     </div>
 
-                    <div class="ruc font-weight-bolder" style="font-size: 20px;">
-                        <h6></h6>
-                    </div>
-                    <div class="email font-weight-bolder" style="font-size: 20px;">
+                    <hr class="bg-danger" style="height: 1px;">
+                    <h3>Ordenes del Cliente Asociadas A esta Proforma</h3>
+                    <div class="table-responsive">
+                        <table id="TablaAsociados" class="display">
+
+
+                        </table>
                     </div>
                     <hr class="bg-danger" style="height: 1px;">
+                    <div class="col-md-12 col-12">
+                        <h4>Nombre</h4>
+                        <div class="form-group">
+                            <input class="form-control" name="" id="txtNomCliOr" placeholder="Nombre de la Orden"></input>
+                        </div>
+                    </div>
                     <div class="col-md-12 col-12">
                         <h4>Descripcion</h4>
                         <div class="form-group">
 
-                            <textarea class="form-control" name="" id="" cols="" rows="8"></textarea>
+                            <textarea placeholder="Descripcion de la Orden" class="form-control" name="" id="txtDescCli" cols="" rows="8"></textarea>
                         </div>
                     </div>
 
                     <div class="col-md-12 col-12">
-                            <div class="text-left">
-                                <button class="btn btn-success">Guardar</button>
-                                <button class="btn btn-danger">PDF</button>
-                            </div>
+                        <div class="text-left">
+                            <button id="btnNcli" onclick="BtnGuardarCliente()" class="btn btn-success">Guardar</button>
+                            <button id="btnUpCli" onclick="BtnActualizarCliente()" class="btn btn-warning">Actualizar</button>
+                            <button id="btnOrdenPdf" onclick="BtnPdfOrden()" class="btn btn-danger">PDF</button>
                         </div>
+                    </div>
                 </div>
 
             </div>
         </div>
     </div>
+
+
 </div>
 
 
@@ -419,10 +465,15 @@ require 'views/header.php'; ?>
         $("#CardProforma").hide(200);
         $("#CardProforma").show(500);
         NumOrden();
+        NumOrdenCliente();
+
         resetValues();
         $("#btnactualizar").hide();
         $("#btnguardar").show();
         $("#btnpdf").hide();
+        $("#btnUpCli").hide();
+        $("#btnNcli").show();
+        $("#btnOrdenPdf").hide();
 
 
     }
@@ -454,11 +505,17 @@ require 'views/header.php'; ?>
         var id = $('#CbPlantillas').val();
         console.log(id);
         CargarPlantillaProf(id);
+        NumOrdenCliente();
+
         $("#CardProforma").hide(200);
         $("#CardProforma").show(500);
         $("#btnguardar").hide();
         $("#btnactualizar").show();
         $("#btnpdf").show();
+        $("#btnUpCli").hide();
+        $("#btnNcli").show();
+        $("#btnOrdenPdf").hide();
+
 
     }
 
@@ -466,7 +523,29 @@ require 'views/header.php'; ?>
         ValidarUpdate();
     }
 
-    function BtnPdf(){
+    function BtnPdf() {
         SendDataToPdf();
+    }
+
+    function BtnPdfOrden(){
+        SendDataToPdfOrden();
+    }
+
+    function BtnGuardarCliente() {
+        validarProfCliente();
+    }
+
+    function BtnActualizarCliente() {
+        validarActualizarClienteOr();
+    }
+
+    function BtnNuevaOrClie() {
+        NumOrdenCliente();
+        $("#txtDescCli").val("");
+        $("#txtNomCliOr").val("");
+        $("#btnUpCli").hide();
+        $("#btnNcli").show();
+        $("#btnOrdenPdf").hide();
+
     }
 </script>

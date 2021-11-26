@@ -124,6 +124,9 @@ class ProformaModel extends Model
             print_r($query->errorInfo());
         }
     }
+
+
+
     function GuardarProformaCab($parametros)
     {
         $nombre = $parametros["nombre"];
@@ -320,6 +323,156 @@ class ProformaModel extends Model
             if ($query->execute()) {
                 $bandera = true;
                 echo json_encode($bandera);
+                exit();
+            } else {
+                $err = $query->errorInfo();
+                echo json_encode($err);
+                exit();
+            }
+            //return $parametros;
+        } catch (PDOException $e) {
+            print_r($e);
+        }
+    }
+
+
+    //******          CLIENTES FACT */
+
+    function consultarNunOrdenCliente()
+    {
+        try {
+            $items = [];
+            $query = $this->db->connect()->prepare("select max(id_fact) as n from studio.factura");
+            if ($query->execute()) {
+                $result = $query->fetchAll(PDO::FETCH_ASSOC);
+                $result = $result[0]["n"];
+                if ($result == null) {
+                    $result = 1;
+                } else {
+                    $result = $result + 1;
+                }
+                $nunOrden = 0;
+                echo json_encode($result);
+                exit();
+            } else {
+                $err = $query->errorInfo();
+                echo json_encode($err);
+                exit();
+            }
+        } catch (PDOException $e) {
+            print_r($query->errorInfo());
+        }
+    }
+
+    function Guardarfactura($parametros)
+    {
+        $id_cli = $parametros["ordencli"];
+        $id_prof = $parametros["ordenProf"];
+        $nom = $parametros["NombreOrden"];
+        $descrip = $parametros["Descripcion"];
+        $id = "1";
+
+        $tipo = 1;
+        $bandera = false;
+        try {
+            $query = $this->db->connect()->prepare("CALL studio.FACTURAS (?,?,?,?,?)");
+            $query->bindParam(1, $id_prof, PDO::PARAM_STR);
+            $query->bindParam(2, $id_cli, PDO::PARAM_STR);
+            $query->bindParam(3, $nom, PDO::PARAM_STR);
+            $query->bindParam(4, $descrip, PDO::PARAM_STR);
+            $query->bindParam(5, $tipo, PDO::PARAM_STR);
+
+            if ($query->execute()) {
+                $bandera = true;
+                echo json_encode($bandera);
+                exit();
+            } else {
+                $err = $query->errorInfo();
+                echo json_encode($err);
+                exit();
+            }
+            //return $parametros;
+        } catch (PDOException $e) {
+            print_r($e);
+        }
+    }
+
+    function OrdenesAsociadasAProf($parametros)
+    {
+        $id_fact = $parametros["id_fact"];
+        $id_cliente = $parametros["id_cliente"];
+
+
+        try {
+            $items = [];
+            $query = $this->db->connect()->prepare("SELECT * FROM studio.factura 
+            WHERE id_cab = :id_fact and id_cliente = :id_cliente");
+            $query->bindParam(":id_fact", $id_fact, PDO::PARAM_STR);
+            $query->bindParam(":id_cliente", $id_cliente, PDO::PARAM_STR);
+
+
+            if ($query->execute()) {
+                $result = $query->fetchAll(PDO::FETCH_ASSOC);
+                echo json_encode($result);
+                exit();
+            } else {
+                $err = $query->errorInfo();
+                echo json_encode($err);
+                exit();
+            }
+        } catch (PDOException $e) {
+            print_r($query->errorInfo());
+        }
+    }
+
+    function ActualizarFactura($parametros)
+    {
+        $id_cli = "1";
+        $id_cab = $parametros["id_fact"];
+        $nom = $parametros["nombre"];
+        $descrip = $parametros["descripcion"];
+        $id = "1";
+
+        $tipo = 2;
+        $bandera = false;
+        try {
+            $query = $this->db->connect()->prepare("CALL studio.FACTURAS (?,?,?,?,?)");
+            $query->bindParam(1, $id_cab, PDO::PARAM_STR);
+            $query->bindParam(2, $id_cli, PDO::PARAM_STR);
+            $query->bindParam(3, $nom, PDO::PARAM_STR);
+            $query->bindParam(4, $descrip, PDO::PARAM_STR);
+            $query->bindParam(5, $tipo, PDO::PARAM_STR);
+
+            if ($query->execute()) {
+                $bandera = true;
+                echo json_encode($bandera);
+                exit();
+            } else {
+                $err = $query->errorInfo();
+                echo json_encode($err);
+                exit();
+            }
+            //return $parametros;
+        } catch (PDOException $e) {
+            print_r($e);
+        }
+    }
+
+    function CargarPlantillaORden($parametros)
+    {
+        $id_cli = "1";
+        $id = $parametros["id_fact"];
+
+        $bandera = false;
+        try {
+            $query = $this->db->connect()->prepare("SELECT * FROM studio.factura where id_fact = :id");
+            $query->bindParam(":id", $id, PDO::PARAM_STR);
+
+            if ($query->execute()) {
+                $result = $query->fetchAll(PDO::FETCH_ASSOC);
+
+                $bandera = true;
+                echo json_encode($result);
                 exit();
             } else {
                 $err = $query->errorInfo();

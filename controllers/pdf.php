@@ -18,11 +18,11 @@ class Pdf extends Controller
     }
     function GenerarPdfCompra(){
         $b = json_decode(file_get_contents( "php://input" ), true);
-        $ventas = $this->model->GenerarPdf2($b);
+        $ventas = $this->model->GenerarPdfProforma($b);
     }
 
-    function GenerarPdfProforma(){
+    function GenerarPdfOrden(){
         $b = json_decode(file_get_contents( "php://input" ), true);
-        $ventas = $this->model->GenerarPdfProforma($b);
+        $ventas = $this->model->GenerarPdfOrden($b);
     }
 }
