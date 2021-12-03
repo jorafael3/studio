@@ -62,6 +62,18 @@ CREATE TABLE `factura` (
   PRIMARY KEY (`id_fact`)
 ) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
 
+CREATE TABLE `settings` (
+  `Titulo_pr` varchar(100) NOT NULL,
+  `direccion` varchar(500) NOT NULL,
+  `correo` varchar(500) NOT NULL,
+  `telefono1` varchar(20) NOT NULL,
+  `telefono2` varchar(20) DEFAULT NULL,
+  `logo_p` varchar(1000) DEFAULT NULL,
+  `logo_orden` varchar(1000) DEFAULT NULL,
+  `img_orden` varchar(1000) DEFAULT NULL,
+  `pie_orden` varchar(500) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `studio`.`CLIENTES`(
 IN nombre VARCHAR(100),
 IN ruc VARCHAR(15),

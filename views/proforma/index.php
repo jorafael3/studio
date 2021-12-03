@@ -197,7 +197,7 @@ require 'views/header.php'; ?>
         </div>
     </div>
 
-    <div class="card col-xl-12 bordered" id="CardOrdenCliente">
+    <div class="card col-xl-12 bordered">
         <div class="card-body">
             <hr>
             <div class="row contacts">
@@ -281,47 +281,23 @@ require 'views/header.php'; ?>
                     <div class="col-md-12 col-12">
                         <h4>Descripcion</h4>
                         <div class="form-group">
-
                             <textarea placeholder="Descripcion de la Orden" class="form-control" name="" id="txtDescCli" cols="" rows="8"></textarea>
                         </div>
                     </div>
-
                     <div class="col-md-12 col-12">
                         <div class="text-left">
                             <button id="btnNcli" onclick="BtnGuardarCliente()" class="btn btn-success">Guardar</button>
                             <button id="btnUpCli" onclick="BtnActualizarCliente()" class="btn btn-warning">Actualizar</button>
-                            <button id="btnOrdenPdf" onclick="BtnPdfOrden()" class="btn btn-danger">PDF</button>
+                            <button id="btnOrdenPdf" onclick="printDiv()" class="btn btn-danger">PDF</button>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
-
-
 </div>
-<script>
-    function printWindow() {
-        //$("#CardOrdenCliente").printElement();
 
-
-        /*var restorepage = $('body').html();
-        var printcontent = $('#CardOrdenCliente').clone();
-        $('body').empty().html(printcontent);
-        window.print();
-        $('body').html(restorepage);*/
-
-        var div = document.getElementById('CardOrdenCliente');
-
-        // Create a window object.
-        var win = window.open('', '', 'height=700,width=700'); // Open the window. Its a popup window.
-        win.document.write(div.outerHTML); // Write contents in the new window.
-        win.document.close();
-        win.print(); // Finally, print the contents.
-
-    }
-</script>
+<?php require 'pdfOrden.php'; ?>
 
 <div class="modal fade" id="add-new-sidebar">
     <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -376,6 +352,59 @@ require 'views/header.php'; ?>
 <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
 
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<link rel="stylesheet" type="text/css" href="https://printjs-4de6.kxcdn.com/print.min.css" />
+<script src="https://printjs-4de6.kxcdn.com/print.min.js"></script>
+
+<script>
+    function printDiv() {
+
+        $("#CardOrdenCliente").show();
+        printWindow($('<div/>').append($("#CardOrdenCliente").clone()).html());
+    }
+
+    function printWindow(data) {
+
+        var mywindow = window.open('', 'invoice-box', 'height=1000,width=1000');
+        mywindow.document.write('<html><head><title></title>');
+        mywindow.document.write('<link rel="stylesheet" href="<?php echo constant('URL') ?>public/assets/css/bootstrap.min.css" type="text/css" /> <link rel="stylesheet" href="<?php echo constant('URL') ?>public/assets/css/app.css" /> <link rel="stylesheet"type="text/css" href="<?php echo constant('URL') ?>public/assets/css/custom.css" media="print"/>');
+        mywindow.document.write('</head><body >');
+        mywindow.document.write(data);
+        mywindow.document.write('</body></html>');
+
+
+        setTimeout(function() {
+            mywindow.print();
+            mywindow.close();
+        }, 1500)
+        $("#CardOrdenCliente").hide();
+
+        return true;
+        //$("#CardOrdenCliente").printElement();
+
+        //printJS('CardOrdenCliente', 'html');
+        /*var restorepage = $('body').html();
+        var printcontent = $('#CardOrdenCliente').clone();
+        $('body').empty().html(printcontent);
+        window.print();
+        $('body').html(restorepage);*/
+
+        /*var mywindow = window.open();
+        var content = document.getElementById('CardOrdenCliente').innerHTML;
+        mywindow.document.write(content);
+        mywindow.print();*/
+
+        /* var div = document.getElementById('CardOrdenCliente');
+
+         // Create a window object.
+         var win = window.open('', '', 'height=700,width=700'); // Open the window. Its a popup window.
+         win.document.write(div.outerHTML); // Write contents in the new window.
+         win.document.close();
+         win.print(); // Finally, print the contents.*/
+
+    }
+</script>
+
 
 <script>
     $('.js-example-basic-single').select2({

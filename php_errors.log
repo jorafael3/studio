@@ -20689,3 +20689,130 @@ Stack trace:
 #0 C:\Apache24\htdocs\studio\index.php(9): App->__construct()
 #1 {main}
   thrown in C:\Apache24\htdocs\studio\libs\app.php on line 42
+[29-Nov-2021 14:06:48 UTC] PHP Notice:  Undefined index: id_fact in C:\Apache24\htdocs\studio\models\proformamodel.php on line 402
+[02-Dec-2021 14:30:03 UTC] PHP Notice:  Undefined index: id_fact in C:\Apache24\htdocs\studio\models\proformamodel.php on line 402
+[02-Dec-2021 15:16:06 UTC] PHP Fatal error:  Uncaught Error: Class 'Settings' not found in C:\Apache24\htdocs\studio\libs\app.php:26
+Stack trace:
+#0 C:\Apache24\htdocs\studio\index.php(9): App->__construct()
+#1 {main}
+  thrown in C:\Apache24\htdocs\studio\libs\app.php on line 26
+[02-Dec-2021 15:16:38 UTC] PHP Fatal error:  Uncaught Error: Class 'Settings' not found in C:\Apache24\htdocs\studio\libs\app.php:26
+Stack trace:
+#0 C:\Apache24\htdocs\studio\index.php(9): App->__construct()
+#1 {main}
+  thrown in C:\Apache24\htdocs\studio\libs\app.php on line 26
+[02-Dec-2021 15:16:39 UTC] PHP Fatal error:  Uncaught Error: Class 'Settings' not found in C:\Apache24\htdocs\studio\libs\app.php:26
+Stack trace:
+#0 C:\Apache24\htdocs\studio\index.php(9): App->__construct()
+#1 {main}
+  thrown in C:\Apache24\htdocs\studio\libs\app.php on line 26
+[02-Dec-2021 15:16:45 UTC] PHP Fatal error:  Uncaught Error: Class 'Settings' not found in C:\Apache24\htdocs\studio\libs\app.php:26
+Stack trace:
+#0 C:\Apache24\htdocs\studio\index.php(9): App->__construct()
+#1 {main}
+  thrown in C:\Apache24\htdocs\studio\libs\app.php on line 26
+[02-Dec-2021 15:16:46 UTC] PHP Fatal error:  Uncaught Error: Class 'Settings' not found in C:\Apache24\htdocs\studio\libs\app.php:26
+Stack trace:
+#0 C:\Apache24\htdocs\studio\index.php(9): App->__construct()
+#1 {main}
+  thrown in C:\Apache24\htdocs\studio\libs\app.php on line 26
+[02-Dec-2021 15:16:51 UTC] PHP Fatal error:  Uncaught Error: Class 'Settings' not found in C:\Apache24\htdocs\studio\libs\app.php:26
+Stack trace:
+#0 C:\Apache24\htdocs\studio\index.php(9): App->__construct()
+#1 {main}
+  thrown in C:\Apache24\htdocs\studio\libs\app.php on line 26
+[02-Dec-2021 16:39:55 UTC] PHP Fatal error:  Cannot declare class Database, because the name is already in use in C:\Apache24\htdocs\studio\libs\database.php on line 3
+[02-Dec-2021 16:49:37 UTC] PHP Notice:  Array to string conversion in C:\Apache24\htdocs\studio\views\header.php on line 65
+[02-Dec-2021 16:50:19 UTC] PHP Notice:  Undefined index: Titulo_pr in C:\Apache24\htdocs\studio\views\header.php on line 13
+[02-Dec-2021 19:51:03 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method Settings::images() in C:\Apache24\htdocs\studio\libs\app.php:40
+Stack trace:
+#0 C:\Apache24\htdocs\studio\index.php(9): App->__construct()
+#1 {main}
+  thrown in C:\Apache24\htdocs\studio\libs\app.php on line 40
+[02-Dec-2021 19:51:52 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method Settings::public() in C:\Apache24\htdocs\studio\libs\app.php:40
+Stack trace:
+#0 C:\Apache24\htdocs\studio\index.php(9): App->__construct()
+#1 {main}
+  thrown in C:\Apache24\htdocs\studio\libs\app.php on line 40
+[02-Dec-2021 19:59:28 UTC] PHP Parse error:  syntax error, unexpected 'var_dump' (T_STRING) in C:\Apache24\htdocs\studio\views\settings\settings.php on line 7
+[02-Dec-2021 19:59:43 UTC] PHP Parse error:  syntax error, unexpected 'var_dump' (T_STRING) in C:\Apache24\htdocs\studio\views\settings\settings.php on line 7
+[02-Dec-2021 19:59:46 UTC] PHP Parse error:  syntax error, unexpected 'echo' (T_ECHO) in C:\Apache24\htdocs\studio\views\settings\settings.php on line 7
+[02-Dec-2021 19:59:47 UTC] PHP Parse error:  syntax error, unexpected 'echo' (T_ECHO) in C:\Apache24\htdocs\studio\views\settings\settings.php on line 7
+[02-Dec-2021 20:00:08 UTC] PHP Parse error:  syntax error, unexpected 'echo' (T_ECHO) in C:\Apache24\htdocs\studio\views\settings\settings.php on line 7
+[02-Dec-2021 20:00:11 UTC] PHP Parse error:  syntax error, unexpected 'echo' (T_ECHO) in C:\Apache24\htdocs\studio\views\settings\settings.php on line 7
+[02-Dec-2021 20:02:33 UTC] PHP Notice:  Undefined index: titulo_pr in C:\Apache24\htdocs\studio\views\settings\settings.php on line 8
+[02-Dec-2021 20:03:00 UTC] PHP Notice:  Undefined index: titulo_pr in C:\Apache24\htdocs\studio\views\settings\settings.php on line 8
+[02-Dec-2021 20:03:03 UTC] PHP Notice:  Undefined index: titulo_pr in C:\Apache24\htdocs\studio\views\settings\settings.php on line 8
+[02-Dec-2021 20:05:37 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method Settings::public() in C:\Apache24\htdocs\studio\libs\app.php:40
+Stack trace:
+#0 C:\Apache24\htdocs\studio\index.php(9): App->__construct()
+#1 {main}
+  thrown in C:\Apache24\htdocs\studio\libs\app.php on line 40
+[02-Dec-2021 20:05:39 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method Settings::public() in C:\Apache24\htdocs\studio\libs\app.php:40
+Stack trace:
+#0 C:\Apache24\htdocs\studio\index.php(9): App->__construct()
+#1 {main}
+  thrown in C:\Apache24\htdocs\studio\libs\app.php on line 40
+[02-Dec-2021 20:54:57 UTC] PHP Notice:  Undefined index: files in C:\Apache24\htdocs\studio\controllers\settings.php on line 28
+[02-Dec-2021 21:01:33 UTC] PHP Notice:  Undefined index: file in C:\Apache24\htdocs\studio\controllers\settings.php on line 27
+[02-Dec-2021 21:01:33 UTC] PHP Notice:  Trying to access array offset on value of type null in C:\Apache24\htdocs\studio\controllers\settings.php on line 27
+[02-Dec-2021 21:01:33 UTC] PHP Notice:  Undefined index: file in C:\Apache24\htdocs\studio\controllers\settings.php on line 28
+[02-Dec-2021 21:01:33 UTC] PHP Notice:  Trying to access array offset on value of type null in C:\Apache24\htdocs\studio\controllers\settings.php on line 28
+[02-Dec-2021 21:01:33 UTC] PHP Notice:  Undefined index: file in C:\Apache24\htdocs\studio\controllers\settings.php on line 29
+[02-Dec-2021 21:01:33 UTC] PHP Notice:  Trying to access array offset on value of type null in C:\Apache24\htdocs\studio\controllers\settings.php on line 29
+[02-Dec-2021 21:01:33 UTC] PHP Notice:  Undefined index: file in C:\Apache24\htdocs\studio\controllers\settings.php on line 30
+[02-Dec-2021 21:01:33 UTC] PHP Notice:  Trying to access array offset on value of type null in C:\Apache24\htdocs\studio\controllers\settings.php on line 30
+[02-Dec-2021 21:05:09 UTC] PHP Warning:  move_uploaded_file(../public/assets/images/music-guitar-1-4k-hd-music-wallpaper-8391641597907265.jpg): failed to open stream: No such file or directory in C:\Apache24\htdocs\studio\controllers\settings.php on line 32
+[02-Dec-2021 21:05:09 UTC] PHP Warning:  move_uploaded_file(): Unable to move 'C:\Windows\Temp\php709.tmp' to '../public/assets/images/music-guitar-1-4k-hd-music-wallpaper-8391641597907265.jpg' in C:\Apache24\htdocs\studio\controllers\settings.php on line 32
+[02-Dec-2021 21:06:06 UTC] PHP Warning:  move_uploaded_file(http://10.5.2.191:8080/studio/public/assets/images/music-guitar-1-4k-hd-music-wallpaper-8391641597907265.jpg): failed to open stream: HTTP wrapper does not support writeable connections in C:\Apache24\htdocs\studio\controllers\settings.php on line 32
+[02-Dec-2021 21:06:06 UTC] PHP Warning:  move_uploaded_file(): Unable to move 'C:\Windows\Temp\phpE3AE.tmp' to 'http://10.5.2.191:8080/studio/public/assets/images/music-guitar-1-4k-hd-music-wallpaper-8391641597907265.jpg' in C:\Apache24\htdocs\studio\controllers\settings.php on line 32
+[02-Dec-2021 21:06:57 UTC] PHP Warning:  move_uploaded_file(http://10.5.2.191:8080/studio/public/assets/images/imagen.jpg): failed to open stream: HTTP wrapper does not support writeable connections in C:\Apache24\htdocs\studio\controllers\settings.php on line 32
+[02-Dec-2021 21:06:57 UTC] PHP Warning:  move_uploaded_file(): Unable to move 'C:\Windows\Temp\phpAB25.tmp' to 'http://10.5.2.191:8080/studio/public/assets/images/imagen.jpg' in C:\Apache24\htdocs\studio\controllers\settings.php on line 32
+[02-Dec-2021 21:09:30 UTC] PHP Warning:  move_uploaded_file(http://10.5.2.191:8080/studio/public/assets/images/imagen.jpg): failed to open stream: HTTP wrapper does not support writeable connections in C:\Apache24\htdocs\studio\controllers\settings.php on line 34
+[02-Dec-2021 21:09:30 UTC] PHP Warning:  move_uploaded_file(): Unable to move 'C:\Windows\Temp\phpFFC5.tmp' to 'http://10.5.2.191:8080/studio/public/assets/images/imagen.jpg' in C:\Apache24\htdocs\studio\controllers\settings.php on line 34
+[02-Dec-2021 21:09:44 UTC] PHP Warning:  move_uploaded_file(http://10.5.2.191:8080/studio/public/assets/images/imagen.jpg): failed to open stream: HTTP wrapper does not support writeable connections in C:\Apache24\htdocs\studio\controllers\settings.php on line 34
+[02-Dec-2021 21:09:44 UTC] PHP Warning:  move_uploaded_file(): Unable to move 'C:\Windows\Temp\php386A.tmp' to 'http://10.5.2.191:8080/studio/public/assets/images/imagen.jpg' in C:\Apache24\htdocs\studio\controllers\settings.php on line 34
+[02-Dec-2021 21:11:37 UTC] PHP Warning:  move_uploaded_file(C:/Apache24/htdocs/studio/assets/images/imagen.jpg): failed to open stream: No such file or directory in C:\Apache24\htdocs\studio\controllers\settings.php on line 34
+[02-Dec-2021 21:11:37 UTC] PHP Warning:  move_uploaded_file(): Unable to move 'C:\Windows\Temp\phpF2ED.tmp' to 'C:/Apache24/htdocs/studio/assets/images/imagen.jpg' in C:\Apache24\htdocs\studio\controllers\settings.php on line 34
+[02-Dec-2021 21:17:33 UTC] PHP Warning:  move_uploaded_file(C:/Apache24/htdocs/studio/assets/images/imagen.jpg): failed to open stream: No such file or directory in C:\Apache24\htdocs\studio\controllers\settings.php on line 36
+[02-Dec-2021 21:17:33 UTC] PHP Warning:  move_uploaded_file(): Unable to move 'C:\Windows\Temp\php6140.tmp' to 'C:/Apache24/htdocs/studio/assets/images/imagen.jpg' in C:\Apache24\htdocs\studio\controllers\settings.php on line 36
+[02-Dec-2021 21:17:41 UTC] PHP Warning:  move_uploaded_file(C:/Apache24/htdocs/studio/assets/images/imagen.jpg): failed to open stream: No such file or directory in C:\Apache24\htdocs\studio\controllers\settings.php on line 36
+[02-Dec-2021 21:17:41 UTC] PHP Warning:  move_uploaded_file(): Unable to move 'C:\Windows\Temp\php7E2F.tmp' to 'C:/Apache24/htdocs/studio/assets/images/imagen.jpg' in C:\Apache24\htdocs\studio\controllers\settings.php on line 36
+[02-Dec-2021 21:18:48 UTC] PHP Warning:  move_uploaded_file(C:/Apache24/htdocs/studio/assets/images/imagen.jpg): failed to open stream: No such file or directory in C:\Apache24\htdocs\studio\controllers\settings.php on line 36
+[02-Dec-2021 21:18:48 UTC] PHP Warning:  move_uploaded_file(): Unable to move 'C:\Windows\Temp\php85AD.tmp' to 'C:/Apache24/htdocs/studio/assets/images/imagen.jpg' in C:\Apache24\htdocs\studio\controllers\settings.php on line 36
+[02-Dec-2021 21:19:05 UTC] PHP Warning:  move_uploaded_file(C:/Apache24/htdocs/studio/assets/imagesimagen.jpg): failed to open stream: No such file or directory in C:\Apache24\htdocs\studio\controllers\settings.php on line 36
+[02-Dec-2021 21:19:05 UTC] PHP Warning:  move_uploaded_file(): Unable to move 'C:\Windows\Temp\phpC7F7.tmp' to 'C:/Apache24/htdocs/studio/assets/imagesimagen.jpg' in C:\Apache24\htdocs\studio\controllers\settings.php on line 36
+[02-Dec-2021 21:35:28 UTC] PHP Notice:  Undefined index: file in C:\Apache24\htdocs\studio\controllers\settings.php on line 27
+[02-Dec-2021 21:35:28 UTC] PHP Notice:  Trying to access array offset on value of type null in C:\Apache24\htdocs\studio\controllers\settings.php on line 27
+[02-Dec-2021 21:35:28 UTC] PHP Notice:  Undefined index: file in C:\Apache24\htdocs\studio\controllers\settings.php on line 28
+[02-Dec-2021 21:35:28 UTC] PHP Notice:  Trying to access array offset on value of type null in C:\Apache24\htdocs\studio\controllers\settings.php on line 28
+[02-Dec-2021 21:35:28 UTC] PHP Notice:  Undefined index: file in C:\Apache24\htdocs\studio\controllers\settings.php on line 29
+[02-Dec-2021 21:35:28 UTC] PHP Notice:  Trying to access array offset on value of type null in C:\Apache24\htdocs\studio\controllers\settings.php on line 29
+[02-Dec-2021 21:35:28 UTC] PHP Notice:  Undefined index: file in C:\Apache24\htdocs\studio\controllers\settings.php on line 30
+[02-Dec-2021 21:35:28 UTC] PHP Notice:  Trying to access array offset on value of type null in C:\Apache24\htdocs\studio\controllers\settings.php on line 30
+[02-Dec-2021 21:38:19 UTC] PHP Warning:  constant(): Couldn't find constant url in C:\Apache24\htdocs\studio\funciones\settingsjs.php on line 34
+[02-Dec-2021 21:48:56 UTC] PHP Warning:  constant(): Couldn't find constant url in C:\Apache24\htdocs\studio\funciones\settingsjs.php on line 34
+[02-Dec-2021 21:49:22 UTC] PHP Notice:  Undefined index: file in C:\Apache24\htdocs\studio\controllers\settings.php on line 27
+[02-Dec-2021 21:49:22 UTC] PHP Notice:  Trying to access array offset on value of type null in C:\Apache24\htdocs\studio\controllers\settings.php on line 27
+[02-Dec-2021 21:49:22 UTC] PHP Notice:  Undefined index: file in C:\Apache24\htdocs\studio\controllers\settings.php on line 28
+[02-Dec-2021 21:49:22 UTC] PHP Notice:  Trying to access array offset on value of type null in C:\Apache24\htdocs\studio\controllers\settings.php on line 28
+[02-Dec-2021 21:49:22 UTC] PHP Notice:  Undefined index: file in C:\Apache24\htdocs\studio\controllers\settings.php on line 29
+[02-Dec-2021 21:49:22 UTC] PHP Notice:  Trying to access array offset on value of type null in C:\Apache24\htdocs\studio\controllers\settings.php on line 29
+[02-Dec-2021 21:49:22 UTC] PHP Notice:  Undefined index: file in C:\Apache24\htdocs\studio\controllers\settings.php on line 30
+[02-Dec-2021 21:49:22 UTC] PHP Notice:  Trying to access array offset on value of type null in C:\Apache24\htdocs\studio\controllers\settings.php on line 30
+[02-Dec-2021 21:49:27 UTC] PHP Notice:  Undefined index: file in C:\Apache24\htdocs\studio\controllers\settings.php on line 27
+[02-Dec-2021 21:49:27 UTC] PHP Notice:  Trying to access array offset on value of type null in C:\Apache24\htdocs\studio\controllers\settings.php on line 27
+[02-Dec-2021 21:49:27 UTC] PHP Notice:  Undefined index: file in C:\Apache24\htdocs\studio\controllers\settings.php on line 28
+[02-Dec-2021 21:49:27 UTC] PHP Notice:  Trying to access array offset on value of type null in C:\Apache24\htdocs\studio\controllers\settings.php on line 28
+[02-Dec-2021 21:49:27 UTC] PHP Notice:  Undefined index: file in C:\Apache24\htdocs\studio\controllers\settings.php on line 29
+[02-Dec-2021 21:49:27 UTC] PHP Notice:  Trying to access array offset on value of type null in C:\Apache24\htdocs\studio\controllers\settings.php on line 29
+[02-Dec-2021 21:49:27 UTC] PHP Notice:  Undefined index: file in C:\Apache24\htdocs\studio\controllers\settings.php on line 30
+[02-Dec-2021 21:49:27 UTC] PHP Notice:  Trying to access array offset on value of type null in C:\Apache24\htdocs\studio\controllers\settings.php on line 30
+[02-Dec-2021 21:49:28 UTC] PHP Notice:  Undefined index: file in C:\Apache24\htdocs\studio\controllers\settings.php on line 27
+[02-Dec-2021 21:49:28 UTC] PHP Notice:  Trying to access array offset on value of type null in C:\Apache24\htdocs\studio\controllers\settings.php on line 27
+[02-Dec-2021 21:49:28 UTC] PHP Notice:  Undefined index: file in C:\Apache24\htdocs\studio\controllers\settings.php on line 28
+[02-Dec-2021 21:49:28 UTC] PHP Notice:  Trying to access array offset on value of type null in C:\Apache24\htdocs\studio\controllers\settings.php on line 28
+[02-Dec-2021 21:49:28 UTC] PHP Notice:  Undefined index: file in C:\Apache24\htdocs\studio\controllers\settings.php on line 29
+[02-Dec-2021 21:49:28 UTC] PHP Notice:  Trying to access array offset on value of type null in C:\Apache24\htdocs\studio\controllers\settings.php on line 29
+[02-Dec-2021 21:49:28 UTC] PHP Notice:  Undefined index: file in C:\Apache24\htdocs\studio\controllers\settings.php on line 30
+[02-Dec-2021 21:49:28 UTC] PHP Notice:  Trying to access array offset on value of type null in C:\Apache24\htdocs\studio\controllers\settings.php on line 30

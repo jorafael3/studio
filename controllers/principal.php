@@ -13,8 +13,6 @@ class Principal extends Controller{
             $this->view->render('principal/principal');
     }
 
-
-    
 }
 
 

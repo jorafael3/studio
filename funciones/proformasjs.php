@@ -733,6 +733,7 @@ $urlPDfOrden = constant('URL') . "Pdf/GenerarPdfOrden/";
                     Mensajeerr("Error al actualizar")
                 }
                 CargarPlantillaProf(PlantillaIdG);
+                SendDataToPdfOrden();
             }
         }
         data = JSON.stringify(data);
@@ -755,13 +756,9 @@ $urlPDfOrden = constant('URL') . "Pdf/GenerarPdfOrden/";
     }
 
     function SendDataToPdfOrden() {
-        var data = {
-            id: NumeroOrdenGlobalCliente
-        }
-        var url = ('<?php echo $urlPDfOrden ?>');
+        
+        
 
-        console.log(data);
-        Pdf(data,url)
     }
 
     function Pdf(data,url) {
