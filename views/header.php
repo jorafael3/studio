@@ -11,7 +11,7 @@ if ($con->connect()) {
 	if ($query->execute()) {
 		$result = $query->fetchAll(PDO::FETCH_ASSOC);
 		$titulo = $result[0]["Titulo_pr"];
-		$logo_principal = $result[0]["logo_p"];
+		$logo_principal = $result[0]["logo_orden"];
 	} else {
 		$err = $query->errorInfo();
 		echo $err;
@@ -32,7 +32,7 @@ if ($con->connect()) {
 	<!-- Required meta tags -->
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-	<title>Syndash - Bootstrap4 Admin Template</title>
+	<title>Aj Studio</title>
 	<!--favicon-->
 	<link rel="icon" href="<?php echo constant('URL') ?>public/assets/images/favicon-32x32.png" type="image/png" />
 	<!--plugins-->
@@ -60,7 +60,7 @@ if ($con->connect()) {
 			<nav class="navbar navbar-expand">
 				<div class="sidebar-header">
 					<div class="d-none d-lg-flex">
-						<img src="<?php echo constant('URL').$logo_principal ?>" class="logo-icon-2" alt="" />
+						<img src="<?php echo constant('URL').$logo_principal ?>" class="logo-icon-2" alt="Logo" />
 					</div>
 					<div>
 						<h4 class="d-none d-lg-flex logo-text"><?php echo $titulo ?></h4>
@@ -83,7 +83,7 @@ if ($con->connect()) {
 							<a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="javascript:;" data-toggle="dropdown">
 								<div class="media user-box align-items-center">
 									<div class="media-body user-info">
-										<p class="user-name mb-0">Jessica Doe</p>
+										<p class="user-name mb-0">Katherine</p>
 										<p class="designattion mb-0">Available</p>
 									</div>
 									<img src="https://via.placeholder.com/110x110" class="user-img" alt="user avatar">

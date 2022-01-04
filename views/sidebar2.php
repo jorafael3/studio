@@ -2,6 +2,8 @@
 
 $url = constant('URL');
 $clientes = $url."clientes/nuevo";
+$Proveedores = $url."Proveedores/nuevo";
+
 
 ?>
 
@@ -21,7 +23,7 @@ $clientes = $url."clientes/nuevo";
         </a>
     </li>
     <li>
-        <a href="<?php echo $clientes ?>">
+        <a href="<?php echo $Proveedores ?>">
             <div class="parent-icon icon-color-4"><i class="lni lni-user"></i>
             </div>
             <div class="menu-title">Proveedores</div>

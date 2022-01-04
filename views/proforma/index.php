@@ -7,7 +7,33 @@ $urlListarProducto = constant('URL') . "Productos/ListarProducto/";
 $urlActualizarProd = constant('URL') . "Productos/ActualizarProducto/";
 
 
+require_once("libs/database.php");
 
+$con = new Database();
+$pr = "No Name";
+if ($con->connect()) {
+	$pr = "conec";
+	$query = $con->connect()->prepare("SELECT * FROM studio.settings");
+
+	if ($query->execute()) {
+		$result = $query->fetchAll(PDO::FETCH_ASSOC);
+		$titulo = $result[0]["Titulo_pr"];
+		$correo = $result[0]["correo"];
+		$telefono1 = $result[0]["telefono1"];
+		$telefono2 = $result[0]["telefono2"];
+		$direccion = $result[0]["direccion"];
+		$pie = $result[0]["pie_orden"];
+
+		$logo_orden = $result[0]["logo_orden"];
+		$img_orden = $result[0]["img_orden"];
+
+	} else {
+		$err = $query->errorInfo();
+		echo $err;
+	}
+} else {
+	$pr = "No name";
+}
 
 require 'views/header.php'; ?>
 <?php require 'funciones/Proformasjs.php'; ?>
@@ -76,23 +102,23 @@ require 'views/header.php'; ?>
                 <div class="invoice overflow-auto">
                     <div style="min-width: 600px">
                         <div>
-                            <div class="row">
-                                <div class="col">
-                                    <a href="javascript:;">
-                                        <img src="<?php echo constant('URL') ?>public/assets/images/aj.jpeg" width="80" alt="" />
-                                    </a>
-                                </div>
-                                <div class="col company-details">
-                                    <h2 class="name font-weight-bolder">
-                                        <a class="text-red" target="_blank" href="javascript:;">
-                                            Arboshiki
-                                        </a>
-                                    </h2>
-                                    <div>455 Foggy Heights, AZ 85004, US</div>
-                                    <div>(123) 456-789</div>
-                                    <div>company@example.com</div>
-                                </div>
+                        <div class="row">
+                            <div class="col">
+                                <a href="javascript:;">
+                                    <img src="<?php echo constant('URL').$logo_orden ?>" width="80" alt="" />
+                                </a>
                             </div>
+                            <div class="col company-details">
+                                <h2 class="name font-weight-bolder">
+                                    <a class="text-red" target="_blank" href="javascript:;">
+                                        <?php echo $titulo ?>
+                                    </a>
+                                </h2>
+                                <div> <?php echo $direccion ?></div>
+                                <div> <?php echo $telefono1." - ".$telefono2 ?></div>
+                                <div> <?php echo $correo ?></div>
+                            </div>
+                        </div>
                         </div>
                         <hr class="bg-danger" style="height: 1px;">
                         <main>
@@ -219,7 +245,7 @@ require 'views/header.php'; ?>
                         <div class="col-md-4 col-12">
                             <h4>Cliente</h4>
                             <div class="form-group">
-                                <select onchange="DatosClientes(this.value)" class="form-control js-example-basic-single" style="width: 100%;" id="eventoSalas" required>
+                                <select onchange="DatosClientes(this.value)" class="form-control js-example-basic-single" style="width: 100%;" id="CLienteNombre" required>
                                     <option class="" value=""></option>
 
                                     <?php
@@ -235,7 +261,7 @@ require 'views/header.php'; ?>
                         <div class="col-md-2">
                             <h2 class="text-red font-weight-bolder"></h2>
                             <div class="form-group">
-                                <button onclick="DatosClientes($('#eventoSalas').val())" class="btn btn-light-info"><i class="bx bx-refresh"></i></button>
+                                <button onclick="DatosClientes($('#CLienteNombre').val())" class="btn btn-light-info"><i class="bx bx-refresh"></i></button>
                             </div>
                         </div>
 
@@ -359,7 +385,8 @@ require 'views/header.php'; ?>
 <script>
     function printDiv() {
 
-        $("#CardOrdenCliente").show();
+        SendDataToPdfOrden();
+       $("#CardOrdenCliente").show();
         printWindow($('<div/>').append($("#CardOrdenCliente").clone()).html());
     }
 

@@ -46,7 +46,7 @@ $pie_orden = $sett[0]["pie_orden"];
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="basic-addon1">Nombre Empresa</span>
                                 </div>
-                                <input value="<?php echo $empresa ?>" required id="Punitario" min="0" type="text" pattern="^\d*(\.\d{0,2})?$" class="form-control" placeholder="Empresa" aria-label="Username" aria-describedby="basic-addon1">
+                                <input value="<?php echo $empresa ?>" required id="nombre" type="text" class="form-control">
                             </div>
                         </div>
 
@@ -55,7 +55,7 @@ $pie_orden = $sett[0]["pie_orden"];
                                 <div class="input-group-prepend">
                                     <span style="width: 150px;" class="input-group-text" id="basic-addon1">direccion</span>
                                 </div>
-                                <input value="<?php echo $direccion ?>" required id="Punitario" min="0" type="text" pattern="^\d*(\.\d{0,2})?$" class="form-control" placeholder="av siempre viva 123" aria-label="Username" aria-describedby="basic-addon1">
+                                <input value="<?php echo $direccion ?>" required id="direccion" type="text"class="form-control">
                             </div>
                         </div>
 
@@ -64,7 +64,7 @@ $pie_orden = $sett[0]["pie_orden"];
                                 <div class="input-group-prepend">
                                     <span style="width: 150px;" class="input-group-text" id="basic-addon1">Correo </span>
                                 </div>
-                                <input value="<?php echo $correo ?>" required id="Punitario" min="0" type="text" pattern="^\d*(\.\d{0,2})?$" class="form-control" placeholder="email@mail.com" aria-label="Username" aria-describedby="basic-addon1">
+                                <input value="<?php echo $correo ?>" required id="correo" type="text" class="form-control">
                             </div>
                         </div>
                         <div class="col-md-12 col-12">
@@ -72,7 +72,7 @@ $pie_orden = $sett[0]["pie_orden"];
                                 <div class="input-group-prepend">
                                     <span style="width: 150px;" class="input-group-text" id="basic-addon1">Telefono 1 </span>
                                 </div>
-                                <input value="<?php echo $telefono1 ?>" required id="Punitario" min="0" type="text" pattern="^\d*(\.\d{0,2})?$" class="form-control" placeholder="0969786231" aria-label="Username" aria-describedby="basic-addon1">
+                                <input value="<?php echo $telefono1 ?>" required id="tel1"  type="text" class="form-control">
                             </div>
                         </div>
                         <div class="col-md-12 col-12">
@@ -80,7 +80,7 @@ $pie_orden = $sett[0]["pie_orden"];
                                 <div class="input-group-prepend">
                                     <span style="width: 150px;" class="input-group-text" id="basic-addon1">Telefono 2</span>
                                 </div>
-                                <input value="<?php echo $telefono2 ?>" required id="Punitario" min="0" type="text" pattern="^\d*(\.\d{0,2})?$" class="form-control" placeholder="0999112345" aria-label="Username" aria-describedby="basic-addon1">
+                                <input value="<?php echo $telefono2 ?>" required id="tel2"  type="text"class="form-control">
                             </div>
                         </div>
                         <div class="col-md-12 col-12">
@@ -88,13 +88,13 @@ $pie_orden = $sett[0]["pie_orden"];
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="basic-addon1">Orden Pie de pagina</span>
                                 </div>
-                                <input value="<?php echo $pie_orden ?>" autocomplete="off" required id="Punitario" min="0" type="text" pattern="^\d*(\.\d{0,2})?$" class="form-control" placeholder="Texto pie de pagina" aria-label="Username" aria-describedby="basic-addon1">
+                                <input value="<?php echo $pie_orden ?>" autocomplete="off" required id="pie" min="0" type="text" class="form-control">
                             </div>
                         </div>
                         <div class="col-md-12 col-12">
                             <div class="input-group mb-3">
 
-                                <button class="btn btn-success"> Actualizar</button>
+                                <button onclick="ValidarSett()" class="btn btn-success"> Actualizar</button>
                             </div>
                         </div>
 
@@ -130,7 +130,7 @@ $pie_orden = $sett[0]["pie_orden"];
                 </div>
                 <div class="card-body col-6">
                     <div class="card">
-                        <img class="card-img-top" style="width: 200px; height: 200px;border: 1px solid gray" src="<?php echo constant("URL") . $logo_orden ?>">
+                        <img id="LogoImg"class="card-img-top" style="width: 200px; height: 200px;border: 1px solid gray" src="<?php echo constant("URL") . $logo_orden ?>">
                         <div class="card-body">
                             <form method="post" action="#" enctype="multipart/form-data">
                                 <h5 class="card-title">Logo</h5>
@@ -148,4 +148,6 @@ $pie_orden = $sett[0]["pie_orden"];
             </div>
         </div>
     </div>
+    
     <?php require 'views/footer.php'; ?>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>

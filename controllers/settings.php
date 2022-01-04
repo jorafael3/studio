@@ -29,15 +29,14 @@ class Settings extends Controller
             || ($_FILES["file"]["type"] == "image/png")
             || ($_FILES["file"]["type"] == "image/gif")
         ) {
-            $destination_folder = $_SERVER['DOCUMENT_ROOT'].'/studio/public/assets/images/';
+            $destination_folder = $_SERVER['DOCUMENT_ROOT'] . '/studio/public/assets/images/';
             $fileName = $_FILES['file']['name'];
 
             //echo $destination_folder;
             chmod($destination_folder, 0755);
             if (move_uploaded_file($_FILES["file"]["tmp_name"], $destination_folder . $fileName)) {
 
-                $log = $this->model->GuardarImagen($fileName);
-
+                $log = $this->model->GuardarImagen($fileName,2);
             } else {
                 echo 0;
             }
@@ -48,5 +47,39 @@ class Settings extends Controller
             $nombre = $_POST['files'];
             $log = $this->model->GuardarImagen("adsd");
         }*/
+    }
+    function GuardarLogo()
+    {
+        if (($_FILES["file"]["type"] == "image/pjpeg")
+            || ($_FILES["file"]["type"] == "image/jpeg")
+            || ($_FILES["file"]["type"] == "image/png")
+            || ($_FILES["file"]["type"] == "image/gif")
+        ) {
+            $destination_folder = $_SERVER['DOCUMENT_ROOT'] . '/studio/public/assets/images/';
+            $fileName = $_FILES['file']['name'];
+
+            //echo $destination_folder;
+            chmod($destination_folder, 0755);
+            if (move_uploaded_file($_FILES["file"]["tmp_name"], $destination_folder . $fileName)) {
+
+                $log = $this->model->GuardarImagen($fileName,1);
+            } else {
+                echo 0;
+            }
+            //$log = $this->model->GuardarImagen("adsd");
+        }
+
+        /*if (isset($_POST["id"])) {
+            $nombre = $_POST['files'];
+            $log = $this->model->GuardarImagen("adsd");
+        }*/
+    }
+
+    function ActualizarSett()
+    {
+        $b = json_decode(file_get_contents("php://input"), true);
+        $log = $this->model->ActualizarSett($b);
+
+        
     }
 }

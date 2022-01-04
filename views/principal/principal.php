@@ -13,24 +13,13 @@
             </ol>
         </nav>
     </div>
-    <div class="ml-auto">
-        <div class="btn-group">
-            <button type="button" class="btn btn-primary">Settings</button>
-            <button type="button" class="btn btn-primary bg-split-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"> <span class="sr-only">Toggle Dropdown</span>
-            </button>
-            <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left"> <a class="dropdown-item" href="javascript:;">Action</a>
-                <a class="dropdown-item" href="javascript:;">Another action</a>
-                <a class="dropdown-item" href="javascript:;">Something else here</a>
-                <div class="dropdown-divider"></div> <a class="dropdown-item" href="javascript:;">Separated link</a>
-            </div>
-        </div>
-    </div>
+  
 </div>
 <!--end breadcrumb-->
 <div class="card">
-    <div class="card-header">Starter Page</div>
+    <div class="card-header">Bienvenida</div>
     <div class="card-body">
-        <h2>This is a Starter Page....</h2>
+        <h2>Bienvenida</h2>
     </div>
 </div>
 

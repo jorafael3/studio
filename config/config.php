@@ -8,7 +8,7 @@ define('URL','http://'.$u.'/studio/');// ip local:puerto
 define('HOST', 'localhost');
 define('DB', 'studio');
 define('USER', 'root');
-define('PASSWORD', 'Metallica3');
+define('PASSWORD', '');
 define('CHARSET', 'utf8mb4');
 
 ?>

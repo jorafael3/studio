@@ -1,5 +1,5 @@
 <?php
-$urlClientes = constant('URL') . "Clientes/ListarClientes/";
+$urlClientes = constant('URL') . "Proveedores/ListarProveedores/";
 
 ?>
 
@@ -26,41 +26,41 @@ $urlClientes = constant('URL') . "Clientes/ListarClientes/";
 
     function ValidarCliente(url, tipo) {
         var txtNombre = $("#txtNombre").val();
-        var txtRuc = $("#txtRuc").val();
+        var txtciudad = $("#txtciudad").val();
         var txtTelefono = $("#txtTelefono").val();
         var txtWhatsapp = $("#txtWhatsapp").val();
+
+        var txtContacto = $("#txtContacto").val();
+        var txtPagina = $("#txtPagina").val();
+        var txtObservacion = $("#txtObservacion").val();
+
         var txtCorreo = $("#txtCorreo").val();
         var txtDireccion = $("#txtDireccion").val();
 
         var data = {
             id: "1",
             nombre: txtNombre,
-            ruc: txtRuc,
+            ciudad: txtciudad,
             telefono: txtTelefono,
             whatsapp: txtWhatsapp,
             correo: txtCorreo,
             direccion: txtDireccion,
+            contacto: txtContacto,
+            pagina: txtPagina,
+            observacion: txtObservacion,
             estado: "1",
-            creador: "jorge"
+            creador: "katherine"
         };
 
         if (txtNombre == "") {
 
-        } else if (txtRuc == "") {
-
         } else {
 
             if (tipo == 1) {
+                console.log(data);
                 GuardarCliente(url, data);
             }
             if (tipo == 2) {
-                var chSemana = document.getElementById("customSwitch1");
-
-                if (chSemana.checked == true) {
-                    data.estado = "1"
-                } else {
-                    data.estado = "0"
-                }
 
                 data.id = id_cliente
                 console.log(data);
@@ -119,14 +119,20 @@ $urlClientes = constant('URL') . "Clientes/ListarClientes/";
         $('#add-new-sidebar').modal('show');
         $("#btnguardar").hide();
         $("#btnactualizar").show();
-        $("#seccEstado").show();
+       // $("#seccEstado").show();
         $("#txtNombre").val(data["nombre"]);
-        $("#txtRuc").val(data["ruc"]);
+        $("#txtciudad").val(data["ciudad"]);
         $("#txtTelefono").val(data["telefono"]);
         $("#txtWhatsapp").val(data["whatsapp"]);
-        $("#txtCorreo").val(data["correo"]);
+        $("#txtCorreo").val(data["email"]);
         $("#txtDireccion").val(data["direccion"]);
-        id_cliente = data["id_cliente"];
+
+        $("#txtContacto").val(data["contacto"]);
+        $("#txtPagina").val(data["pagina"]);
+        $("#txtObservacion").val(data["observacion"]);
+
+
+        id_cliente = data["id_proveedor"];
         if (data["estado"] == 1) {
             $('#customSwitch1').prop('checked', true);
         } else {
@@ -192,10 +198,10 @@ $urlClientes = constant('URL') . "Clientes/ListarClientes/";
             ],
             "columnDefs": [{
                 "width": "5%",
-                "targets": 0
+                "targets": 1
             }, {
                 "orderable": false,
-                "targets": 0
+                "targets": 6
             }],
             columns: [{
                     data: null,
@@ -205,21 +211,20 @@ $urlClientes = constant('URL') . "Clientes/ListarClientes/";
                     orderable: false
                 },
                 {
-                    data: "ruc",
-                    title: "CEDULA/RUC "
-                },
-                {
                     data: "nombre",
-                    title: "NOMBRE "
+                    title: "NOMBRE <br> RAZON SOCIAL "
                 }, {
-                    data: "correo",
-                    title: "EMAIL "
+                    data: "ciudad",
+                    title: "CIUDAD "
+                }, {
+                    data: "contacto",
+                    title: "Persona <br>de Contacto "
                 }, {
                     data: "direccion",
                     title: "DIRECCION "
                 }, {
                     data: "telefono",
-                    title: "TELEFONO "
+                    title: "TELEFONO"
                 },
                 {
                     data: "whatsapp",
@@ -229,36 +234,39 @@ $urlClientes = constant('URL') . "Clientes/ListarClientes/";
                             var d = data;
                             console.log(d);
                             if (d != null) {
-                                data = '<a  class="text-success" href="http://web.whatsapp.com/send?phone=+593' + d + '" target="_blank">' + d + '</a>';
+                                data = '<a  class="text-info" href="http://web.whatsapp.com/send?phone=+593' + d + '" target="_blank">' + d + '</a>';
                             }
                         }
                         return data;
 
                     }
-                },
-                {
-                    data: "estado",
-                    title: "ESTADO "
+                },{
+                    data: "email",
+                    title: "EMAIL"
+                },{
+                    data: "pagina",
+                    title: "PAGINA WEB",
+                    "render": function(data, type, row, meta) {
+                        if (type === 'display') {
+                            var d = data;
+                            console.log(d);
+                            if (d != null) {
+                                data = '<a  class="text-info" href="' + d + '" target="_blank">' + d + '</a>';
+                            }
+                        }
+                        return data;
+
+                    }
+                },{
+                    data: "observacion",
+                    title: "OBSERVACIONES"
                 }
+                
 
-
+                
             ],
             "createdRow": function(row, data, index) {
-                if (data["estado"] == 1) {
-                    $('td', row).eq(7).addClass('font-weight-bolder text-success');
-                    $('td', row).eq(7).html("Activo");
-                }
-                if (data["estado"] == 0) {
-                    $('td', row).eq(7).addClass('font-weight-bolder text-danger');
-                    $('td', row).eq(7).html("Inactivo");
-                }
-                $('td', row).eq(0).addClass('font-weight-bolder');
-                $('td', row).eq(1).addClass('font-weight-bolder');
-                $('td', row).eq(2).addClass('font-weight-bolder');
-                $('td', row).eq(3).addClass('font-weight-bolder');
-                $('td', row).eq(4).addClass('font-weight-bolder');
-                $('td', row).eq(5).addClass('font-weight-bolder text-info');
-
+               
             }
 
         });

@@ -39,7 +39,9 @@ $urlPDfOrden = constant('URL') . "Pdf/GenerarPdfOrden/";
     var NumeroOrdenGlobal;
     var PlantillaIdG;
     var Id_ClienteG = "";
+    var NOmbre_ClienteG = "";
     var NumeroOrdenGlobalCliente;
+    var ArrayORdenTemp = [];
 
     function Mensajeok(mensaje) {
         Swal.fire({
@@ -285,10 +287,16 @@ $urlPDfOrden = constant('URL') . "Pdf/GenerarPdfOrden/";
     }
 
     function DatosClientes(id_cliente) {
-        if (id_cliente.length != 0) {
+        NOmbre_ClienteG = $("#CLienteNombre option:selected").text();
+        $("#txtDescCli").val("");
+        $("#txtNomCliOr").val("");
+        $("#btnUpCli").hide();
+        $("#btnNcli").show();
+        $("#btnOrdenPdf").hide();
+     //   if (id_cliente.length != 0) {
             DatosClientesDet(id_cliente);
             DatosClientesProfAsociadas(id_cliente);
-        }
+       // }
 
     }
 
@@ -426,18 +434,19 @@ $urlPDfOrden = constant('URL') . "Pdf/GenerarPdfOrden/";
     var IdOrdenGup;
 
     function UpdateDataClientes(data) {
-        console.log(data);
+        ArrayORdenTemp = data;
+        console.log(NOmbre_ClienteG);
         $("#btnNcli").hide();
         $("#btnUpCli").show();
         $("#btnOrdenPdf").show();
-
         $("#txtDescCli").val(data["descripcion"]);
         $("#txtNomCliOr").val(data["nombre"]);
+
+
 
         DataOrdenAct = data;
         IdOrdenGup = data["id_fact"];
         NumeroOrdenGlobalCliente = IdOrdenGup;
-
     }
 
     function validarActualizarClienteOr() {
@@ -523,6 +532,13 @@ $urlPDfOrden = constant('URL') . "Pdf/GenerarPdfOrden/";
                 NombreOrden: NombreOr,
                 Descripcion: descripcion
             }
+            ArrayORdenTemp = {
+                descripcion:descripcion,
+                id_fact:NumeroOrdenGlobalCliente,
+                nombre:NombreOr,
+
+            };
+
 
             GuardarFactura(url, data);
         }
@@ -752,16 +768,26 @@ $urlPDfOrden = constant('URL') . "Pdf/GenerarPdfOrden/";
         }
         var url = ('<?php echo $urlPDfprofforma ?>');
 
-        Pdf(data,url)
+        Pdf(data, url)
     }
 
     function SendDataToPdfOrden() {
-        
-        
+
+        console.log(NOmbre_ClienteG);
+        console.log(ArrayORdenTemp);
+        var num = String(ArrayORdenTemp["id_fact"]).padStart(10, '0')
+        console.log(num);
+
+        $("#txtOrdenIm").text("Para:" + NOmbre_ClienteG);
+        $("#txtTituloIm").text("Titulo" + ArrayORdenTemp["nombre"]);
+        $("#txtDescIMp").text(ArrayORdenTemp["descripcion"]);
+        $("#NumOrdenImp").text("Orden# " + num);
+        $("#Fechaprint").text("Fecha: " + moment().format('DD-MMMM-YYYY'));
+
 
     }
 
-    function Pdf(data,url) {
+    function Pdf(data, url) {
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onload = function() {
             if (this.readyState == 4 && this.status == 200) {

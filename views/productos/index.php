@@ -130,7 +130,7 @@ require 'views/header.php'; ?>
     </div>
     <div class="card-body">
         <div class="table-responsive">
-            <table id="ListaProductos" style="width: 100%;" class="table hover tabla-clientes  table-bordered">
+            <table id="ListaProductos" style="width: 100%; font-weight: bold;" class="table hover tabla-clientes  table-bordered">
 
             </table>
         </div>

@@ -1,5 +1,14 @@
 <?php
 //error_reporting(0);
+
+
+define('HOST', 'localhost');
+define('DB', 'studio');
+define('USER', 'root');
+define('PASSWORD', '');
+define('CHARSET', 'utf8mb4');
+
+
 class Database
 {
     private $host;
@@ -80,6 +89,24 @@ class Database
                 `fecha_modificacion` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
                 `Creador` varchar(50) NOT NULL,
                 PRIMARY KEY (`id_cliente`)
+              )";
+            $conn->exec($sql);
+            $sql = "CREATE TABLE IF NOT EXISTS  `proveedores` (
+                `id_proveedor` int(11) NOT NULL AUTO_INCREMENT,
+                `nombre` varchar(100) NOT NULL,
+                `ciudad` varchar(100) DEFAULT NULL,
+                `whatsapp` varchar(50) DEFAULT NULL,
+                `telefono` varchar(50) DEFAULT NULL,
+                `contacto` varchar(100) DEFAULT NULL,
+                `email` varchar(100) DEFAULT NULL,
+                `direccion` varchar(500) DEFAULT NULL,
+                `pagina` varchar(500) DEFAULT NULL,
+                `observacion` varchar(1000) DEFAULT NULL,
+                `estado` int(11) NOT NULL,
+                `fecha_creacion` datetime DEFAULT current_timestamp(),
+                `fecha_modificacion` datetime DEFAULT NULL ON UPDATE current_timestamp(),
+                `Creador` varchar(50) NOT NULL,
+                PRIMARY KEY (`id_proveedor`)
               )";
             $conn->exec($sql);
             $sql = "CREATE TABLE IF NOT EXISTS `productos` (
@@ -343,6 +370,73 @@ class Database
                     END if;
                 END";
             $conn->exec($sql);
+
+            $sql = "CREATE PROCEDURE IF NOT EXISTS studio.PROVEEDORES(
+                IN nombre VARCHAR(100),
+               IN ciudad VARCHAR(100),
+               IN telefono VARCHAR(50),
+               IN whatsapp VARCHAR(20),
+               IN contacto VARCHAR(100),
+               IN correo VARCHAR(100),
+               IN direccion VARCHAR(500),
+               IN pagina VARCHAR(500),
+               IN observacion VARCHAR(1000),
+               IN estado int,
+               IN Creador VARCHAR(10),
+               IN tipo int,
+               IN id int
+
+                )
+                begin
+   
+                    IF tipo = 1 THEN
+                       INSERT INTO studio.proveedores(
+                       nombre,
+                       ciudad ,
+                       telefono,
+                       whatsapp,
+                       contacto ,
+                       email ,
+                       direccion,
+                       pagina ,
+                       observacion ,
+                       estado,
+                       Creador
+                       )
+                       values(
+                        nombre,
+                       ciudad,
+                       telefono,
+                       whatsapp,
+                       contacto ,
+                       correo,
+                       direccion,
+                       pagina ,
+                       observacion,
+                       estado,
+                       Creador
+                       );
+                    END IF;
+                
+                    IF tipo = 2 THEN
+                    update studio.proveedores set
+                    nombre = nombre,
+                       ciudad = ciudad ,
+                       telefono =  telefono,
+                       whatsapp = whatsapp,
+                       contacto  = contacto ,
+                       email  = correo,                 
+                       direccion = direccion,
+                       pagina  = pagina ,
+                       observacion = observacion ,
+                       estado = estado where id_proveedor = id ;
+                    END IF;
+                END";
+            $conn->exec($sql);
+            unlink('../../cf.txt');
+            return "ok";
+        } else {
+            return "err";
         }
     }
 }

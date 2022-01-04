@@ -139,22 +139,16 @@ $urlActualizarProd = constant('URL') . "Productos/ActualizarProducto/";
                 "width": "5%",
                 "targets": 0
             }, {
-                "width": "5%",
-                "targets": 5
-            },{
-                "width": "5%",
-                "targets": 6
-            },{
-                "width": "5%",
-                "targets": 4
-            },{
-                "width": "40%",
-                "targets": 1
-            },{
                 "orderable": false,
-                "targets": 6
+                "targets": 0
             }],
-            columns: [{
+            columns: [ {
+                    data: null,
+                    title: "",
+                    className: "dt-center  btn_add",
+                    defaultContent: '<button class="btn btn-warning btn_add"><i class="fa fa-edit"></i> Editar</button>',
+                    orderable: false
+                },{
                     data: "nombre",
                     title: "Nombre / Material"
                 },
@@ -173,45 +167,33 @@ $urlActualizarProd = constant('URL') . "Productos/ActualizarProducto/";
                     title: "estado "
                 },
 
-                {
-                    data: null,
-                    title: "",
-                    className: "dt-center  btn_add",
-                    defaultContent: '<button class="btn btn-warning btn_add"> Editar</button>',
-                    orderable: false
-                },
-                {
+               
+               /* {
                     data: null,
                     title: "",
                     className: "dt-center  btn_delete",
                     defaultContent: '<button class="btn btn-danger btn_delete"> Desactivar</button>',
                     orderable: false
-                }
+                }*/
 
             ],
             "createdRow": function(row, data, index) {
                 if (data["estado"] == 1) {
-                    $('td', row).eq(4).addClass('font-weight-bolder text-success badge badge-light-success  badge-pill');
-                    $('td', row).eq(4).html("Activo");
+                    $('td', row).eq(5).addClass('font-weight-bolder text-success badge badge-light-success  badge-pill');
+                    $('td', row).eq(5).html("Activo");
                 }
                 if (data["estado"] == 0) {
-                    $('td', row).eq(4).addClass('font-weight-bolder text-danger');
-                    $('td', row).eq(4).html("Inactivo");
+                    $('td', row).eq(5).addClass('font-weight-bolder text-danger');
+                    $('td', row).eq(5).html("Inactivo");
                 }
                 if (data["medida"] == 1) {
-                    $('td', row).eq(2).addClass('font-weight-bolder text-dark');
-                    $('td', row).eq(2).html("Unidad");
+                    $('td', row).eq(3).addClass('font-weight-bolder text-dark');
+                    $('td', row).eq(3).html("Unidad");
                 }
                 if (data["medida"] == 0) {
-                    $('td', row).eq(2).addClass('font-weight-bolder text-info');
-                    $('td', row).eq(2).html("Metros");
+                    $('td', row).eq(3).addClass('font-weight-bolder text-info');
+                    $('td', row).eq(3).html("Metros");
                 }
-                $('td', row).eq(0).addClass('font-weight-bolder');
-                $('td', row).eq(1).addClass('font-weight-bolder');
-                $('td', row).eq(2).addClass('font-weight-bolder');
-                $('td', row).eq(3).addClass('font-weight-bolder');
-                $('td', row).eq(4).addClass('font-weight-bolder');
-
 
             }
 

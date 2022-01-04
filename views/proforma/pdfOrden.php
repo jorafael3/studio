@@ -59,7 +59,7 @@ if ($con->connect()) {
 </head>
 
 <body>
-    <div class="row" id="CardOrdenCliente">
+    <div class="row" id="CardOrdenCliente" style="display: none;">
         <div class="card col-xl-12 bordered">
             <div class="card-body">
                 <div class="invoice">
@@ -86,20 +86,20 @@ if ($con->connect()) {
                     <div class=" card-body col-xl-12" style="height: 346mm; size: A4; background:url(../<?php echo $img_orden ?>);background-size: cover;">
                         <div class="row">
                             <div class="col-sm-12" style="text-align: right;">
-                                <span id="Fechaprint" class="font-weight-bolder" style="font-size: 18px;">Orden#: 00000000028</span><br>
+                                <span id="NumOrdenImp" class="font-weight-bolder" style="font-size: 18px;" >Orden#: 00000000028</span><br>
                                 <span id="Fechaprint" class="font-weight-bolder" style="font-size: 14px;">Fecha: 2021-11-15</span>
                             </div>
 
                             <div class="col-12">
                                 <br><br><br><br><br><br><br><br><br><br>
                                 <div class="col-12" style="margin: auto; width: 75%; padding: 10px;">
-                                    <span class="font-weight-bolder" style="font-size: 18px;">Para: superexitos</span>
+                                    <span class="font-weight-bolder" style="font-size: 18px;" id="txtOrdenIm">Para: superexitos</span>
                                 </div>
                                 <div class="col-12" style="margin: auto; width: 75%; padding: 10px;">
-                                    <span class="font-weight-bolder" style="font-size: 18px;">Titulo: superexitos</span>
+                                    <span class="font-weight-bolder" style="font-size: 18px;" id="txtTituloIm">Titulo: superexitos</span>
                                 </div>
                                 <div class="col-12" style="margin: auto; width: 75%; padding: 10px;  text-align: justify; text-justify: inter-word;">
-                                    <span style="font-size: 16px;">it is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
+                                    <span id="txtDescIMp" style="font-size: 16px;">it is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
 
                                     </span>
                                 </div>
