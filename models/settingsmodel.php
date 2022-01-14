@@ -61,12 +61,13 @@ class SettingsModel extends Model
         $tel1 = $parametros["tel1"];
         $tel2 = $parametros["tel2"];
         $pie = $parametros["pie"];
-
+        $nombreUsu = $parametros["nombreUsu"];
 
         try {
             $items = [];
             $query = $this->db->connect()->prepare("UPDATE studio.settings
             SET 
+            usuario = '" . $nombreUsu . "',
             Titulo_pr = '" . $nombre . "',
             direccion = '" . $direccion . "',
             correo = '" . $correo . "',

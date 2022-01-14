@@ -15,6 +15,7 @@ $logo_p = $sett[0]["logo_p"];
 $logo_orden = $sett[0]["logo_orden"];
 $img_orden = $sett[0]["img_orden"];
 $pie_orden = $sett[0]["pie_orden"];
+$Usuario = $sett[0]["usuario"];
 
 
 ?>
@@ -41,6 +42,14 @@ $pie_orden = $sett[0]["pie_orden"];
             <div class="card-body">
                 <div class="d-lg-flex align-items-end">
                     <form class="needs-validation" novalidate onsubmit="return false">
+                    <div class="col-md-12 col-12">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">Nombre Usuario</span>
+                                </div>
+                                <input value="<?php echo $Usuario ?>" required id="nombreUsu" type="text" class="form-control">
+                            </div>
+                        </div>
                         <div class="col-md-12 col-12">
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">

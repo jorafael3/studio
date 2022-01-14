@@ -24,8 +24,61 @@ require 'views/header.php'; ?>
             </ol>
         </nav>
     </div>
-</div>
+    <div class="ml-auto">
+        <div class="btn-group">
+            <button class="btn" data-toggle="modal" data-target="#help"><i class="bx bx-help-circle"></i> Ayuda</button>
 
+        </div>
+    </div>
+
+</div>
+<div class="modal fade" id="help">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content p-0">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">×</button>
+            <div class="modal-header mb-1">
+                <h5 class="modal-title">Ayuda</h5>
+            </div>
+            <div class="modal-body flex-grow-1 pb-sm-0 pb-3">
+                <div class="card-body">
+                    <div>
+                        <h5>1. Para Guardar un nuevo Producto
+                        </h5>
+                        <ul>
+                           <li>Llenar los campos correspondientes, todos son obligatorios</li>
+                           <li>Click en el boton 
+                               <button class="btn btn-danger">Guardar</button>
+                           </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h5>2. Para Actualizar datos de un producto</h5>
+                        <li>
+                            click en la tabla boton
+                            <button class="btn btn-sm btn-warning">Editar</button>
+                        </li>
+                        <li>
+                            se llenaran los campos con los datos del producto a modificar
+                        </li>
+                        <li>Para GUardar los cambios click en 
+                            <button class="btn btn-sm btn-warning">Actualizar</button>
+                        </li>
+                        <li>
+                            para crear un nuevo registro click en
+                            <button class="btn btn-sm btn-success">Crear Nuevo</button>
+
+                        </li>
+                    </div>
+                    <div>
+                        <h5>3. Herramientas de la tabla</h5>
+                        <li>Podemos crear un archivo de excel o imprimir presionando en el boton correspondiente</li>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="card" id="CardNuevoProducto" style="display: none;">
     <div class="card-header">
         <h5>Nuevo Producto</h5>

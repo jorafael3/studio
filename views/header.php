@@ -11,6 +11,8 @@ if ($con->connect()) {
 	if ($query->execute()) {
 		$result = $query->fetchAll(PDO::FETCH_ASSOC);
 		$titulo = $result[0]["Titulo_pr"];
+		$Usuario = $result[0]["usuario"];
+
 		$logo_principal = $result[0]["logo_orden"];
 	} else {
 		$err = $query->errorInfo();
@@ -83,10 +85,10 @@ if ($con->connect()) {
 							<a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="javascript:;" data-toggle="dropdown">
 								<div class="media user-box align-items-center">
 									<div class="media-body user-info">
-										<p class="user-name mb-0">Katherine</p>
-										<p class="designattion mb-0">Available</p>
+										<p class="user-name mb-0"><?php echo $Usuario ?></p>
+										<p class="designattion mb-0">En linea</p>
 									</div>
-									<img src="https://via.placeholder.com/110x110" class="user-img" alt="user avatar">
+									<img src="https://www.schoss.com.ar/images/avatar-woman.png" class="user-img" alt="user avatar">
 								</div>
 							</a>
 							<div class="dropdown-menu dropdown-menu-right"> <a class="dropdown-item" href="javascript:;"><i class="bx bx-user"></i><span>Profile</span></a>

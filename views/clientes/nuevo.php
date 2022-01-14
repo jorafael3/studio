@@ -6,12 +6,13 @@ $urlClientesUpdate = constant('URL') . "Clientes/ActualizarCliente/";
 
 require 'views/header.php';
 ?>
-    <?php require 'funciones/clientesjs.php'; ?>
+<?php require 'funciones/clientesjs.php'; ?>
 
 
 <!--breadcrumb-->
 <div class="page-breadcrumb d-none d-md-flex align-items-center mb-3">
     <div class="breadcrumb-title pr-3">Clientes</div>
+
     <div class="pl-3">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb mb-0 p-0">
@@ -21,12 +22,62 @@ require 'views/header.php';
             </ol>
         </nav>
     </div>
+    <div class="ml-auto">
+        <div class="btn-group">
+            <button class="btn" data-toggle="modal" data-target="#help"><i class="bx bx-help-circle"></i> Ayuda</button>
+
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="help">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content p-0">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">×</button>
+            <div class="modal-header mb-1">
+                <h5 class="modal-title">Ayuda</h5>
+            </div>
+            <div class="modal-body flex-grow-1 pb-sm-0 pb-3">
+                <div class="card-body">
+                    <div>
+                        <h5>1. Para Guardar un nuevo cliente
+                        </h5>
+                        <ul>
+                            <li> Click en <button class="btn-sm btn-danger">Nuevo Cliente</button>
+                            </li>
+                            <li>Permite Crear un Nuevo cliente</li>
+                            <li>los campos <code>Nombre</code> y <code>Cedula/Ruc</code> son obligatorios para poder guardar el cliente</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h5>2. Para Actualizar datos de un cliente</h5>
+                        <li>
+                            click en la tabla boton
+                            <button class="btn btn-sm btn-warning">Editar</button>
+                        </li>
+                        <li>Modificamos los campos que queremos actualizar, luego click en
+                            <button class="btn btn-sm btn-warning">Actualizar</button>
+
+                        </li>
+                    </div>
+                    <div>
+                        <h5>3. Herramientas de la tabla</h5>
+                        <li>Podemos crear un archivo de excel o imprimir presionando en el boton correspondiente</li>
+                        <li>En la tabla columna <span class="text-success">Whatsapp</span>  haciendo click sobre el numero nos redirigira
+                            a el contacto en whatsapp
+                        </li>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <!--end breadcrumb-->
 <div class="card">
     <div class="card-header">
         <button class="btn btn-danger btn-toggle-sidebar" id="BtnNuevoEvento" data-toggle="modal" data-target="#add-new-sidebar">Nuevo Cliente</button>
     </div>
+
+
     <div class="card-body">
         <div class="table-responsive">
             <table id="Lista" style="width: 100%;" class="table hover tabla-clientes  table-bordered">
@@ -140,18 +191,18 @@ require 'views/header.php';
         }, false);
     })();
 
-    $(document).on('keydown', 'input[pattern]', function(e){
-  var input = $(this);
-  var oldVal = input.val();
-  var regex = new RegExp(input.attr('pattern'), 'g');
+    $(document).on('keydown', 'input[pattern]', function(e) {
+        var input = $(this);
+        var oldVal = input.val();
+        var regex = new RegExp(input.attr('pattern'), 'g');
 
-  setTimeout(function(){
-    var newVal = input.val();
-    if(!regex.test(newVal)){
-      input.val(oldVal); 
-    }
-  }, 1);
-});
+        setTimeout(function() {
+            var newVal = input.val();
+            if (!regex.test(newVal)) {
+                input.val(oldVal);
+            }
+        }, 1);
+    });
 </script>
 <script>
     $("#seccEstado").hide();

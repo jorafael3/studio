@@ -11,9 +11,10 @@ class CreateData
     {
         $data = new Database();
 
-        $query = $data->connect()->prepare("CREATE SCHEMA IF NOT EXISTS studio");
+        $query = $data->connect()->prepare("SHOW DATABASES LIKE 'studio'");
         if ($query->execute()) {
-            return "ok";
+            $result = $query->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
         } else {
             return "err";
         }

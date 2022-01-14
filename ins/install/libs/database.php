@@ -163,23 +163,13 @@ class Database
                 `logo_p` varchar(1000) DEFAULT NULL,
                 `logo_orden` varchar(1000) DEFAULT NULL,
                 `img_orden` varchar(1000) DEFAULT NULL,
-                `pie_orden` varchar(500) DEFAULT NULL
+                `pie_orden` varchar(500) DEFAULT NULL,
+                `usuario` varchar(500) NOT NULL
               ) ";
             $conn->exec($sql);
-            $sql = "CREATE TABLE IF NOT EXISTS `settings` (
-                `Titulo_pr` varchar(100) NOT NULL,
-                `direccion` varchar(500) NOT NULL,
-                `correo` varchar(500) NOT NULL,
-                `telefono1` varchar(20) NOT NULL,
-                `telefono2` varchar(20) DEFAULT NULL,
-                `logo_p` varchar(1000) DEFAULT NULL,
-                `logo_orden` varchar(1000) DEFAULT NULL,
-                `img_orden` varchar(1000) DEFAULT NULL,
-                `pie_orden` varchar(500) DEFAULT NULL
-              ) ";
-            $conn->exec($sql);
-            $sql = "INSERT INTO studio.settings (Titulo_pr,direccion,correo,telefono1,telefono2,logo_p,logo_orden,img_orden,pie_orden)
-            values('Aj Esttudio','direccion','mail@mail.com','123456','123456','public/assets/images/aj.jpeg','public/assets/images/aj.jpeg','public/assets/images/bgorden.PNG','Pie Texto' ) ";
+         
+            $sql = "INSERT INTO studio.settings (Titulo_pr,direccion,correo,telefono1,telefono2,logo_p,logo_orden,img_orden,pie_orden,usuario)
+            values('Aj Estudio','direccion','mail@mail.com','123456','123456','public/assets/images/aj.jpeg','public/assets/images/aj.jpeg','public/assets/images/bgorden.PNG','Pie Texto','Katherine' ) ";
             $conn->exec($sql);
 
             $sql = "CREATE PROCEDURE IF NOT EXISTS`studio`.`CLIENTES`(
@@ -433,7 +423,7 @@ class Database
                     END IF;
                 END";
             $conn->exec($sql);
-            unlink('../../cf.txt');
+            //unlink('../../cf.txt');
             return "ok";
         } else {
             return "err";

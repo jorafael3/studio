@@ -12,27 +12,26 @@ require_once("libs/database.php");
 $con = new Database();
 $pr = "No Name";
 if ($con->connect()) {
-	$pr = "conec";
-	$query = $con->connect()->prepare("SELECT * FROM studio.settings");
+    $pr = "conec";
+    $query = $con->connect()->prepare("SELECT * FROM studio.settings");
 
-	if ($query->execute()) {
-		$result = $query->fetchAll(PDO::FETCH_ASSOC);
-		$titulo = $result[0]["Titulo_pr"];
-		$correo = $result[0]["correo"];
-		$telefono1 = $result[0]["telefono1"];
-		$telefono2 = $result[0]["telefono2"];
-		$direccion = $result[0]["direccion"];
-		$pie = $result[0]["pie_orden"];
+    if ($query->execute()) {
+        $result = $query->fetchAll(PDO::FETCH_ASSOC);
+        $titulo = $result[0]["Titulo_pr"];
+        $correo = $result[0]["correo"];
+        $telefono1 = $result[0]["telefono1"];
+        $telefono2 = $result[0]["telefono2"];
+        $direccion = $result[0]["direccion"];
+        $pie = $result[0]["pie_orden"];
 
-		$logo_orden = $result[0]["logo_orden"];
-		$img_orden = $result[0]["img_orden"];
-
-	} else {
-		$err = $query->errorInfo();
-		echo $err;
-	}
+        $logo_orden = $result[0]["logo_orden"];
+        $img_orden = $result[0]["img_orden"];
+    } else {
+        $err = $query->errorInfo();
+        echo $err;
+    }
 } else {
-	$pr = "No name";
+    $pr = "No name";
 }
 
 require 'views/header.php'; ?>
@@ -49,8 +48,80 @@ require 'views/header.php'; ?>
             </ol>
         </nav>
     </div>
-</div>
+    <div class="ml-auto">
+        <div class="btn-group">
+            <button class="btn" data-toggle="modal" data-target="#help"><i class="bx bx-help-circle"></i> Ayuda</button>
 
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="help">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content p-0">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">×</button>
+            <div class="modal-header mb-1">
+                <h5 class="modal-title">Ayuda</h5>
+            </div>
+            <div class="modal-body flex-grow-1 pb-sm-0 pb-3">
+                <div class="card-body">
+                    <div>
+                        <h5>1. Para Crear una nueva plantilla
+                        </h5>
+                        <ul>
+                            <li> Click en <button class="btn-sm btn-success">Nueva</button>
+                            </li>
+                            <li>Colocamos un nombre a la plantilla</li>
+                            <li>Click en
+                                <button class="btn-sm btn-dark">Agregar productos a la tabla</button>
+                            </li>
+                            <li>Nos desplegara la lista de productos que tengamos, para agregarlos a la proforma solo hacer click en Agregar </li>
+                            <li>Podemos agregar un margen de ganancia</li>
+                            <li>Click en guardar </li>
+                            <li>Siqueremos modificar o agregar producto nuevos
+                                click en
+                                <button class="btn-sm btn-warning">Actualizar</button>
+
+                            </li>
+                            <li>Exporatar proforma a pdf click
+                                <button class="btn-sm btn-danger">Export as Pdf</button>
+
+                            </li>
+                            <li>Tambien podemos cargar una plantilla creada anteriormente
+                                seleccionando el nombre de la misma en la lista y click en 
+                                <button class="btn-sm btn-primary">Cargar</button>
+
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h5>2. Crear proforma para clientes</h5>
+                        <li>En esta seccion crearemos las ordenes basandonos en la proforma creada o seleccionada anteriormente</li>
+                        <li>1. seleccionar el cliente al que le queremos realizar la orden</li>
+                        <li>2. llenamos con el nombre de la orden y la descripcion de la misma y guardamos</li>
+                        <li>
+                            con el boton
+                            <button class="btn-sm btn-info"><i class="bx bx-refresh"></i></button>
+                            recargamos la tabla con las ordenes creadas a ese cliente
+                        </li>
+                        <li>Para editar o reimprimir una orden seleccionamos en la tabla la ordenque queremofa-spiny damos click
+                            en 
+                            <button class="btn-sm btn-warning">Editar</button>
+                        </li>
+                        <li>aqui podremos modificar los datos de la orden 
+                            haciendo click 
+                            <button class="btn-sm btn-warning">Actualizar</button>
+                            o imprimir  haciendo click end
+                            <button class="btn-sm btn-danger">Pdf</button>
+
+                            
+                        </li>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="row contacts">
     <div class="col invoice-to">
 
@@ -102,23 +173,23 @@ require 'views/header.php'; ?>
                 <div class="invoice overflow-auto">
                     <div style="min-width: 600px">
                         <div>
-                        <div class="row">
-                            <div class="col">
-                                <a href="javascript:;">
-                                    <img src="<?php echo constant('URL').$logo_orden ?>" width="80" alt="" />
-                                </a>
-                            </div>
-                            <div class="col company-details">
-                                <h2 class="name font-weight-bolder">
-                                    <a class="text-red" target="_blank" href="javascript:;">
-                                        <?php echo $titulo ?>
+                            <div class="row">
+                                <div class="col">
+                                    <a href="javascript:;">
+                                        <img src="<?php echo constant('URL') . $logo_orden ?>" width="80" alt="" />
                                     </a>
-                                </h2>
-                                <div> <?php echo $direccion ?></div>
-                                <div> <?php echo $telefono1." - ".$telefono2 ?></div>
-                                <div> <?php echo $correo ?></div>
+                                </div>
+                                <div class="col company-details">
+                                    <h2 class="name font-weight-bolder">
+                                        <a class="text-red" target="_blank" href="javascript:;">
+                                            <?php echo $titulo ?>
+                                        </a>
+                                    </h2>
+                                    <div> <?php echo $direccion ?></div>
+                                    <div> <?php echo $telefono1 . " - " . $telefono2 ?></div>
+                                    <div> <?php echo $correo ?></div>
+                                </div>
                             </div>
-                        </div>
                         </div>
                         <hr class="bg-danger" style="height: 1px;">
                         <main>
@@ -386,7 +457,7 @@ require 'views/header.php'; ?>
     function printDiv() {
 
         SendDataToPdfOrden();
-       $("#CardOrdenCliente").show();
+        $("#CardOrdenCliente").show();
         printWindow($('<div/>').append($("#CardOrdenCliente").clone()).html());
     }
 

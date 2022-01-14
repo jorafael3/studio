@@ -19,10 +19,17 @@ $cr = new CreateData();
 
 if ($data->connect()) {
     //include_once 'views/install/install.php';
-    $app = new App();
-    
+    $d = $cr->Create_DataBase();
+    if (count($d) <= 0) {
+		header('Location: /studio/ins/install/instalar.php');
+
+    } else {
+        $app = new App();
+
+    }
+    //var_dump($d);
+
+
 
 } else {
-
-
 }

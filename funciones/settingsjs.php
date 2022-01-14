@@ -80,6 +80,7 @@ $Actualizar = constant('URL') . "settings/ActualizarSett";
     }
 
     function ValidarSett() {
+        var nombreUsu = $('#nombreUsu').val();
         var nombre = $('#nombre').val();
         var direccion = $('#direccion').val();
         var correo = $('#correo').val();
@@ -97,6 +98,7 @@ $Actualizar = constant('URL') . "settings/ActualizarSett";
                 tel1: tel1,
                 tel2: tel2,
                 pie: pie,
+                nombreUsu,nombreUsu
             }
             console.log(data);
             ActualizarSett(urlAct,data);
@@ -111,6 +113,7 @@ $Actualizar = constant('URL') . "settings/ActualizarSett";
                 var data = this.responseText;
                 data = JSON.parse(data);
                 console.log(data);
+                window.location.reload()
             }
         }
         data = JSON.stringify(data);
